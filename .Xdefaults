@@ -1,0 +1,156 @@
+# If edit this file merge the changes to take effect
+# xrdb -merge ~/.Xdefaults
+# to evoke urgent run
+# sleep 2; echo -e '\a'
+xterm*loginShell: 		true
+xterm*termName:			xterm
+xterm*scrollBar:        	false
+xterm*scrollBar_right:		false
+xterm*scrollBar_floating: 	false
+xterm*bellIsUrgent: 		true
+xterm*visualBell: 		false
+xterm*url-launcher:      	/usr/bin/chromium
+xterm.colorUL:			#4682B4
+xterm*matcher.button:		2
+xterm*saveLines:  		10000
+#xterm*fading:			50
+#xterm*fadeColor:		#000000
+XTerm*locale: true
+
+Xft*dpi:			96
+Xft*antialias:			true
+Xft*hinting:			full
+
+!xterm*background:		rgba:0000/0000/0000/cccc
+
+!xterm.tintColor:		black
+
+xterm*background:	#2B2B2B
+xterm*foreground:	#DEDEDE
+XTerm*transparent:	true
+xterm.shading:			40
+
+xterm*colorUL:		#86a2b0
+
+! black
+xterm*color0  : 	#2E3436
+xterm*color8  : 	#555753
+! red
+xterm*color1  : 	#CC0000
+xterm*color9  : 	#EF2929
+! green
+xterm*color2  : 	#4E9A06
+xterm*color10 : 	#8AE234
+! yellow
+xterm*color3  : 	#C4A000
+xterm*color11 : 	#FCE94F
+! blue
+xterm*color4  : 	#3465A4
+xterm*color12 : 	#729FCF
+! magenta
+xterm*color5  : 	#75507B
+xterm*color13 : 	#AD7FA8
+! cyan
+xterm*color6  : 	#06989A
+xterm*color14 : 	#34E2E2
+! white	
+xterm*color7  : 	#D3D7CF
+xterm*color15 : 	#EEEEEC
+
+xterm.iso14755:		False
+!xterm.keysym.Shift-Control-V: perl:clipboard:paste
+!xterm.perl-ext-common: default,matcher,clipboard
+xterm*Curses:		True
+! {{{ Quick Reference
+!
+! Scrolling:
+!   Scroll Wheel
+!   Shift-PgUp/PgDn
+!
+! Copy/Paste:
+!   Mouse-Select        : Copy to PRIMARY
+!   Shift + Mouse-Select: Copy to CLIPBOARD
+!
+!   Middle-Click        : Paste from PRIMARY
+!   Shift + Middle-Click: Paste from CLIPBOARD
+!
+!   Ctrl+Shift+V        : Paste from CLIPBOARD
+!   Ctrl+Alt+Shift+V    : Paste from PRIMARY
+!
+! }}}
+ 
+! More Konsole/Yakuake-like keybindings:
+*VT100.Translations: #override \
+                    Shift <Key>Up:              scroll-back(1) \n\
+                    Shift <Key>Down:            scroll-forw(1) \n\
+                    ~Meta Shift Ctrl <Key>V:    insert-selection(CLIPBOARD) \n\
+                     Meta Shift Ctrl <Key>V:    insert-selection(PRIMARY) \n\
+                    ~Shift <Btn1Up>:            select-end(PRIMARY, CUT_BUFFER0) \n\
+                     Shift <Btn1Up>:            select-end(CLIPBOARD, CUT_BUFFER1) \n\
+                    ~Shift ~Ctrl ~Meta <Btn2Up>:insert-selection(PRIMARY, CUT_BUFFER0) \n\
+                     Shift ~Ctrl ~Meta <Btn2Up>:insert-selection(CLIPBOARD, CUT_BUFFER1)
+
+urxvt*loginShell: 		true
+#urxvt*termName:			rxvt
+urxvt*termName:		scratchpad
+urxvt*font:             	xft:Fixed:size=10
+urxvt*scrollBar:        	false
+urxvt*scrollBar_right:		false
+urxvt*scrollBar_floating: 	false
+urxvt.urgentOnBell: 		true
+urxvt*visualBell: 		false
+urxvt*url-launcher:      	/usr/bin/chromium
+urxvt.colorUL:			#4682B4
+urxvt*matcher.button:		2
+urxvt*saveLines:  		10000
+#urxvt*fading:			50
+#urxvt*fadeColor:		#000000
+
+Xft*dpi:			96
+Xft*antialias:			true
+Xft*hinting:			full
+
+urxvt*background:		rgba:0000/0000/0000/cccc
+
+urxvt.transparent:		true
+!urxvt.tintColor:		black
+urxvt.shading:			10
+
+urxvt*background:	#2B2B2B
+urxvt*foreground:	#DEDEDE
+
+urxvt*colorUL:		#86a2b0
+
+! black
+urxvt*color0  : 	#2E3436
+urxvt*color8  : 	#555753
+! red
+urxvt*color1  : 	#CC0000
+urxvt*color9  : 	#EF2929
+! green
+urxvt*color2  : 	#4E9A06
+urxvt*color10 : 	#8AE234
+! yellow
+urxvt*color3  : 	#C4A000
+urxvt*color11 : 	#FCE94F
+! blue
+urxvt*color4  : 	#3465A4
+urxvt*color12 : 	#729FCF
+! magenta
+urxvt*color5  : 	#75507B
+urxvt*color13 : 	#AD7FA8
+! cyan
+urxvt*color6  : 	#06989A
+urxvt*color14 : 	#34E2E2
+! white	
+urxvt*color7  : 	#D3D7CF
+urxvt*color15 : 	#EEEEEC
+
+urxvt.iso14755:		false
+urxvt*Curses:		True
+urxvt.perl-ext-common: default,matcher,clipboard
+urxvt.keysym.M-c:   perl:clipboard:copy
+urxvt.keysym.M-v:   perl:clipboard:paste
+urxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+
