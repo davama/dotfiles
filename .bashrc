@@ -59,7 +59,7 @@ function sshnasty () {
 	for K in "$@"; do sed -i "$K"d ~/.ssh/known_hosts; done
 }
 source ~/.bash_aliases
-#PATH=/home/dvmacias/.cabal/bin:$PATH
+PATH=/home/dvmacias/.cabal/bin:$PATH
 alias urgent="sleep 2; echo -e '\a'"
 
 # lxterminal needs this
