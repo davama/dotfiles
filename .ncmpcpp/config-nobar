@@ -357,9 +357,6 @@ user_interface = "alternative"
 ##
 default_find_mode = "wrapped" (wrapped/normal)
 ##
-#default_space_mode = "add" (add/select)
-default_space_mode = "select" (add/select)
-##
 #default_tag_editor_left_col = "albums" (albums/dirs)
 ##
 default_tag_editor_pattern = "%n - %t"
