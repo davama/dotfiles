@@ -58,7 +58,6 @@ function sshnasty () {
 	if [ -z $1 ]; then return; fi
 	for K in "$@"; do sed -i "$K"d ~/.ssh/known_hosts; done
 }
-source ~/.bash_aliases
 PATH=/home/dvmacias/.cabal/bin:$PATH
 alias urgent="sleep 2; echo -e '\a'"
 
