@@ -1,0 +1,52 @@
+# alsa device configuration
+
+# multi channel virtual device
+pcm.both_output {
+    type route;
+    slave.pcm {
+        type multi;
+        slaves.a.pcm "plughw:0,0" # onboard soundcard
+        slaves.b.pcm "plughw:1,0" # usb headset
+	# use 4 channels total
+        slaves.a.channels 2; # 2 channels from slave a
+        slaves.b.channels 2; # 2 channels from slave b
+	# channel 0 of pseudo-device will correspond to channel 0 of slave a
+        bindings.0.slave a;
+        bindings.0.channel 0; 
+	# channel 1 of pseudo-device will correspond to channel 0 of slave a
+        bindings.1.slave a;
+        bindings.1.channel 1;
+	# channel 2 of pseudo-device will correspond to channel 0 of slave b
+        bindings.2.slave b;
+        bindings.2.channel 0;
+	# channel 3 of pseudo-device will correspond to channel 0 of slave b
+        bindings.3.slave b;
+        bindings.3.channel 1;
+    }   
+   
+    ttable.0.0 1;
+    ttable.1.1 1;
+   
+    ttable.0.2 1;  
+    ttable.1.3 1;  
+}
+
+# default pcm devic3
+pcm.!default {
+        type asym
+	# playback
+	playback.pcm {
+		type plug
+		slave.pcm "both_output" # point to multi-channel virtual device
+	}
+	# capture
+	capture.pcm {
+		type plug
+		slave.pcm "hw:1,0" # usb mic
+	}
+}
+
+ctl.!default {
+        type hw
+        card 0
+}
