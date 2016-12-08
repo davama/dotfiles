@@ -49,6 +49,12 @@ pcm.both {
                               card 1
                               device 0 
                            } 
+			####################
+		        #rate 48000
+                        #period_time 0
+                        #period_size 1024
+                        #buffer_time 0
+			####################
                         buffer_size 4096 
                         channels 2 
                         } 
@@ -64,6 +70,12 @@ pcm.both {
                                  card 0
                                  device 0 
                               } 
+			####################
+		        #rate 48000
+                        #period_time 0
+                        #period_size 1024
+                        #buffer_time 0
+			####################
                         buffer_size 4096 
                         channels 2 
                         } 
