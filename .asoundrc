@@ -1,8 +1,8 @@
 # sets default "volume control" device to the onboard soundcard
 ctl.!default { 
-   type hw 
-   #see notes at bottom under the control section about this setting 
-   card 0
+	type hw
+	#see notes at bottom under the control section about this setting 
+	card 0
 } 
 
 # sets the default output device to the "pcm.both" device 
@@ -21,93 +21,93 @@ pcm.!default {
 
 # the fun begins... 
 pcm.both { 
-   #add the software volume control plugin to the chain first - creates a volume control for "everything" fed into the default alsa device 
-   type softvol 
-   slave { 
-      pcm { 
-         # add the plug plugin, the "Automatic conversion plugin" - allows a 2 channel source to feed what is technically a 4 channel plugin 
-         type plug 
-         slave { 
-            pcm { 
-            # add the route plugin - used to rearrange the channels 
-               type route 
-               slave { 
-                  pcm { 
-                     # add the multi plugin - used to merge the 2 sound cards together 
-                     type multi; 
-                     slaves.a.pcm{ 
-                        # add the dmix plugin - needed for multiple input into one hardware card if the card does not support hardware mixing 
-                        type dmix 
-                        # if i mess with this it doesn't work (and yes i made it up)?! 
-                        ipc_key 2589455 
-                        #needed for multiple users accessing the sound card at the same time 
-                        ipc_perm 0666 
-                        slave { 
-                           pcm { 
-                              # add the usb headset - change to suit your sound card #1 
-                              type hw 
-                              card 1
-                              device 0 
-                           } 
-			####################
-		        #rate 48000
-                        #period_time 0
-                        #period_size 1024
-                        #buffer_time 0
-			####################
-                        buffer_size 4096 
-                        channels 2 
-                        } 
-                     } 
-                     slaves.b.pcm{ 
-                        type dmix 
-                        ipc_key 4855689 
-                        ipc_perm 0666 
-                        slave { 
-                              pcm { 
-                                 #add the sound card - change to suit your sound card #2 
-                                 type hw 
-                                 card 0
-                                 device 0 
-                              } 
-			####################
-		        #rate 48000
-                        #period_time 0
-                        #period_size 1024
-                        #buffer_time 0
-			####################
-                        buffer_size 4096 
-                        channels 2 
-                        } 
-                     } 
-                     # this creates a 4 channel stream using 2 inputs from each card 
-                     slaves.a.channels 2; 
-                     slaves.b.channels 2; 
-                     bindings.0.slave a; 
-                     bindings.0.channel 0; 
-                     bindings.1.slave a; 
-                     bindings.1.channel 1; 
-                     bindings.2.slave b; 
-                     bindings.2.channel 0; 
-                     bindings.3.slave b; 
-                     bindings.3.channel 1; 
-                     } 
-                  } 
-               #this merges channel 2 and 3 into 0 and 1 respectively 
-               ttable.0.0 1; 
-               ttable.1.1 1; 
-               ttable.0.2 1; 
-               ttable.1.3 1; 
-            } 
-         } 
-      } 
-   } 
-   control{ 
-      # define volume control name - most apps try to change "Master" by default 
-      # if you already have a "Master" volume control you will need to name it something else 
-      name Master 
-      # the card used to add the software control to - used for accessing the control does not affect the output of that card directly ( ie it changes the output of both devices just shows up in the one selected ) 
-      # you also will need to change the device set in the first block (ctl.!default) to the same card to ensure it is chosen as the default 
-      card 0
-   } 
-} 
+	#add the software volume control plugin to the chain first - creates a volume control for "everything" fed into the default alsa device 
+	type softvol 
+	slave { 
+		pcm {
+			# add the plug plugin, the "Automatic conversion plugin" - allows a 2 channel source to feed what is technically a 4 channel plugin 
+			type plug 
+			slave { 
+				pcm { 
+					# add the route plugin - used to rearrange the channels 
+					type route 
+					slave { 
+						pcm { 
+							# add the multi plugin - used to merge the 2 sound cards together 
+							type multi; 
+							slaves.a.pcm{ 
+								# add the dmix plugin - needed for multiple input into one hardware card if the card does not support hardware mixing 
+								type dmix 
+								# if i mess with this it doesn't work (and yes i made it up)?! 
+								ipc_key 2589455 
+								# needed for multiple users accessing the sound card at the same time 
+								ipc_perm 0666 
+								slave { 
+									pcm { 
+										# add the usb headset - change to suit your sound card #1 
+										type hw 
+										card 1
+										device 0 
+									} 
+									####################
+									#rate 48000
+									#period_time 0
+									#period_size 1024
+									#buffer_time 0
+									####################
+									buffer_size 4096 
+									channels 2 
+								} 
+							} 
+							slaves.b.pcm{ 
+								type dmix 
+								ipc_key 4855689 
+								ipc_perm 0666 
+								slave { 
+									pcm { 
+										# add the sound card - change to suit your sound card #2 
+										type hw 
+										card 0
+										device 0 
+									} 
+									####################
+									#rate 48000
+									#period_time 0
+									#period_size 1024
+									#buffer_time 0
+									####################
+									buffer_size 4096 
+									channels 2 
+								} 
+							} 
+							# this creates a 4 channel stream using 2 inputs from each card 
+							slaves.a.channels 2; 
+							slaves.b.channels 2; 
+							bindings.0.slave a; 
+							bindings.0.channel 0; 
+							bindings.1.slave a; 
+							bindings.1.channel 1; 
+							bindings.2.slave b; 
+							bindings.2.channel 0; 
+							bindings.3.slave b; 
+							bindings.3.channel 1; 
+						} 
+					} 
+				# this merges channel 2 and 3 into 0 and 1 respectively 
+				ttable.0.0 1; 
+				ttable.1.1 1; 
+				ttable.0.2 1; 
+				ttable.1.3 1; 
+				}
+			}
+		} 
+	} 
+	control{ 
+		# define volume control name - most apps try to change "Master" by default 
+		# if you already have a "Master" volume control you will need to name it something else 
+		name Master 
+		# the card used to add the software control to - used for accessing the control does not affect the output of that card directly ( ie it changes the output of both devices just shows up in the one selected ) 
+		# you also will need to change the device set in the first block (ctl.!default) to the same card to ensure it is chosen as the default 
+		card 0
+	} 
+}
