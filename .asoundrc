@@ -105,7 +105,7 @@ pcm.both {
 	control{ 
 		# define volume control name - most apps try to change "Master" by default 
 		# if you already have a "Master" volume control you will need to name it something else 
-		name Master 
+		name Master
 		# the card used to add the software control to - used for accessing the control does not affect the output of that card directly ( ie it changes the output of both devices just shows up in the one selected ) 
 		# you also will need to change the device set in the first block (ctl.!default) to the same card to ensure it is chosen as the default 
 		card 0
