@@ -84,5 +84,5 @@ endfunction
 " create a fold by placing cursor on char and type "zfa{" assuming "}" is the
 " end of fold
 " space to unfold and "za" to fold
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+"au BufWinLeave * mkview
+"au BufWinEnter * silent loadview
