@@ -53,12 +53,24 @@ alias beep="beep -f 5000 -l 50 -r 2"
 alias sudo="sudo "
 alias tree='tree -C'
 alias grep='grep --color'
-alias tunnel="sudo openvpn --config /etc/openvpn/openvpn.conf"
+
+function grivex () {
+	if pwd | grep -vq "Google Drive$"; then
+		echo Not in Google folder
+		return
+	fi
+	rm ~/.xmonad/xmonad{.hi,.o,.errors,-x86_64-linux} 2> /dev/null
+	rm ~/.xmonad/prompt-history 2> /dev/null
+	rm ~/.xmonad/xmonad-git # remove soft link
+	grive
+	ln -s ~/xmonad-git ~/.xmonad/xmonad-git # readd soft link
+}
+
 function sshnasty () {
 	if [ -z $1 ]; then return; fi
 	for K in "$@"; do sed -i "$K"d ~/.ssh/known_hosts; done
 }
-PATH=/home/dvmacias/.cabal/bin:$PATH
+PATH=/home/dvmacias/.cabal/bin:/home/dvmacias/.local/bin:$PATH
 alias urgent="sleep 2; echo -e '\a'"
 
 # lxterminal needs this
@@ -67,6 +79,8 @@ alias urgent="sleep 2; echo -e '\a'"
 #fi
 
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
+
+alias jcontrol='/usr/lib/jvm/java-8-jdk/bin/ControlPanel'
 
 #if [ -z "$SSH_AUTH_SOCK" ] ; then
 #  eval `ssh-agent -s`
