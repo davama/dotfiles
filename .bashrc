@@ -62,7 +62,7 @@ function grivex () {
 	rm ~/.xmonad/xmonad{.hi,.o,.errors,-x86_64-linux} 2> /dev/null
 	rm ~/.xmonad/prompt-history 2> /dev/null
 	rm ~/.xmonad/xmonad-git # remove soft link
-	grive
+	grive --ignore=".stack-work"
 	ln -s ~/xmonad-git ~/.xmonad/xmonad-git # readd soft link
 }
 
