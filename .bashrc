@@ -70,7 +70,7 @@ function sshnasty () {
 	if [ -z $1 ]; then return; fi
 	for K in "$@"; do sed -i "$K"d ~/.ssh/known_hosts; done
 }
-PATH=/home/dvmacias/.cabal/bin:/home/dvmacias/.local/bin:$PATH
+PATH=$PATH:/home/dvmacias/.local/bin
 alias urgent="sleep 2; echo -e '\a'"
 
 # lxterminal needs this
@@ -79,8 +79,9 @@ alias urgent="sleep 2; echo -e '\a'"
 #fi
 
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
+export EDITOR=/usr/bin/vim
 
-alias jcontrol='/usr/lib/jvm/java-8-jdk/bin/ControlPanel'
+alias jcontrol='/usr/lib/jvm/java-9-jdk/bin/jcontrol'
 
 #if [ -z "$SSH_AUTH_SOCK" ] ; then
 #  eval `ssh-agent -s`

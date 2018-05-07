@@ -2,7 +2,7 @@
 ctl.!default { 
 	type hw
 	#see notes at bottom under the control section about this setting 
-	card 0
+	card 1
 } 
 
 # sets the default output device to the "pcm.both" device 
@@ -15,7 +15,7 @@ pcm.!default {
 	}
 	capture.pcm {
 		type plug
-		slave.pcm "hw:1,0"
+		slave.pcm "hw:2,0"
 	}
 }
 
@@ -43,11 +43,11 @@ pcm.both {
 								# needed for multiple users accessing the sound card at the same time 
 								ipc_perm 0666 
 								slave { 
-									pcm { 
-										# add the usb headset - change to suit your sound card #1 
+									pcm {
+										# add the usb headset - change to suit your sound card #2
 										type hw 
 										card 1
-										device 0 
+										device 0
 									} 
 									####################
 									#rate 48000
@@ -65,9 +65,9 @@ pcm.both {
 								ipc_perm 0666 
 								slave { 
 									pcm { 
-										# add the sound card - change to suit your sound card #2 
+										# add the sound card - change to suit your sound card #1
 										type hw 
-										card 0
+										card 2
 										device 0 
 									} 
 									####################
@@ -108,6 +108,6 @@ pcm.both {
 		name Master
 		# the card used to add the software control to - used for accessing the control does not affect the output of that card directly ( ie it changes the output of both devices just shows up in the one selected ) 
 		# you also will need to change the device set in the first block (ctl.!default) to the same card to ensure it is chosen as the default 
-		card 0
+		card 1
 	} 
 }
