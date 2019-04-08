@@ -3,6 +3,7 @@ ctl.!default {
 	type hw
 	#see notes at bottom under the control section about this setting 
 	card 1
+	#card PCH
 } 
 
 # sets the default output device to the "pcm.both" device 
@@ -15,7 +16,7 @@ pcm.!default {
 	}
 	capture.pcm {
 		type plug
-		slave.pcm "hw:2,0"
+		slave.pcm "hw:0,0"
 	}
 }
 
@@ -45,8 +46,9 @@ pcm.both {
 								slave { 
 									pcm {
 										# add the usb headset - change to suit your sound card #2
-										type hw 
-										card 1
+										type hw
+										card 0
+										#card C310M
 										device 0
 									} 
 									####################
@@ -67,7 +69,8 @@ pcm.both {
 									pcm { 
 										# add the sound card - change to suit your sound card #1
 										type hw 
-										card 2
+										card 0
+										#card C310M
 										device 0 
 									} 
 									####################
@@ -109,5 +112,6 @@ pcm.both {
 		# the card used to add the software control to - used for accessing the control does not affect the output of that card directly ( ie it changes the output of both devices just shows up in the one selected ) 
 		# you also will need to change the device set in the first block (ctl.!default) to the same card to ensure it is chosen as the default 
 		card 1
+		#card PCH
 	} 
 }
