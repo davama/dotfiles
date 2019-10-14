@@ -87,3 +87,10 @@ alias jcontrol='/usr/lib/jvm/java-9-jdk/bin/jcontrol'
 #  eval `ssh-agent -s`
 #  ssh-add
 #fi
+
+SSH_DMZ_OPTIONS='-o "ServerAliveInterval 20"'
+alias sshn="/usr/bin/ssh"
+if [ $HOSTNAME == "ARCHWORK" ]; then
+	alias sshr="/usr/bin/ssh -l root $SSH_DMZ_OPTIONS"
+	alias ssh='/usr/bin/sshpass -f ~/.sshpass-teamam /usr/bin/ssh' 
+fi
