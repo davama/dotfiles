@@ -17,7 +17,7 @@
 ### file which defines that while launching ncmpcpp.
 ###
 ##
-ncmpcpp_directory = "~/.ncmpcpp"
+ncmpcpp_directory = "/home/dmacias/.ncmpcpp"
 ##
 ###
 ### Directory for storing downloaded lyrics. It
@@ -35,7 +35,7 @@ mpd_host = "localhost"
 ##
 mpd_port = "6600"
 ##
-mpd_music_dir = "~/Music"
+mpd_music_dir = "/home/dmacias/Music"
 ##
 mpd_connection_timeout = "5" 
 ##
@@ -437,7 +437,7 @@ locked_screen_width_part = "60"
 ### Note: You can define startup screen for ncmpcpp
 ### by choosing screen number from the list above.
 ###
-startup_screen = visualizer
+startup_screen = "visualizer"
 #startup_screen = "2"
 ##
 ##jump_to_now_playing_song_at_start = "yes"
@@ -546,9 +546,6 @@ statusbar_color = "cyan"
 #statusbar_color = "red"
 ##
 alternative_ui_separator_color = "black"
-##
-current_item_inactive_column_prefix = "red"
-current_item_inactive_column_suffix = "red"
 ##
 #visualizer_color = "yellow"
 visualizer_color = "red"
