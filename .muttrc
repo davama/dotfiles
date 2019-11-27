@@ -1,15 +1,17 @@
-set realname = "ARCH Dave"
-set from = "davama@gmail.com"
-set use_from = yes
-set envelope_from = yes
+# https://gist.github.com/miguelmota/9456162
+# folder hooks
+folder-hook "$GMAIL_ACCOUNT_1" 'source ~/.mutt/$GMAIL_ACCOUNT_1'
+folder-hook "$GMAIL_ACCOUNT_2" 'source ~/.mutt/$GMAIL_ACCOUNT_2'
+folder-hook "$GMAIL_ACCOUNT_3" 'source ~/.mutt/$GMAIL_ACCOUNT_3'
+# default account
+source ~/.mutt/$GMAIL_ACCOUNT_1
+# macros for switching accounts
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_1<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_2<enter><change-folder>!<enter>'
+macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_3<enter><change-folder>!<enter>'
+# fetch mail shortcut
+bind index G imap-fetch-mail
 
-set smtp_url = "smtps://davama@gmail.com@smtp.gmail.com:465/"
-set smtp_pass = "<redacted>"
-set imap_user = "davama@gmail.com"
-set imap_pass = "<redacted>"
-set folder = "imaps://imap.gmail.com:993"
-set spoolfile = "+INBOX"
-set ssl_force_tls = yes
 
 # G to get mail
 bind index G imap-fetch-mail

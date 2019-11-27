@@ -59,9 +59,6 @@ function sshnasty () {
 PATH=$PATH:/home/dvmacias/.local/bin
 alias urgent="sleep 2; echo -e '\a'"
 
-# for mutt
-TERM=xterm-256color
-
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
 export EDITOR=/usr/bin/vim
 
@@ -81,3 +78,9 @@ fi
 
 # grive2 recently changed; had to add "grive2" project to Google Console API. Got my client_id and client_secret
 alias grive='grive --id <redacted> --secret <redacted>'
+
+# mutt env variables
+TERM=xterm-256color
+export GMAIL_ACCOUNT_1=<redacted>@gmail.com
+export GMAIL_ACCOUNT_2=<redacted>@gmail.com
+export GMAIL_ACCOUNT_3=<redacted>@gmail.com
