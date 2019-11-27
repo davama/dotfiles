@@ -1,14 +1,17 @@
 # https://gist.github.com/miguelmota/9456162
+# $GMAIL_ACCOUNT taken from ~/.bashrc
 # folder hooks
 folder-hook "$GMAIL_ACCOUNT_1" 'source ~/.mutt/$GMAIL_ACCOUNT_1'
 folder-hook "$GMAIL_ACCOUNT_2" 'source ~/.mutt/$GMAIL_ACCOUNT_2'
 folder-hook "$GMAIL_ACCOUNT_3" 'source ~/.mutt/$GMAIL_ACCOUNT_3'
+folder-hook "$GMAIL_ACCOUNT_4" 'source ~/.mutt/$GMAIL_ACCOUNT_4'
 # default account
 source ~/.mutt/$GMAIL_ACCOUNT_1
 # macros for switching accounts
 macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_1<enter><change-folder>!<enter>'
 macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_2<enter><change-folder>!<enter>'
 macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_3<enter><change-folder>!<enter>'
+macro index <f5> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_4<enter><change-folder>!<enter>'
 # fetch mail shortcut
 bind index G imap-fetch-mail
 

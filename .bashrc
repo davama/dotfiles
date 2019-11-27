@@ -84,3 +84,4 @@ TERM=xterm-256color
 export GMAIL_ACCOUNT_1=<redacted>@gmail.com
 export GMAIL_ACCOUNT_2=<redacted>@gmail.com
 export GMAIL_ACCOUNT_3=<redacted>@gmail.com
+export GMAIL_ACCOUNT_4=<redacted>
