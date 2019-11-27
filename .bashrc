@@ -39,10 +39,8 @@ txtrst='\e[0m'    # Text Reset
 
 [[ $- != *i* ]] && return
 
-PS1='[\u@\h \W]\$ '
-#PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]\n\[\033[32m\]\w\n\[\033[0;33m\]** \# ** \[\033[1;34m\]\$(/bin/date) \[\033[0;35m\]\u@\h: \[\033[0;36m\]\$(/usr/bin/tty | /bin/sed -e 's:/dev/::'): \$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b \n\[\033[0;37m\]-> \[\033[0;31m\]"
-
-PS1="\n$txtgrn\w\a\n$txtylw** \# ** $bldblu\$(/bin/date) $txtpur\u@\h: $txtcyn\$(/usr/bin/tty | /bin/sed -e 's:/dev/::'): \$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b$txtrst\n-> "
+# https://superuser.com/questions/275685/how-to-customize-bash-to-add-a-system-bell-to-all-command-line-questions-read
+PS1="\n$txtgrn\w\[\a\]\n$txtylw** \# ** $bldblu\$(/bin/date) $txtpur\u@\h: $txtcyn\$(/usr/bin/tty | /bin/sed -e 's:/dev/::'): \$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b$txtrst\n-> "
 
 alias ls='ls --color=auto'
 alias ll='ls -al'
@@ -54,18 +52,6 @@ alias sudo="sudo "
 alias tree='tree -C'
 alias grep='grep --color'
 
-function grivex () {
-	if pwd | grep -vq "Google Drive$"; then
-		echo Not in Google folder
-		return
-	fi
-	rm ~/.xmonad/xmonad{.hi,.o,.errors,-x86_64-linux} 2> /dev/null
-	rm ~/.xmonad/prompt-history 2> /dev/null
-	rm ~/.xmonad/xmonad-git # remove soft link
-	grive --ignore=".stack-work"
-	ln -s ~/xmonad-git ~/.xmonad/xmonad-git # readd soft link
-}
-
 function sshnasty () {
 	if [ -z $1 ]; then return; fi
 	for K in "$@"; do sed -i "$K"d ~/.ssh/known_hosts; done
@@ -73,10 +59,8 @@ function sshnasty () {
 PATH=$PATH:/home/dvmacias/.local/bin
 alias urgent="sleep 2; echo -e '\a'"
 
-# lxterminal needs this
-#if [ $TERM = xterm ] ; then
-#   unset PROMPT_COMMAND
-#fi
+# for mutt
+TERM=xterm-256color
 
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
 export EDITOR=/usr/bin/vim
@@ -94,3 +78,6 @@ if [ $HOSTNAME == "ARCHWORK" ]; then
 	alias sshr="/usr/bin/ssh -l root $SSH_DMZ_OPTIONS"
 	alias ssh='/usr/bin/sshpass -f ~/.sshpass-teamam /usr/bin/ssh' 
 fi
+
+# grive2 recently changed; had to add "grive2" project to Google Console API. Got my client_id and client_secret
+alias grive='grive --id <redacted> --secret <redacted>'
