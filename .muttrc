@@ -1,30 +1,80 @@
+##########################
+# need to test these
+# https://ryanlue.com/posts/2017-05-21-mutt-the-vim-way
+##########################
+
+##########################
+# mail account settings
+set use_from = yes
+set envelope_from = yes
+set folder = "imaps://imap.gmail.com"
+set spoolfile = "+INBOX"
+set ssl_force_tls = yes
+set record="+[Gmail]/Sent Mail"
+set postponed="+[Gmail]/Drafts"
+set trash = "imaps://imap.gmail.com/[Gmail]/Trash"
+mailboxes = +INBOX
+mailboxes = +'Drafts'
+mailboxes = +'Sent Mail'
+mailboxes = +'All Mail'
+mailboxes = +'Trash'
+
+##########################
 # https://gist.github.com/miguelmota/9456162
-# $GMAIL_ACCOUNT taken from ~/.bashrc
+# $MAIL_ACCOUNT taken from ~/.bashrc
 # folder hooks
-folder-hook "$GMAIL_ACCOUNT_1" 'source ~/.mutt/$GMAIL_ACCOUNT_1'
-folder-hook "$GMAIL_ACCOUNT_2" 'source ~/.mutt/$GMAIL_ACCOUNT_2'
-folder-hook "$GMAIL_ACCOUNT_3" 'source ~/.mutt/$GMAIL_ACCOUNT_3'
-folder-hook "$GMAIL_ACCOUNT_4" 'source ~/.mutt/$GMAIL_ACCOUNT_4'
+folder-hook "$MAIL_ACCOUNT_1" 'source ~/.mutt/$MAIL_ACCOUNT_1'
+folder-hook "$MAIL_ACCOUNT_2" 'source ~/.mutt/$MAIL_ACCOUNT_2'
+folder-hook "$MAIL_ACCOUNT_3" 'source ~/.mutt/$MAIL_ACCOUNT_3'
+folder-hook "$MAIL_ACCOUNT_4" 'source ~/.mutt/$MAIL_ACCOUNT_4'
+folder-hook "$MAIL_ACCOUNT_5" 'source ~/.mutt/$MAIL_ACCOUNT_5'
 # default account
-source ~/.mutt/$GMAIL_ACCOUNT_1
+source ~/.mutt/$MAIL_ACCOUNT_1
 # macros for switching accounts
-macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_1<enter><change-folder>!<enter>'
-macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_2<enter><change-folder>!<enter>'
-macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_3<enter><change-folder>!<enter>'
-macro index <f5> '<sync-mailbox><enter-command>source ~/.mutt/$GMAIL_ACCOUNT_4<enter><change-folder>!<enter>'
-# fetch mail shortcut
-bind index G imap-fetch-mail
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_1<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_2<enter><change-folder>!<enter>'
+macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_3<enter><change-folder>!<enter>'
+macro index <f5> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_4<enter><change-folder>!<enter>'
+macro index <f6> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_5<enter><change-folder>!<enter>'
+# set sidebar
+bind index,pager B sidebar-toggle-visible
+# because "All Mail" and "Sent Mail" have a space in them...
+bind editor <space> noop
+# Gmail-style keyboard shortcuts
+macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
+macro index gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to sent mail"
+macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index gt "<change-folder>=[Gmail]/Trash<enter>" "Go to trash"
+macro index,pager dd "<save-message>=[Gmail]/Trash<enter><enter>" "Moved message to Trash"
+macro index,pager dat "<delete-thread><sync-mailbox>" "Moved thread to Trash"
 
+##########################
+# Index Key Bindings Vim-style
+bind index gg       first-entry
+bind index G        last-entry# set sidebar
+bind index R        group-reply
+bind index <tab>  imap-fetch-mail
+bind index <space>  collapse-thread
 
-# G to get mail
-bind index G imap-fetch-mail
+##########################
+# options
 set editor = "vim -c 'set spell spelllang=en'"
 set charset = "utf-8"
-set record = ''
-set sort_aux = last-date-received                           
 set sort = reverse-threads
+set sort_aux = last-date-received
+set timeout=30
+set mail_check=5
+set beep_new # bell on new mails
+# view HTML formated messages
+auto_view text/html
+set menu_scroll # scroll in menus
+set tilde
+# Status Bar
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
 
-
+##########################
 # Color
 # general-doesn't-fit stuff
 color normal     brightwhite color232

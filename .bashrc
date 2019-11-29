@@ -81,7 +81,8 @@ alias grive='grive --id <redacted> --secret <redacted>'
 
 # mutt env variables
 TERM=xterm-256color
-export GMAIL_ACCOUNT_1=<redacted>@gmail.com
-export GMAIL_ACCOUNT_2=<redacted>@gmail.com
-export GMAIL_ACCOUNT_3=<redacted>@gmail.com
-export GMAIL_ACCOUNT_4=<redacted>
+export MAIL_ACCOUNT_1=<redacted>@<email.com>
+export MAIL_ACCOUNT_2=<redacted>@<email.com>
+export MAIL_ACCOUNT_3=<redacted>@<email.com>
+export MAIL_ACCOUNT_4=<redacted>@<email.com>
+export MAIL_ACCOUNT_5=<redacted>@<email.com>
