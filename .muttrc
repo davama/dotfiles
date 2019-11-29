@@ -31,11 +31,11 @@ folder-hook "$MAIL_ACCOUNT_5" 'source ~/.mutt/$MAIL_ACCOUNT_5'
 # default account
 source ~/.mutt/$MAIL_ACCOUNT_1
 # macros for switching accounts
-macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_1<enter><change-folder>!<enter>'
-macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_2<enter><change-folder>!<enter>'
-macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_3<enter><change-folder>!<enter>'
-macro index <f5> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_4<enter><change-folder>!<enter>'
-macro index <f6> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_5<enter><change-folder>!<enter>'
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_1<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_1"
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_2<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_2"
+macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_3<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_3"
+macro index <f5> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_4<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_4"
+macro index <f6> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_5<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_5"
 # set sidebar
 bind index,pager B sidebar-toggle-visible
 # because "All Mail" and "Sent Mail" have a space in them...
@@ -46,8 +46,8 @@ macro index gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to sent mail"
 macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
 macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index gt "<change-folder>=[Gmail]/Trash<enter>" "Go to trash"
-macro index,pager dd "<save-message>=[Gmail]/Trash<enter><enter>" "Moved message to Trash"
-macro index,pager dat "<delete-thread><sync-mailbox>" "Moved thread to Trash"
+macro index,pager dd "<save-message>=[Gmail]/Trash<enter><enter>" "Move message to Trash"
+macro index,pager dat "<delete-thread><sync-mailbox>" "Move thread to Trash"
 
 ##########################
 # Index Key Bindings Vim-style
@@ -67,7 +67,7 @@ set timeout=30
 set mail_check=5
 set beep_new # bell on new mails
 # view HTML formated messages
-auto_view text/html
+#auto_view text/html
 set menu_scroll # scroll in menus
 set tilde
 # Status Bar
