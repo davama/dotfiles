@@ -4,8 +4,7 @@
 ##########################
 
 ##########################
-# mail account settings
-set use_from = yes
+# mail account settings set use_from = yes
 set envelope_from = yes
 set folder = "imaps://imap.gmail.com"
 set spoolfile = "+INBOX"
@@ -66,13 +65,21 @@ set sort_aux = last-date-received
 set timeout=30
 set mail_check=5
 set beep_new # bell on new mails
-# view HTML formated messages
-#auto_view text/html
 set menu_scroll # scroll in menus
 set tilde
+set smart_wrap
+# Sanely handle multi-part messages (prefer text part, but yield to
+# mailcap-configured rendering for html-only)
+alternative_order text/plain text/html
+auto_view text/html
 # Status Bar
 set status_chars  = " *%A"
 set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# get the url view working
+# https://gist.github.com/LukeSmithxyz/94e6c01df3a67a6524dc38d2c92425d1
+macro index,pager \cb "<enter-command>set pipe_decode = yes<enter><pipe-message>urlview<enter><enter-command>set pipe_decode = no<enter>""view URLs"
+
 
 ##########################
 # Color

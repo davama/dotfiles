@@ -1,0 +1,12 @@
+# view html mail within mutt using `lynx`
+# http://shallowsky.com/blog/linux/html-mail-in-mutt.html
+text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput
+text/plain; /usr/bin/cat %s; copiousoutput
+application/pdf; /usr/bin/xpdf %s
+image/*; /usr/bin/eog  %s
+audio/*; /usr/bin/vlc %s
+video/*; /usr/bin/vlc %s
+# https://github.com/Donearm/configs/blob/master/.mailcap
+application/x-sh; /usr/bin/vim %s; needsterminal
+application/msword; /usr/bin/libreoffice --writer %s
+application/vnd.ms-excel; /usr/bin/libreoffice --calc %s
