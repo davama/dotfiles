@@ -74,11 +74,14 @@ alternative_order text/plain text/html
 auto_view text/html
 # Status Bar
 set status_chars  = " *%A"
-set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+# set status_format ## see individual email account files # https://unix.stackexchange.com/questions/225906/show-current-email-address-in-mutt-status-line
 
 # get the url view working
 # https://gist.github.com/LukeSmithxyz/94e6c01df3a67a6524dc38d2c92425d1
 macro index,pager \cb "<enter-command>set pipe_decode = yes<enter><pipe-message>urlview<enter><enter-command>set pipe_decode = no<enter>""view URLs"
+
+# sendmail for exchange
+set sendmail=/usr/bin/msmtp
 
 # color
 source ~/.mutt_colorc
