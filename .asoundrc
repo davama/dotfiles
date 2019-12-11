@@ -8,6 +8,6 @@ ctl.!default {
     card 0
 }
 control{ 
-	name Headset
-	card 0
+    name Speaker
+    card 0
 } 

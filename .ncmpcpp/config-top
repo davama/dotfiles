@@ -82,7 +82,7 @@ visualizer_sync_interval = 30
 ##
 visualizer_type = spectrum
 #
-visualizer_look = "✠•"
+visualizer_look = "❱✠"
 #
 #visualizer_color = blue, cyan, green, yellow, magenta, red
 visualizer_color = red
@@ -321,7 +321,7 @@ centered_cursor = yes
 ## Note: You can specify third character which will be used to build 'empty'
 ## part of progressbar.
 ##
-progressbar_look = "─⊙╶"
+progressbar_look = "   "
 #
 ## Available values: database, playlist.
 ##
@@ -421,11 +421,11 @@ locked_screen_width_part = 60
 #
 clock_display_seconds = yes
 #
-display_volume_level = no
+display_volume_level = yes
 #
-display_bitrate = no
+display_bitrate = yes
 #
-display_remaining_time = no
+display_remaining_time = yes
 #
 ## Available values: none, basic, extended, perl.
 ##
@@ -458,7 +458,7 @@ tag_editor_extended_numeration = no
 #
 #media_library_sort_by_mtime = no
 #
-enable_window_title = no
+enable_window_title = yes
 #
 ##
 ## Note: You can choose default search mode for search engine. Available modes
@@ -532,7 +532,7 @@ color1 = white
 color2 = green
 #
 #progressbar_color = black:b
-progressbar_color = cyan
+progressbar_color = black
 #
 #progressbar_elapsed_color = green:b
 #
