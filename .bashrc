@@ -86,4 +86,3 @@ export MAIL_ACCOUNT_2=<redacted>@<email.com>
 export MAIL_ACCOUNT_3=<redacted>@<email.com>
 export MAIL_ACCOUNT_4=<redacted>@<email.com>
 export MAIL_ACCOUNT_5=<redacted>@<email.com>
-#export SESSION=ncmpcpp
