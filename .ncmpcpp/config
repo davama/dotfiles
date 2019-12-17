@@ -311,7 +311,7 @@ playlist_editor_display_mode = columns
 #
 #seek_time = 1
 #
-#volume_change_step = 2
+volume_change_step = 5
 #
 autocenter_mode = yes
 #
@@ -516,7 +516,7 @@ colors_enabled = yes
 #
 empty_tag_color = cyan
 #
-#header_window_color = default
+header_window_color = default
 #
 volume_color = green
 #
