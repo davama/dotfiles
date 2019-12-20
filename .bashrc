@@ -73,7 +73,7 @@ SSH_DMZ_OPTIONS='-o "ServerAliveInterval 20"'
 alias sshn="/usr/bin/ssh"
 if [ $HOSTNAME == "ARCHWORK" ]; then
 	alias sshr="/usr/bin/ssh -l root $SSH_DMZ_OPTIONS"
-	alias ssh='/usr/bin/sshpass -f ~/.sshpass-teamam /usr/bin/ssh' 
+	#alias ssh='/usr/bin/sshpass -f ~/.sshpass-teamam /usr/bin/ssh' 
 fi
 
 # grive2 recently changed; had to add "grive2" project to Google Console API. Got my client_id and client_secret
