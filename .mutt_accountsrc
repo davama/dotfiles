@@ -1,0 +1,18 @@
+# https://gist.github.com/miguelmota/9456162
+# $MAIL_ACCOUNT taken from ~/.bashrc
+# folder hooks
+folder-hook "$MAIL_ACCOUNT_1" 'source ~/.mutt/$MAIL_ACCOUNT_1'
+folder-hook "$MAIL_ACCOUNT_2" 'source ~/.mutt/$MAIL_ACCOUNT_2'
+folder-hook "$MAIL_ACCOUNT_3" 'source ~/.mutt/$MAIL_ACCOUNT_3'
+folder-hook "$MAIL_ACCOUNT_4" 'source ~/.mutt/$MAIL_ACCOUNT_4'
+folder-hook "$MAIL_ACCOUNT_5" 'source ~/.mutt/$MAIL_ACCOUNT_5'
+folder-hook "$MAIL_ACCOUNT_9" 'source ~/.mutt/$MAIL_ACCOUNT_9'
+# default account
+source ~/.mutt/$MAIL_ACCOUNT_1
+# macros for switching accounts
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_1<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_1"
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_2<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_2"
+macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_3<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_3"
+macro index <f5> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_4<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_4"
+macro index <f6> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_5<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_5"
+macro index <f9> '<sync-mailbox><enter-command>source ~/.mutt/$MAIL_ACCOUNT_9<enter><change-folder>!<enter>' "Go to $MAIL_ACCOUNT_9"
