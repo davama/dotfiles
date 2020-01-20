@@ -59,6 +59,7 @@ function sshnasty () {
 PATH=$PATH:/home/dvmacias/.local/bin
 alias urgent="sleep 2; echo -e '\a'"
 
+export SYSTEMD_EDITOR="vim"
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
 export EDITOR=/usr/bin/vim
 
