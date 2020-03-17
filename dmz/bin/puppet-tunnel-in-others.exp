@@ -1,0 +1,42 @@
+#!/usr/bin/expect
+
+# need https://github.com/arcanericky/ga-cmd
+
+# this script is called by another script
+
+set USER [lindex $argv 0 ]
+set SERVER [lindex $argv 1 ]
+
+set AMER [lindex $argv 2 ]
+set EMEA [lindex $argv 3 ]
+set APAC [lindex $argv 4 ]
+
+
+set ZABBIX [lindex $argv 5 ]
+set RACKT [lindex $argv 6 ]
+set INTRA [lindex $argv 7 ]
+set USRDS [lindex $argv 8 ]
+set REDMINE [lindex $argv 9 ]
+set MAIL [ lindex $argv 10 ]
+
+set TEST1 [lindex $argv 11 ]
+set TEST2 [lindex $argv 12 ]
+set TEST3 [lindex $argv 13 ]
+
+set ARCHBOX [lindex $argv 14 ]
+
+set PASSWORD [exec /usr/bin/pass show domain/windows]
+set SECRET [exec /usr/bin/pass show google-auth/dsb]
+set GKEY [exec /usr/bin/oathtool --totp -b {*}$SECRET]
+
+set timeout 100
+# local ssh | racktables | zabbix | rdp | redmine | weboutlook
+spawn ssh -4 -i ~/.ssh/id_ed25519 -o "ServerAliveInterval 20" -f -N -L 22221:$AMER:22 -L 22222:$EMEA:22 -L 22223:$APAC:22 -L 20000:$RACKT:443 -L 20001:$ZABBIX:443 -L 3389:$USRDS:3389 -L 9876:$REDMINE:443 -L 4443:$MAIL:443 -L 22224:$TEST1:22 -L 22225:$TEST2:22 -L 22226:$TEST3:22 -L 33333:$ARCHBOX:22 -l $USER -p 2222 $SERVER;
+set prompt ":|#|\\\$"
+interact -o -nobuffer -re $prompt return
+sleep 1
+send "$PASSWORD\r"
+interact -o -nobuffer -re $prompt return
+sleep 1
+send "$GKEY\r"
+wait

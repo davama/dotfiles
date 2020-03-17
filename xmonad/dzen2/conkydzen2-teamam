@@ -1,0 +1,97 @@
+conky.config = {
+-- Conky configuration for dzen2, to be piped into ScrotWM Bar
+
+--#############################################
+--  Settings
+--#############################################
+-- Default colors and also border colors
+default_color = '87afd7',
+default_shade_color = '1a1a1a',
+default_outline_color = '828282',
+
+--use_xft yes
+--out_to_x no
+background = false,
+-- Update interval in seconds
+update_interval = 01,
+total_run_times = 0,
+use_spacer = 'none',
+out_to_console = true,
+out_to_stderr = false,
+out_to_x = false
+}
+
+
+-- ^fg(\#9d9d9d)^ca(1,`google-chrome-stable https://weather.com/weather/radar/interactive/l/07109:4:US?layer=satrad&zoom=8&animation=true`)${execi 5 ~/.xmonad/dzen2/weather.sh 07109:4}^ca() \
+-- the \ lines are to seperate the sections of the TEXT output. makes more readable
+
+conky.text = [[
+\
+\
+^ca(1,`~/.xmonad/bin/xmonad-restart.sh`)^fg(\#FF0000)^i(${exec echo $HOME}/.xmonad/dzen2/icons/xmonad.xbm)^ca()\
+^fg(\#444444)| \
+\
+\
+^fg(\#ff0000)${exec cat /tmp/ssh-remote.txt | tr '\n' '|' | sed 's/^/|/g' } \
+^fg(\#444444)| \
+\
+\
+^ca(1,`xterm -geometry 45x66 -T world-clock -e ~/.xmonad/bin/world-clock.sh`)\
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/clock.xbm)\
+^fg(\#ee9a00) ${utime %H:%M:%S} UTC^ca() \
+\
+\
+^ca(1,`xterm -geometry 80x40 -T agenda-term -e ~/.xmonad/bin/agenda.sh 1`)^ca(3,`xterm -geometry 100x50 -T agenda-term -e ~/.xmonad/bin/agenda.sh 2`)\
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/clock.xbm)\
+^fg(\#ee9a00) ${time %a %b %d %Y %I:%M:%S}^ca()^ca() \
+^fg(\#444444)| \
+\
+\
+\
+\
+^ca(5,`amixer -D pulse sset Master 2\%-`)^ca(2,`amixer -D pulse sset Master toggle && amixer -c 1 -q set 'Headset' toggle`)^ca(4,`amixer -D pulse sset Master 2\%+`)\
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/volume.xbm) \
+^fg(\#9d9d9d)Vol: \
+^fg(\#0dd40d)${execi 1 ~/.xmonad/bin/volume.sh}^ca()^ca()^ca() \
+^fg(\#444444)| \
+\
+\
+^fg(\#9d9d9d)^ca(1,`google-chrome-stable https://www.windy.com/40.794/-74.150?40.318,-74.150,8`)${execi 5 ~/.xmonad/dzen2/weather.sh 07109:4}^ca() \
+^fg(\#444444)| \
+\
+\
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/arch_10x10.xbm) \
+^fg(\#9d9d9d)${exec hostname} \
+^fg(\#444444)| \
+\
+\
+^fg(\#ee9a00)Kernel: $kernel \
+^fg(\#444444)| \
+\
+\
+^fg(\#ff0000)^ca(1, `~/.xmonad/dzen2/popups/popup_clip.sh`)${execi 2 ~/.xmonad/bin/check_keys.sh}^ca() \
+^fg(\#444444)| \
+\
+\
+^fg(\#9d9d9d)^ca(1,~/.xmonad/bin/unmount-usb.sh)^ca(3,`udiskie-umount -a`)${execi 1 ~/.xmonad/bin/media.sh}^ca()^ca() \
+\
+\
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/note.xbm) \
+${if_mpd_playing}\
+^fg(\#87af5f)\
+^ca(1,~/.xmonad/dzen2/popups/popup_music.sh 1)\
+^ca(2,`mpc toggle`)\
+^ca(3,~/.xmonad/dzen2/popups/popup_music.sh 2)\
+^ca(4,`mpc next`)\
+^ca(5,`mpc prev`)\
+^fg(\#00ff00)${mpd_elapsed}/${mpd_length} ^fg(\#ff00ff)${mpd_artist} ^fg(\#00ff00)-- ^fg(\#00ffff)${mpd_title} \
+^ca()^ca()^ca()^ca()^ca()\
+${endif}
+]]
+
+-- FOR SOME REASON mpd_bar is not working....
+-- TROUBLESHOOTING
+
+--${if_mpd_playing}\
+--${mpd_elapsed}/${mpd_length} [^fg(\#3579a8)${mpd_bar 1,10}^fg(\#00ff00)] ^fg(\#ff00ff)${mpd_artist} ^fg(\#00ff00)-- ^fg(\#00ffff)${mpd_title}
+--$endif

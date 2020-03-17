@@ -1,0 +1,48 @@
+#vim: ft=conkyrc
+
+alignment top_left
+#gap_x 659
+#gap_y 189
+gap_x 32
+gap_y 32
+minimum_size 536 536
+own_window yes
+own_window_type override
+
+#
+#Display on the center of the desktop
+#
+#alignment middle_middle
+#gap_x 0
+#gap_y 0
+#minimum_size 536 536
+#own_window yes
+#own_window_type override
+
+
+#
+#Other configuration options
+#
+background no
+use_xft yes
+update_interval 1
+update_interval_on_battery 3
+double_buffer yes
+draw_shades no
+
+# Transparency? yes/no
+own_window_transparent yes
+
+#Real transparency? yes/no
+#If you are not using a compositor (e.g., xcompmgr, Compiz, etc.), then this
+#option should be disabled.
+own_window_argb_visual yes
+
+#Load the Lua script
+lua_load ~/.config/conky/stats_circle/greatcircle.lua
+lua_draw_hook_pre main
+
+
+#Nothing to see here...
+#It's all done in Lua!
+TEXT

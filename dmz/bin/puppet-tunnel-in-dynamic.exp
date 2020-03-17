@@ -1,0 +1,26 @@
+#!/usr/bin/expect
+
+# need https://github.com/arcanericky/ga-cmd
+
+# this script is called by another script
+
+set USER [lindex $argv 0 ]
+set SERVER [lindex $argv 1 ]
+set LOPORT [lindex $argv 2 ]
+set REIP [lindex $argv 3]
+set REPORT [lindex $argv 4 ]
+set PASSWORD [exec /usr/bin/pass show domain/windows]
+set SECRET [exec /usr/bin/pass show google-auth/dsb]
+set GKEY [exec /usr/bin/oathtool --totp -b {*}$SECRET]
+
+set timeout 100
+# inmon | graylog | cgit
+spawn ssh -4 -i ~/.ssh/id_ed25519 -o "ServerAliveInterval 20" -f -N -L $LOPORT:$REIP:$REPORT -l $USER -p 2222 $SERVER;
+set prompt ":|#|\\\$"
+interact -o -nobuffer -re $prompt return
+sleep 1
+send "$PASSWORD\r"
+interact -o -nobuffer -re $prompt return
+sleep 1
+send "$GKEY\r"
+wait

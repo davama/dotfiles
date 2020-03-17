@@ -1,0 +1,228 @@
+# Some Capitals, as of 2001-07-01
+#
+# Longitudes and latitudes are from
+# http://www.getty.edu/research/tools/vocabulary/tgn/index.html
+
+# Capital
+ 24.46   54.36 "Abu Dhabi"			# United Arab Emirates
+  9.16    7.18 "Abuja"				# Nigeria
+  5.55   -0.25 "Accra"				# Ghana
+-25.06 -130.08 "Adamstown"			# Pitcairn Islands
+ 26.21   50.56 "Al-Manamah"			# Bahrain
+ 36.83    3.00 "Algiers"			# Algeria
+-19.01  169.91 "Alofi"				# Niue
+ 31.95   35.93 "Amman"				# Jordan
+ 52.35    4.90 "Amsterdam"			# Netherlands
+ 42.50    1.50 "Andorra la Vella"	# Andorra
+ 39.92   32.83 "Ankara"				# Turkey
+-18.86   47.50 "Antananarivo"		# Madagascar
+-13.80 -171.75 "Apia"				# West Samoa
+ 37.96   58.40 "Ashgabat"			# Turkmenistan
+ 15.33   38.96 "Asmara"				# Eritrea
+ 51.16   71.50 "Astana"				# Kazakhstan
+-25.26  -57.66 "Asuncion"			# Paraguay
+ 38.00   23.73 "Athens"				# Greece
+-21.20  159.76 "Avarua"				# Cook Islands
+ 33.35   44.42 "Baghdad"			# Iraq
+ 13.46  -16.65 "Banjul"				# Gambia
+ 40.36   49.88 "Baku"				# Azerbaijan
+ 12.66   -7.98 "Bamako"				# Mali
+  4.88  114.93 "Bandar Seri Begawan" # Brunei
+ 13.73  100.50 "Bangkok"			# Thailand
+  4.38   18.61 "Bangui"				# Central African Republic
+ 16.16  -61.66 "Basse-Terre"		# Guadeloupe
+ 17.30  -62.71 "Basseterre"			# Saint Kitts and Nevis
+ 39.92  116.43 "Beijing"			# China
+ 33.86   35.50 "Beirut"				# Lebanon
+ 44.83   20.50 "Belgrad"			# Serbia
+ 17.21  -88.80 "Belmopan"			# Belize
+ 52.53   13.42 "Berlin"				# Germany
+ 46.95    7.43 "Bern"				# Switzerland
+ 11.86  -15.65 "Bissau"				# Guiné-Bissau
+ 42.88   74.76 "Bishkek"			# Kyrgyzstan
+  4.63  -74.08 "Bogotá"				# Colombia
+-15.78  -47.95 "Brasilia"			# Brazil
+ 48.16   17.16 "Bratislava"			# Slovakia
+  4.23   15.23 "Brazzaville"		# Republic of Congo
+ 13.10  -59.61 "Bridgetown"			# Barbados
+ 50.83    4.33 "Brussels"			# Belgium
+ 44.43   26.10 "Bucharest"			# Romania
+ 47.50   19.05 "Budapest"			# Hungary
+-34.67  -58.50 "Buenos Aires"		# Argentina
+ -3.36   29.31 "Bujumbura"			# Burundi
+ 30.05   31.25 "Cairo"				# Egypt
+-35.30  149.13 "Canberra"			# Australia
+ 10.50  -66.92 "Caracas"			# Venezuela
+ 14.01  -60.98 "Castries"			# Saint Lucia
+  4.00  -52.50 "Cayenne"			# French Guiana
+ 18.36  -64.93 "Charlotte Amalie"	# Virgin Islands
+ 47.00   28.83 "Chisinau"			# Moldova
+  6.91   79.86 "Colombo"			# Sri Lanka
+  9.51  -13.71 "Conakrey"			# Guines
+ 55.75   12.41 "Copenhagen"			# Denmark
+ 14.63  -17.45 "Dakar"				# Senegal
+ 33.50   36.30 "Damascus"			# Syria
+ -6.85   39.30 "Dar es Salaam"		# Tanzania
+ 23.71   90.41 "Dhaka"				# Bangladesh
+ 11.55   43.16 "Djibouti"			# Djibouti
+ 25.25   51.60 "Doha"				# Quatar
+ 54.15   -4.48 "Douglas"			# Isle of Man
+ 53.33   -6.25 "Dublin"				# Ireland
+ 38.63   68.85 "Dushanbe"			# Tajikistan
+ 14.60  -61.08 "Forte-de-France"	# Martinique
+  8.50  -13.28 "Freetown"			# Sierra Leone
+ -8.51  179.21 "Funafuti"			# Tuvalu
+-24.75   25.91 "Gaborone"			# Botswana
+  6.76  -58.16 "Georgetown"			# Guyana
+ 19.33  -81.38 "Georgetown"			# Cayman Islands
+ 36.15   -5.35 "Gibraltar"			# Gibraltar
+ 64.25  -51.58 "Godthåb"			# Greenland
+ 14.63  -90.36 "Guatemala"			# Guatemala
+ 13.46  144.75 "Hagåtña"			# Guam
+ 32.30  -64.80 "Hamilton"			# Bermuda
+-17.83   31.05 "Harare"				# Zimbabwe
+ 60.13   25.00 "Helsinki"			# Finland
+ 10.75  106.67 "Ho Chi Minh City"	# Vietnam
+ -9.46  159.95 "Honaria"			# Solomon Islands
+ 33.66   73.13 "Islamabad"			# Pakistan
+ -6.13  106.75 "Jakarta"			# Indonesia
+-15.93   -5.73 "Jamestown"			# Saint Helena
+ 31.76   35.23 "Jerusalem"			# Israel
+ 34.50   69.33 "Kabul"				# Afghanistan
+  0.31   32.58 "Kampala"			# Uganda
+ 27.70   85.31 "Kathmandu"			# Nepal
+ 15.55   32.53 "Khartoum"			# Sudan
+ 50.43   30.51 "Kiev"				# Ukraine
+ -1.93   30.06 "Kigali"				# Rwanda
+ 17.96  -76.80 "Kingston"			# Jamaica
+-29.06  167.95 "Kingston"			# Norfolk Islands
+ 13.20  -61.23 "Kingston"			# Saint-Vinceton and the Grenadines
+ -4.30   15.30 "Kinshasa"			# Democratic Republic of Congo
+  7.35  134.51 "Koror"				# Palau Islands
+  3.16  101.70 "Kuala Lumpur"		# Malaysia
+ 29.33   48.00 "Kuwait"				# Kuwait
+ 23.11  -82.35 "La Habana"			# Cuba
+-16.50  -68.16 "La Paz"				# Bolivia
+  0.50    9.41 "Libreville"			# Gabon
+-13.96   33.81 "Lilongwe"			# Malawi
+-12.05  -77.05 "Lima"				# Peru
+ 38.73   -9.13 "Lisbon"				# Portugal
+ 46.06   14.50 "Ljubljana"			# Slovenia
+ 51.50   -0.17 "London"				# United Kingdom
+  6.16    1.35 "Lome"				# Togo
+-15.43   28.33 "Lusaka"				# Zambia
+ 49.61    6.13 "Luxembourg"			# Luxembourg
+ 40.42   -3.72 "Madrid"				# Spain
+  7.08  171.13 "Majuro"				# marshall Islands
+  4.00   73.46 "Male"				# Maldives
+  3.75    8.80 "Malabo"				# Equatorial Guniea
+-12.78   45.23 "Mamoutsou"			# Mayotte
+ 12.10  -86.30 "Managua"			# Nicaragua
+ 14.62  120.97 "Manila"				# Philippines
+-25.96   32.58 "Maputo"				# Mozambique
+-29.31   27.48 "Maseru"				# Lesotho
+-13.36 -176.20 "Mata-Utut"			# Wallis and Futuna
+-26.33   31.13 "Mbabane"			# Swaziland
+ 19.40  -99.15 "Mexico City"		# Mexico
+ 53.85   27.50 "Minsk"				# Belarus
+  2.03   45.35 "Mogadishu"			# Somalia
+ 43.75    7.38 "Monaco"				# Monaco
+  6.33  -10.80 "Monrovia"			# Liberia
+-34.91  -56.16 "Montevideo"			# Uruguay
+-11.66   43.26 "Moroni"				# Comores
+ 55.75   37.70 "Moscow"				# Russia
+ 23.61   58.63 "Muscat"				# Uman
+ -1.28   36.83 "Nairobi"			# Kenya
+ 25.05  -77.48 "Nassau"				# Bahamas
+ 12.16   14.98 "NDjamena"			# Chad
+ 28.67   77.22 "New Delhi"			# India
+ 13.53    2.08 "Niamey"				# Niger
+ 35.16   33.36 "Nicosia"			# Cyprus
+ 18.15  -15.96 "Nouakchott"			# Muritaniya
+-22.26  166.43 "Noumea"				# New Caledonia
+-21.15 -175.23 "Nuku'Alofa"			# Tonga
+ 59.91   10.75 "Oslo"				# Norway
+ 45.41  -75.71 "Ottawa"				# Canada
+-14.26 -170.71 "Pago Pago"			# American Samoa
+  6.96  158.21 "Palikir"			# Micronesia
+  8.95  -79.50 "Panama"				# Panama
+-17.53 -149.56 "Papeete"			# French Polynasia
+  5.83  -55.16 "Paramaribo"			# Suriname
+ 48.87    2.33 "Paris"				# France
+ 11.55  104.91 "Phnom Penh"			# Cambodia
+ 16.73  -62.23 "Plymouth"			# Montserrat
+ 42.46   19.28 "Podgorica"			# Montenegro
+ 18.55  -72.33 "Port-au-Prince"		# Haiti
+-20.16   57.50 "Port Louis"			# Mauritius
+ -9.50  147.11 "Port Moresby"		# Papua New Guinea
+  6.48    2.61 "Porto-Novo"			# Benin
+ 10.63  -61.51 "Port Of Spain"		# Trinidad and Tobago
+-17.75  168.30 "Port Vila"			# Vanuatu
+ 14.91  -23.51 "Praia"				# Cape Verde
+ 50.10   14.43 "Prague"				# Czech Republic
+-25.75   28.20 "Pretoria"			# South Africa
+ 39.00  125.78 "Pyongyang"			# North Korea
+ -0.23  -78.50 "Quito"				# Ecuador
+ 34.03   -6.85 "Rabat"				# Marocco
+ 16.78   96.16 "Ragoon"				# Myanmar (Burma)
+ 64.15  -21.96 "Reykjavík"			# Iceland
+ 56.88   24.13 "Riga"				# Latvia
+ 24.65   46.76 "Riyadh"				# Saudi-Arabia
+ 18.46  -64.65 "Road Town"			# British Virgin Island
+ 41.88   12.50 "Rome"				# Italy
+ 15.30  -61.38 "Roseau"				# Dominica
+ 12.51  -70.03 "Oranjestad"			# Aruba
+ 12.33   -1.66 "Ouagadougou"		# Burkina Faso
+-20.86   55.45 "Saint-Denise"		# Reunion
+ 49.20   -2.11 "Saint Helier"		# Jersey
+ 12.06   61.73 "Saint George's"		# Grenada
+ 49.45   -2.53 "Saint Peter Port"	# Guernsey
+ 46.76  -56.18 "Saint-Pierre"		# Saint-Pierre and Miquelon
+ 18.48  -66.13 "San Juan"			# Puerto Rico
+  9.93  -84.08 "San José"			# Costa Rica
+ 43.93   12.43 "San Marino"			# San Marino
+ 13.66  -89.16 "San Salvador"		# El Salvador
+ 15.40   44.23 "Sanaa"				# Yemen
+-33.45  -70.67 "Santiago" 			# Chile
+ 18.46  -69.90 "Santo Domingo"		# Dominican Republic
+  0.31    6.71 "Sao Tome"			# Sao Tome and Principe
+ 43.85   18.38 "Sarajevo"			# Bosnia - Herzegowina
+ 37.53  127.00 "Seoul" 				# South Korea
+  1.28  103.85 "Singapore"			# Singapore
+ 42.00   21.46 "Skopje"				# Macedonia
+-51.75  -57.93 "Stanley"			# Falnkland Islands
+ 59.33   18.08 "Stockholm"			# Sweden
+-18.13  178.41 "Suva"				# Fiji Islands
+ 42.66   23.30 "Sofia"				# Bulgaria
+ 41.71   44.81 "T'bilisi"			# Georgia
+ 25.01  121.36 "Taipei"				# Taiwan
+ 59.43   24.71 "Tallinn"			# Estonia
+  1.50  173.00 "Tarawa"				# Kiribati
+ 41.26   69.21 "Tashkent"			# Uzbekistan
+ 14.08  -87.23 "Tegucigalpa"		# Honduras
+ 35.67   51.43 "Teheran" 			# Iran
+ 27.53   89.71 "Thimphu"			# Bhutan
+ 18.21  -63.05 "The Valley"			# Anguilla
+ 62.01   -6.76 "Tórshavn"			# Faroe Islands
+ 35.75  139.50 "Tokyo" 				# Japan
+ 32.90   13.18 "Tripoli"			# Libya
+ 36.83   10.21 "Tunis"				# Tunesia
+ 47.90  106.86 "Ulaanbaatar"		# Mongolia
+ 47.13    9.53 "Vaduz"				# Liechtenstein
+ 35.90   14.53 "Valetta"			# Malta
+ -4.63   55.46 "Victoria"			# Seychelle
+ 48.20   16.36 "Vienna"				# Austria
+ 17.96  102.60 "Vientiane"			# Laos
+ 54.68   25.31 "Vilnius"			# Lithuania
+-41.28  174.78 "Wellington"			# New Zealand
+-12.16   96.81 "West Island"		# Cocos Islands
+ 52.25   21.00 "Warsaw"				# Poland
+ 12.20  -68.93 "Willemstad"			# Netherland Antilles
+-22.56   17.10 "Windhoek"			# Namibia
+  3.85   11.58 "Yaoundé"			# Cameroun
+  6.81   -5.28 "Yamoussoukro"		# Côte d'Ivoire
+ 40.16   44.51 "Yerevan"			# Armenia
+ 45.80   15.96 "Zagreb"				# Croatia
+
+ 90.00    0.00 "North Pole"     color=LightBlue # North Pole
+-90.00    0.00 "South Pole"     color=LightBlue # South Pole

@@ -88,3 +88,7 @@ export MAIL_ACCOUNT_3=<redacted>@<email.com>
 export MAIL_ACCOUNT_4=<redacted>@<email.com>
 export MAIL_ACCOUNT_5=<redacted>@<email.com>
 export MAIL_ACCOUNT_9=<redacted>@<email.com>
+
+source .rvm/scripts/rvm
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

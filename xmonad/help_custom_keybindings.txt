@@ -1,0 +1,169 @@
+helpc = unlines ["My custom keybindings:
+
+The default modifier key 'mod' is the 'windows key'.
+
+-- Applications
+mod-ctrl-b               Launch Brasero CD/DVD Burning App
+mod-ctrl-c,p             Launch Pidgin. Key combination then 'p'
+mod-ctrl-c,s             Launch Skype. Key combination then 's'
+mod-ctrl-c,x             Launch Hexchat. Key combination then 'x'
+mod-ctrl-e               Launch Evolution Email Client
+mod-ctrl-f               Launch Spacefm File Manager
+mod-ctrl-g               Launch Gvim
+mod-ctrl-i               Launch Google-Chrome
+mod-ctrl-m               Launch Ario
+mod-crtl-n               Launch mpd and ncmpcpp scratchpad
+mod-ctrl-o,c             Launch LibreOffice Calc. Key combination then 'c'
+mod-ctrl-o,w             Launch LibreOffice Writer. Key combination then 'w'
+mod-ctrl-o,i             Launch LibreOffice Impress. Key combination then 'i'
+mod-ctrl-p               Launch pithos
+mod-ctrl-q               Launch vlc
+mod-ctrl-r,[num1-9]      Launch rdp.
+mod-ctrl-s               Launch ssh Prompt
+mod-ctrl-t,[num1-9,0,-]  Launch terminal using Specific profiles
+mod-ctrl-t,[pad1-9,0,-]  Launch terminal using Specific profiles
+mod-ctrl-enter           Launch terminal with Default profile
+mod-ctrl-padenter        Launch terminal with Default profile
+mod-ctrl-v               Launch Virtual Box
+mod-ctrl-w               Launch Gimp
+mod-ctrl-x               Launch Run Prompt
+mod-f11                  Open xmonad.hs with vim
+mod-f10                  Open primary dzen config file with vim
+mod-f9                   Open secondary dzen config file with vim
+
+-- Search Engine
+-- mod-s,<L>        Prompt search. Key combination then '<Letter>'
+-- mod-shift-s,<L>  Clipboard search. Key combination then '<Letter>'
+-- Letters
+a               Amazon search
+d               Dictionary search
+e               Ebay search
+g               Google search
+i               Google images search
+m               Google maps search
+n               Nagios search
+r               Racktables search
+w               Wiki search
+y               Youtube search
+z               Zabbix search
+
+-- X-Prompts
+mod-ctrl-s        ssh prompt
+mod-ctrl-x        run command
+mod-shft-b        brind window client
+mod-shft-g        go to window client in WS
+mod-s,<L>         Prompt for a string search. (See Letters in Search Engine)
+mod-p             Select hash password
+mod-alt-p         Generate hash password
+mod-ctrl-shift-p  Remove hash password
+
+-- Media Actions: Most use the function key
+function-sleep        Locks the screen
+function-mute         Mutes volume
+function-volup        Increases volume by 10
+function-voldown      Decreases volume by 10
+function-prev         Switch to previus song
+function-next         Switch to next song
+function-pause        Pause/Play song
+function-stop         Stops the song
+mod-crtl-n            Launch mpd and ncmpcpp
+mod-shft-n            Quit mpd and ncmpcpp
+mod-shft-button1      Quit mpd and ncmpcpp
+
+-- Navigation
+mod-[num1..0]             Switch to workSpace N
+mod-shft-[num1..0]        Move client to workspace N
+mod-shft-ctrl-[num1..0]   Copy client to workspace N
+mod-rightkey              Switch to previous monitor
+mod-leftkey               Switch to next monitor
+mod-upkey                 Switch to next hidden nonempty workspace
+mod-downkey               Switch to prev hidden nonempty workspace
+mod-pageupkey             Switch to next hidden empty workspace
+mod-pagedownkey           Switch to prev hidden empty workspace
+mod-backspace             Switch to Urgent Window
+mod-shft-backspace        Clear Urgents
+mod-shft-upkey            Move window to next hidden empty workspace
+mod-shft-downkey          Move window to prev hidden empty workspace
+mod-shft-pageup           Move window to next hidden empty workspace and move to it
+mod-shft-pagedown         Move window to prev hidden empty workspace and move to it
+mod-shft-t                All floating windows on WS back into tiling
+mod-shft-b                Bring window prompt
+mod-shft-g                Go to window prompt
+mod-z                     Toggle to the workspace displayed previously
+mod-ctrl-shft-multiply    Increase window size by 500
+mod-ctrl-shft-divide      Decrease window size by 100
+
+-- Mouse bindings: custom actions bound to mouse events
+mod-shft-button2      Closed/Kill focused window
+mod-button4           Switch to next hidden nonempty workspace
+mod-button5           Switch to prev hidden nonempty workspace
+mod-shft-button4      Move focused window to next hidden empty workspace
+mod-shft-button5      Move focused window to prev hidden empty workspace
+Lalt-ctrl-button4     Raise the volume
+Lalt-ctrl-button5     Lower the volume
+Lalt-ctrl-button1     Start ncmpcpp
+Lalt-shft-button1     Kill ncmpcpp
+Lalt-button4          Next song with ncmpcpp
+Lalt-button5          Prev song with ncmpcpp
+Lalt-button2          Pause/Play song with ncmpcpp
+mod-button8           Switch to next hidden empty workspace
+mod-button9           Switch to prev hidden empty workspace
+
+-- Other ways to kill windows
+mod-delete            Kill window interactively, with mouse. right-click to cancel
+mod-shft-delete       Kill focused window
+mod-ctrl-delete       Kill focused window
+Lalt-shft-c           Kill all windows in workspace
+mod-ctrl-shft-c       Kill all other copies of focused window, but not focused window
+
+-- System Actions
+ctrl-alt-delete,s           Screensaver Lock. Key combination then 's'
+ctrl-alt-delete,q           Logout. Key combination then 'q'
+ctrl-alt-delete,r           Reboot system. Key combination then 'r'
+ctrl-alt-delete,p           Poweroff system. Key combination then 'p'
+mod-ctrl-shft-printkey,p    Turn off Primary monitor
+mod-ctrl-shft-printkey,s    Turn off Secondary monitor
+mod-ctrl-shft-printkey,a    Turn both monitors on
+
+-- Miscellaneous actions
+mod-c                 Clear X clipboard & CLIPBOARD clipboard
+mod-b                 Hide Bar
+print-key             Screenshot of all Monitors
+insert-key            Paste mouse selected text
+shft-insert-key       Similar as above but simulates a middle click.
+mod-print-key         Screenshot in select mode
+mod-f12-key           Opens the CD tray
+scroll-lock-key       Open scratchpad
+B-right-hot-corner    Open terminal
+
+-- Help messages
+mod-shft-slash        Open xmessage with standard xmonad keybindings
+mod-slash             Open xmessage with custom xmonad keybindings
+
+
+Dzen Actions:
+
+-- Bar with Workspaces
+button1               Clickable WS on ppVisible,Current,Hidden
+button1               Switch layout on ppLayout
+button3               Reset layout on ppLayout
+button2               Kill window on ppTitle
+button2               Kill all WS windows on ppCurrent
+button1               Popup Sysinfo on Uptime
+button1               Popup Internet info on Net info
+button1               Popup Mem info on mem usage
+button1               Popup Power left on battery info
+
+-- Bar with Date
+DateTime button1      Open xmessage with next 7 days agenda from google calander
+DateTime button2      Open xmessage with the months agenda from google calander
+Vol button2           Mute Vol
+Vol button4           Increase Vol
+Vol button5           Decrease Vol
+Weather button1       Open Google-Chrome of weather radar for that location.
+Mpd output button2    Pause ncmpcpp
+Mpd output button3    Kill mpd & ncmpcpp
+Mpd output button4    Next ncmpcpp
+Mpd output button5    Previous ncmpcpp
+Mounted button1       Zenity menu of mounted devices. Selects which one to unmount
+Mounted button3       Unmounts all mounted devices

@@ -1,0 +1,57 @@
+conky.config = {
+-- --------------- Window Settings
+    border_width = 0,
+    own_window = true,
+    own_window_title = 'conky_mpd',
+    own_window_type = 'desktop',
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    own_window_transparent = true,
+    own_window_argb_visual = true,
+    own_window_argb_value = 70,
+    double_buffer = true,
+    background = false,
+    stippled_borders = 0,
+ 
+-- ---------------- Position
+    alignment = 'bottom_right',
+    xinerama_head = 2,
+    gap_x = 30,
+    gap_y = 30,
+    minimum_height = 200,
+    --minimum_width = 200,
+ 
+-- ---------------- Font
+    use_spacer = 'none',
+    extra_newline = false,
+ 
+-- ----------------- Other
+    update_interval = 1,
+    total_run_times = 0,
+    out_to_console = true,
+    out_to_stderr = true,
+--    out_to_x = false
+}
+
+conky.text = [[
+${if_mpd_playing}
+MPD: ${alignr}${mpd_status}\
+${if_mpd_playing}
+${mpd_artist 25}
+${mpd_title 25}
+${mpd_album 25}
+${mpd_bar 3,30}
+${execi 2 ~/.xmonad/dzen2/popups/popup_mpd_art.sh}${image /tmp/conky_cover.png -p 3,70 -s 130x130 -n}
+${endif}
+${endif}
+]]
+
+-- for backup/testing
+--${if_mpd_playing}
+--MPD: ${alignr}${mpd_status}${if_mpd_playing}
+--${mpd_artist 25}
+--${mpd_title 25}
+--${mpd_album 25}
+--${mpd_bar 3,130}
+--${execi 2 ~/.xmonad/dzen2/popups/popup_mpd_art.sh}${image /tmp/conky_cover.png -p 3,70 -s 130x130 -n}
+--${endif}
+--${endif}

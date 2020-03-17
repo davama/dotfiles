@@ -1,0 +1,75 @@
+conky.config = {
+-- Conky configuration for dzen2, to be piped into ScrotWM Bar
+
+--##############################################
+--  Settings
+--##############################################
+-- Default colors and also border colors
+--default_color 87afd7
+--default_shade_color 1a1a1a
+--default_outline_color ffffff
+
+--use_xft yes
+--out_to_x no
+background = false,
+-- Update interval in seconds
+update_interval = 01,
+total_run_times = 0,
+use_spacer = 'none',
+out_to_console = true,
+out_to_stderr = true,
+out_to_x = false
+}
+
+--^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/cpu.xbm) \
+--^fg(\#ffaf5f)${cpu cpu1}% \
+--^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/cpu.xbm) \
+--^fg(\#ffaf5f)${cpu cpu2}% \
+--^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/cpu.xbm) \
+--^fg(\#ffaf5f)${cpu cpu3}% \
+
+-- the \ lines are to seperate the sections of the TEXT output. makes more readable
+
+conky.text = [[
+${if_existing /usr/bin/acpi}
+^fg(\#ffaf5f)${battery_short BAT0} \
+^fg(\#444444)| \
+$endif\
+\
+\
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/cpu.xbm) \
+^fg(\#ffaf5f)${cpu cpu0}% \
+^fg(\#444444)| \
+\
+\
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/mem.xbm) \
+^fg(\#9d9d9d)^ca(1,~/.xmonad/dzen2/popups/popup_mem.sh)Mem: \
+^fg(\#ffaf5f)${mem}/${memmax}^ca() \
+^fg(\#444444)| \
+\
+\
+^fg(\#87afd7)^ca(1,~/.xmonad/dzen2/popups/popup_network.sh)${exec ~/.xmonad/bin/connection.sh} \
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/net_up_01.xbm) \
+\
+\
+${if_existing /sys/class/net/wifi0/operstate up}\
+^fg(\#ffaf5f)${upspeedf wifi0}kb/s \
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/net_down_01.xbm) \
+^fg(\#ffaf5f)${downspeedf wifi0}kb/s \
+${endif}\
+${if_existing /sys/class/net/net0/operstate up}\
+^fg(\#ffaf5f)${upspeedf net0}kb/s \
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/net_down_01.xbm) \
+^fg(\#ffaf5f)${downspeedf net0}kb/s^ca() \
+${endif}\
+^fg(\#444444)| \
+\
+\
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/xmonadlogo.xbm) ^fg(\#9d9d9d)^ca(1,~/.xmonad/dzen2/popups/popup_sysinfo.sh)Up: \
+^fg(\#9d9d9d)$Uptime^ca() \
+^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/haskell.xbm) \
+^fg(\#444444)| \
+\
+\
+^ca(1,`~/.xmonad/bin/xmonad-restart.sh`)^fg(\#FF0000)^i(${exec echo $HOME}/.xmonad/dzen2/icons/xmonad.xbm)^ca()
+]]

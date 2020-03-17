@@ -1,0 +1,316 @@
+# Earth markers for Xplanet
+
+# Longitudes and latitudes are from
+# http://www.getty.edu/research/tools/vocabulary/tgn/index.html
+
+# 011224-BaP: Commented out cities which are national capitals, added colors
+#   to differentiate capitals, 50 largest cities, and other cities of interest.
+
+# This is a list of the 50 largest cities in the world, as tabulated
+# at http://www.infoplease.com/ipa/A0762524.html.
+  23.05   72.67 "Ahmadabad"      align=left	color=DarkOrange1 # India
+  31.20   29.90 "Alexandria"     align=left	color=DarkOrange1 # Egypt
+# 39.92   32.83 "Ankara"			color=DarkOrange1 # Turkey
+# 33.35   44.42 "Baghdad"       align=left	color=DarkOrange1 # Iraq
+# 13.73  100.50 "Bangkok"			color=DarkOrange1 # Thailand
+# 39.92  116.43 "Beijing"       align=above	color=DarkOrange1 # China
+# 52.53   13.42 "Berlin"			color=DarkOrange1 # Germany
+#  4.63  -74.08 "Bogotá"			color=DarkOrange1 # Colombia
+#-34.67  -58.50 "Buenos Aires"			color=DarkOrange1 # Argentina
+# 30.05   31.25 "Cairo"				color=DarkOrange1 # Egypt
+  22.50   88.33 "Calcutta"       align=left	color=DarkOrange1 # India
+# 10.50  -66.92 "Caracas"			color=DarkOrange1 # Venezuela
+  30.62  104.10 "Chengdu"        align=below	color=DarkOrange1 # China
+  13.08   80.30 "Chennai"			color=DarkOrange1 # India
+  41.85  -87.65 "Chicago"			color=DarkOrange1 # U.S.
+  30.65  103.68 "Chongqing"      align=above	color=DarkOrange1 # China
+  28.67   77.22 "Delhi"				color=DarkOrange1 # India
+  23.13  113.33 "Guangzhou"      align=left	color=DarkOrange1 # China
+  45.75  126.68 "Harbin"			color=DarkOrange1 # China
+# 10.75  106.67 "Ho Chi Minh City"		color=DarkOrange1 # Vietnam
+  22.28  114.15 "Hong Kong"			color=DarkOrange1 # China
+  17.37   78.43 "Hyderabad"			color=DarkOrange1 # India
+  41.03   28.95 "Istanbul"       align=left	color=DarkOrange1 # Turkey
+# -6.17  106.75 "Jakarta"			color=DarkOrange1 # Indonesia
+#-12.05  -77.05 "Lima"				color=DarkOrange1 # Peru
+# 51.50   -0.17 "London"			color=DarkOrange1 # United Kingdom
+  34.05 -118.23 "Los Angeles"			color=DarkOrange1 # U.S.
+# 40.42   -3.72 "Madrid"			color=DarkOrange1 # Spain
+ -37.75  144.97 "Melbourne"      align=left	color=DarkOrange1 # Australia
+# 19.40  -99.15 "Mexico City"			color=DarkOrange1 # Mexico
+# 55.75   37.70 "Moscow"			color=DarkOrange1 # Russia
+  18.93   72.85 "Mumbai"         align=left	color=DarkOrange1 # India
+  40.70  -74.00 "New York"			color=DarkOrange1 # U.S.
+  35.08  129.03 "Pusan"          align=left	color=DarkOrange1 # South Korea
+# 39.00  125.78 "Pyongyang"			color=DarkOrange1 # North Korea
+ -22.88  -43.28 "Rio de Janeiro"		color=DarkOrange1 # Brazil
+#-33.45  -70.67 "Santiago"			color=DarkOrange1 # Chile
+# 37.53  127.00 "Seoul"         align=left	color=DarkOrange1 # South Korea
+  31.10  121.37 "Shanghai"			color=DarkOrange1 # China
+  41.83  123.43 "Shenyang"			color=DarkOrange1 # China
+#  1.28  103.85 "Singapore"			color=DarkOrange1 # Singapore
+ -23.55  -46.65 "São Paulo"      align=left	color=DarkOrange1 # Brazil
+  59.88   30.25 "St. Petersburg"		color=DarkOrange1 # Russia
+ -33.92  151.17 "Sydney"			color=DarkOrange1 # Australia
+# 35.67   51.43 "Teheran"			color=DarkOrange1 # Iran
+  39.13  117.20 "Tianjin"        align=left	color=DarkOrange1 # China
+# 35.75  139.50 "Tokyo"				color=DarkOrange1 # Japan
+  30.58  114.32 "Wuhan"          align=below	color=DarkOrange1 # China
+  34.27  108.90 "Xian"           align=above	color=DarkOrange1 # China
+  35.47  139.63 "Yokohama"       align=below	color=DarkOrange1 # Japan
+
+
+# Some other interesting cities
+  61.22 -149.90 "Anchorage"		    color=coral3 # USA
+  12.97   77.58 "Bangalore"                 color=coral3 # India
+  42.35  -71.05 "Boston"                    color=coral3 # USA
+  32.78  -96.80 "Dallas"                    color=coral3 # USA
+  42.32  -83.03 "Detroit"                   color=coral3 # USA
+  51.45    6.95 "Essen"                     color=coral3 # Germany
+ -26.17   28.03 "Johannesburg"              color=coral3 # South Africa
+  21.30 -157.85 "Honolulu"		    color=coral3 # USA
+# 24.85   67.03 "Karachi"       align=right color=coral3 # Pakistan
+   6.45    3.47 "Lagos"                     color=coral3 # Nigeria
+  31.57   74.37 "Lahore"                    color=coral3 # Pakistan
+  21.45   39.82 "Mecca"			    color=coral3 # Saudi Arabia
+  24.50   39.58 "Medina"		    color=coral3 # Saudi Arabia
+  45.50  -73.60 "Montréal"		    color=coral3 # Canada
+# 35.13  136.88 "Nagoya"                    color=coral3 # Japan
+  29.95  -90.07 "New Orleans"		    color=coral3 # USA
+# 34.67  135.50 "Osaka"                     color=coral3 # Japan
+  39.95  -75.15 "Philadelphia"	align=right color=coral3 # USA 
+  37.77 -122.42 "San Francisco" align=left  color=coral3 # USA
+  47.60 -122.32 "Seattle"		    color=coral3 # USA
+  38.62	 -90.18 "St. Louis"	align=left  color=coral3 # USA
+  49.22 -123.10 "Vancouver"		    color=coral3 # Canada
+
+
+# Some Capitals, as of 2001-07-01 (Schaumann)
+  24.46   54.36 "Abu Dhabi" align=right color=Goldenrod1 # United Arab Emirates
+   9.16    7.18 "Abuja"			color=Goldenrod1 # Nigeria
+   5.55   -0.25 "Accra"			color=Goldenrod1 # Ghana
+ -25.06 -130.08 "Adamstown"		color=Goldenrod1 # Pitcairn Islands
+# 26.21   50.56 "Al-Manamah"		color=Goldenrod1 # Bahrain
+  36.83    3.00 "Algiers"		color=Goldenrod1 # Algeria
+#-19.01  169.91 "Alofi"			color=Goldenrod1 # Niue
+# 31.95   35.93 "Amman"			color=Goldenrod1 # Jordan
+# 52.35    4.90 "Amsterdam"		color=Goldenrod1 # Netherlands
+# 42.50    1.50 "Andorra la Vella"	color=Goldenrod1 # Andorra
+  39.92   32.83 "Ankara"		color=Goldenrod1 # Turkey
+ -18.86   47.50 "Antananarivo"		color=Goldenrod1 # Madagascar
+ -13.80 -171.75 "Apia"			color=Goldenrod1 # West Samoa
+  37.96   58.40 "Ashgabat"		color=Goldenrod1 # Turkmenistan
+# 15.33   38.96 "Asmara"		color=Goldenrod1 # Eritrea
+# 51.16   71.50 "Astana"		color=Goldenrod1 # Kazakhstan
+ -25.26  -57.66 "Asuncion"		color=Goldenrod1 # Paraguay
+  38.00   23.73 "Athens"		color=Goldenrod1 # Greece
+#-21.20  159.76 "Avarua"		color=Goldenrod1 # Cook Islands
+  33.35   44.42 "Baghdad"		color=Goldenrod1 # Iraq
+# 13.46  -16.65 "Banjul"		color=Goldenrod1 # Gambia
+# 40.36   49.88 "Baku"			color=Goldenrod1 # Azerbaijan
+  12.66   -7.98 "Bamako"		color=Goldenrod1 # Mali
+#  4.88  114.93 "Bandar Seri Begawan"	color=Goldenrod1 # Brunei
+  13.73  100.50 "Bangkok"		color=Goldenrod1 # Thailand
+   4.38   18.61 "Bangui"		color=Goldenrod1 # Central African Republic
+  16.16  -61.66 "Basse-Terre"		color=Goldenrod1 # Guadeloupe
+# 17.30  -62.71 "Basseterre"		color=Goldenrod1 # Saint Kitts and Nevis
+  39.92  116.43 "Beijing"		color=Goldenrod1 # China
+# 33.86   35.50 "Beirut"		color=Goldenrod1 # Lebanon
+# 44.83   20.50 "Belgrad"		color=Goldenrod1 # Serbia
+# 17.21  -88.80 "Belmopan"		color=Goldenrod1 # Belize
+  52.53   13.42 "Berlin"		color=Goldenrod1 # Germany
+# 46.95    7.43 "Bern"			color=Goldenrod1 # Switzerland
+# 11.86  -15.65 "Bissau"		color=Goldenrod1 # Guiné-Bissau
+# 42.88   74.76 "Bishkek"		color=Goldenrod1 # Kyrgyzstan
+   4.63  -74.08 "Bogotá"		color=Goldenrod1 # Colombia
+ -15.78  -47.95 "Brasilia"		color=Goldenrod1 # Brazil
+# 48.16   17.16 "Bratislava"		color=Goldenrod1 # Slovakia
+#  4.23   15.23 "Brazzaville"		color=Goldenrod1 # Republic of Congo
+# 13.10  -59.61 "Bridgetown"		color=Goldenrod1 # Barbados
+# 50.83    4.33 "Brussels"		color=Goldenrod1 # Belgium
+# 44.43   26.10 "Bucharest"		color=Goldenrod1 # Romania
+# 47.50   19.05 "Budapest"		color=Goldenrod1 # Hungary
+ -34.67  -58.50 "Buenos Aires"		color=Goldenrod1 # Argentina
+  -3.36   29.31 "Bujumbura"		color=Goldenrod1 # Burundi
+  30.05   31.25 "Cairo"			color=Goldenrod1 # Egypt
+ -35.30  149.13 "Canberra"		color=Goldenrod1 # Australia
+  10.50  -66.92 "Caracas"		color=Goldenrod1 # Venezuela
+# 14.01  -60.98 "Castries"		color=Goldenrod1 # Saint Lucia
+#  4.00  -52.50 "Cayenne"		color=Goldenrod1 # French Guiana
+  18.36  -64.93 "Charlotte Amalie"	color=Goldenrod1 # Virgin Islands
+# 47.00   28.83 "Chisinau"		color=Goldenrod1 # Moldova
+   6.91   79.86 "Colombo"		color=Goldenrod1 # Sri Lanka
+#  9.51  -13.71 "Conakrey"		color=Goldenrod1 # Guines
+# 55.75   12.41 "Copenhagen"		color=Goldenrod1 # Denmark
+  14.63  -17.45 "Dakar"			color=Goldenrod1 # Senegal
+# 33.50   36.30 "Damascus"		color=Goldenrod1 # Syria
+# -6.85   39.30 "Dar es Salaam"		color=Goldenrod1 # Tanzania
+# 23.71   90.41 "Dhaka"			color=Goldenrod1 # Bangladesh
+# 11.55   43.16 "Djibouti"		color=Goldenrod1 # Djibouti
+# 25.25   51.60 "Doha"			color=Goldenrod1 # Quatar
+  54.15   -4.48 "Douglas"		color=Goldenrod1 # Isle of Man
+  53.33   -6.25 "Dublin"		color=Goldenrod1 # Ireland
+# 38.63   68.85 "Dushanbe"		color=Goldenrod1 # Tajikistan
+# 14.60  -61.08 "Forte-de-France"	color=Goldenrod1 # Martinique
+#  8.50  -13.28 "Freetown"		color=Goldenrod1 # Sierra Leone
+# -8.51  179.21 "Funafuti"		color=Goldenrod1 # Tuvalu
+ -24.75   25.91 "Gaborone"		color=Goldenrod1 # Botswana
+#  6.76  -58.16 "Georgetown"		color=Goldenrod1 # Guyana
+# 19.33  -81.38 "Georgetown"		color=Goldenrod1 # Cayman Islands
+  36.15   -5.35 "Gibraltar"		color=Goldenrod1 # Gibraltar
+  64.25  -51.58 "Godthåb"		color=Goldenrod1 # Greenland
+# 14.63  -90.36 "Guatemala"		color=Goldenrod1 # Guatemala
+# 13.46  144.75 "Hagåtña"		color=Goldenrod1 # Guam
+  32.30  -64.80 "Hamilton"		color=Goldenrod1 # Bermuda
+ -17.83   31.05 "Harare"		color=Goldenrod1 # Zimbabwe
+  60.13   25.00 "Helsinki"		color=Goldenrod1 # Finland
+  10.75  106.67 "Ho Chi Minh City"	color=Goldenrod1 # Vietnam
+  -9.46  159.95 "Honaria"		color=Goldenrod1 # Solomon Islands
+  33.66   73.13 "Islamabad"		color=Goldenrod1 # Pakistan
+  -6.13  106.75 "Jakarta"		color=Goldenrod1 # Indonesia
+ -15.93   -5.73 "Jamestown"		color=Goldenrod1 # Saint Helena
+  31.76   35.23 "Jerusalem"		color=Goldenrod1 # Israel
+# 34.50   69.33 "Kabul"			color=Goldenrod1 # Afghanistan
+#  0.31   32.58 "Kampala"		color=Goldenrod1 # Uganda
+# 27.70   85.31 "Kathmandu"		color=Goldenrod1 # Nepal
+  15.55   32.53 "Khartoum"		color=Goldenrod1 # Sudan
+  50.43   30.51 "Kiev"			color=Goldenrod1 # Ukraine
+# -1.93   30.06 "Kigali"		color=Goldenrod1 # Rwanda
+  17.96  -76.80 "Kingston"		color=Goldenrod1 # Jamaica
+ -29.06  167.95 "Kingston"		color=Goldenrod1 # Norfolk Islands
+  13.20  -61.23 "Kingston"		color=Goldenrod1 # Saint-Vinceton and the Grenadines
+# -4.30   15.30 "Kinshasa"		color=Goldenrod1 # Democratic Republic of Congo
+#  7.35  134.51 "Koror"			color=Goldenrod1 # Palau Islands
+   3.16  101.70 "Kuala Lumpur"		color=Goldenrod1 # Malaysia
+# 29.33   48.00 "Kuwait"		color=Goldenrod1 # Kuwait
+  23.11  -82.35 "La Habana"		color=Goldenrod1 # Cuba
+ -16.50  -68.16 "La Paz"		color=Goldenrod1 # Bolivia
+#  0.50    9.41 "Libreville"		color=Goldenrod1 # Gabon
+#-13.96   33.81 "Lilongwe"		color=Goldenrod1 # Malawi
+ -12.05  -77.05 "Lima"			color=Goldenrod1 # Peru
+  38.73   -9.13 "Lisbon"		color=Goldenrod1 # Portugal
+# 46.06   14.50 "Ljubljana"		color=Goldenrod1 # Slovenia
+  51.50   -0.17 "London"		color=Goldenrod1 # United Kingdom
+#  6.16    1.35 "Lome"			color=Goldenrod1 # Togo
+#-15.43   28.33 "Lusaka"		color=Goldenrod1 # Zambia
+# 49.61    6.13 "Luxembourg"		color=Goldenrod1 # Luxembourg
+  40.42   -3.72 "Madrid"		color=Goldenrod1 # Spain
+#  7.08  171.13 "Majuro"		color=Goldenrod1 # marshall Islands
+#  4.00   73.46 "Male"			color=Goldenrod1 # Maldives
+#  3.75    8.80 "Malabo"		color=Goldenrod1 # Equatorial Guniea
+#-12.78   45.23 "Mamoutsou"		color=Goldenrod1 # Mayotte
+# 12.10  -86.30 "Managua"		color=Goldenrod1 # Nicaragua
+# 14.62  120.97 "Manila"		color=Goldenrod1 # Philippines
+ -25.96   32.58 "Maputo"		color=Goldenrod1 # Mozambique
+#-29.31   27.48 "Maseru"		color=Goldenrod1 # Lesotho
+#-13.36 -176.20 "Mata-Utut"		color=Goldenrod1 # Wallis and Futuna
+ -26.33   31.13 "Mbabane"		color=Goldenrod1 # Swaziland
+  19.40  -99.15 "Mexico City"		color=Goldenrod1 # Mexico
+# 53.85   27.50 "Minsk"			color=Goldenrod1 # Belarus
+#  2.03   45.35 "Mogadishu"		color=Goldenrod1 # Somalia
+# 43.75    7.38 "Monaco"		color=Goldenrod1 # Monaco
+   6.33  -10.80 "Monrovia"		color=Goldenrod1 # Liberia
+ -34.91  -56.16 "Montevideo"		color=Goldenrod1 # Uruguay
+#-11.66   43.26 "Moroni"		color=Goldenrod1 # Comores
+  55.75   37.70 "Moscow"		color=Goldenrod1 # Russia
+# 23.61   58.63 "Muscat"		color=Goldenrod1 # Uman
+  -1.28   36.83 "Nairobi"		color=Goldenrod1 # Kenya
+  25.05  -77.48 "Nassau"		color=Goldenrod1 # Bahamas
+  12.16   14.98 "NDjamena"		color=Goldenrod1 # Chad
+  28.67   77.22 "New Delhi"		color=Goldenrod1 # India
+# 13.53    2.08 "Niamey"		color=Goldenrod1 # Niger
+# 35.16   33.36 "Nicosia"		color=Goldenrod1 # Cyprus
+  18.15  -15.96 "Nouakchott"		color=Goldenrod1 # Muritaniya
+#-22.26  166.43 "Noumea"		color=Goldenrod1 # New Caledonia
+ -21.15 -175.23 "Nuku'Alofa"		color=Goldenrod1 # Tonga
+  59.91   10.75 "Oslo"			color=Goldenrod1 # Norway
+  45.41  -75.71 "Ottawa"		color=Goldenrod1 # Canada
+#-14.26 -170.71 "Pago Pago"		color=Goldenrod1 # American Samoa
+#  6.96  158.21 "Palikir"		color=Goldenrod1 # Micronesia
+#  8.95  -79.50 "Panama"		color=Goldenrod1 # Panama
+#-17.53 -149.56 "Papeete"		color=Goldenrod1 # French Polynasia
+#  5.83  -55.16 "Paramaribo"		color=Goldenrod1 # Suriname
+  48.87    2.33 "Paris"			color=Goldenrod1 # France
+# 11.55  104.91 "Phnom Penh"		color=Goldenrod1 # Cambodia
+# 16.73  -62.23 "Plymouth"		color=Goldenrod1 # Montserrat
+# 42.46   19.28 "Podgorica"		color=Goldenrod1 # Montenegro
+# 18.55  -72.33 "Port-au-Prince"	color=Goldenrod1 # Haiti
+#-20.16   57.50 "Port Louis"		color=Goldenrod1 # Mauritius
+# -9.50  147.11 "Port Moresby"		color=Goldenrod1 # Papua New Guinea
+#  6.48    2.61 "Porto-Novo"		color=Goldenrod1 # Benin
+# 10.63  -61.51 "Port Of Spain"		color=Goldenrod1 # Trinidad and Tobago
+#-17.75  168.30 "Port Vila"		color=Goldenrod1 # Vanuatu
+# 14.91  -23.51 "Praia"			color=Goldenrod1 # Cape Verde
+# 50.10   14.43 "Prague"		color=Goldenrod1 # Czech Republic
+#-25.75   28.20 "Pretoria"		color=Goldenrod1 # South Africa
+  39.00  125.78 "Pyongyang"		color=Goldenrod1 # North Korea
+  -0.23  -78.50 "Quito"			color=Goldenrod1 # Ecuador
+  34.03   -6.85 "Rabat"			color=Goldenrod1 # Marocco
+# 16.78   96.16 "Ragoon"		color=Goldenrod1 # Myanmar (Burma)
+  64.15  -21.96 "Reykjavík"		color=Goldenrod1 # Iceland
+# 56.88   24.13 "Riga"			color=Goldenrod1 # Latvia
+  24.65   46.76 "Riyadh"		color=Goldenrod1 # Saudi-Arabia
+# 18.46  -64.65 "Road Town"		color=Goldenrod1 # British Virgin Island
+  41.88   12.50 "Rome"			color=Goldenrod1 # Italy
+# 15.30  -61.38 "Roseau"		color=Goldenrod1 # Dominica
+# 12.51  -70.03 "Oranjestad"		color=Goldenrod1 # Aruba
+# 12.33   -1.66 "Ouagadougou"		color=Goldenrod1 # Burkina Faso
+#-20.86   55.45 "Saint-Denise"		color=Goldenrod1 # Reunion
+# 49.20   -2.11 "Saint Helier"		color=Goldenrod1 # Jersey
+# 12.06   61.73 "Saint George's"	color=Goldenrod1 # Grenada
+# 49.45   -2.53 "Saint Peter Port"	color=Goldenrod1 # Guernsey
+# 46.76  -56.18 "Saint-Pierre"		color=Goldenrod1 # Saint-Pierre and Miquelon
+# 18.48  -66.13 "San Juan"		color=Goldenrod1 # Puerto Rico
+   9.93  -84.08 "San José"		color=Goldenrod1 # Costa Rica
+# 43.93   12.43 "San Marino"		color=Goldenrod1 # San Marino
+# 13.66  -89.16 "San Salvador"		color=Goldenrod1 # El Salvador
+# 15.40   44.23 "Sanaa"			color=Goldenrod1 # Yemen
+ -33.45  -70.67 "Santiago" 		color=Goldenrod1 # Chile
+# 18.46  -69.90 "Santo Domingo"		color=Goldenrod1 # Dominican Republic
+   0.31    6.71 "Sao Tome"		color=Goldenrod1 # Sao Tome and Principe
+# 43.85   18.38 "Sarajevo"		color=Goldenrod1 # Bosnia - Herzegowina
+  37.53  127.00 "Seoul" 		color=Goldenrod1 # South Korea
+   1.28  103.85 "Singapore"		color=Goldenrod1 # Singapore
+# 42.00   21.46 "Skopje"		color=Goldenrod1 # Macedonia
+ -51.75  -57.93 "Stanley"		color=Goldenrod1 # Falnkland Islands
+  59.33   18.08 "Stockholm"		color=Goldenrod1 # Sweden
+#-18.13  178.41 "Suva"			color=Goldenrod1 # Fiji Islands
+# 42.66   23.30 "Sofia"			color=Goldenrod1 # Bulgaria
+  41.71   44.81 "T'bilisi"		color=Goldenrod1 # Georgia
+# 25.01  121.36 "Taipei"		color=Goldenrod1 # Taiwan
+# 59.43   24.71 "Tallinn"		color=Goldenrod1 # Estonia
+#  1.50  173.00 "Tarawa"		color=Goldenrod1 # Kiribati
+  41.26   69.21 "Tashkent"		color=Goldenrod1 # Uzbekistan
+# 14.08  -87.23 "Tegucigalpa"		color=Goldenrod1 # Honduras
+  35.67   51.43 "Teheran" 		color=Goldenrod1 # Iran
+# 27.53   89.71 "Thimphu"		color=Goldenrod1 # Bhutan
+# 18.21  -63.05 "The Valley"		color=Goldenrod1 # Anguilla
+# 62.01   -6.76 "Tórshavn"		color=Goldenrod1 # Faroe Islands
+  35.75  139.50 "Tokyo" 		color=Goldenrod1 # Japan
+  32.90   13.18 "Tripoli"		color=Goldenrod1 # Libya
+# 36.83   10.21 "Tunis"			color=Goldenrod1 # Tunesia
+# 47.90  106.86 "Ulaanbaatar"		color=Goldenrod1 # Mongolia
+# 47.13    9.53 "Vaduz"			color=Goldenrod1 # Liechtenstein
+  35.90   14.53 "Valetta"		color=Goldenrod1 # Malta
+# -4.63   55.46 "Victoria"		color=Goldenrod1 # Seychelle
+  48.20   16.36 "Vienna"		color=Goldenrod1 # Austria
+# 17.96  102.60 "Vientiane"		color=Goldenrod1 # Laos
+# 54.68   25.31 "Vilnius"		color=Goldenrod1 # Lithuania
+ -41.28  174.78 "Wellington"		color=Goldenrod1 # New Zealand
+#-12.16   96.81 "West Island"		color=Goldenrod1 # Cocos Islands
+  52.25   21.00 "Warsaw"		color=Goldenrod1 # Poland
+  38.88  -77.03 "Washington"            color=Goldenrod1 # USA
+# 12.20  -68.93 "Willemstad"		color=Goldenrod1 # Netherland Antilles
+ -22.56   17.10 "Windhoek"		color=Goldenrod1 # Namibia
+#  3.85   11.58 "Yaoundé"		color=Goldenrod1 # Cameroun
+#  6.81   -5.28 "Yamoussoukro"		color=Goldenrod1 # Côte d'Ivoire
+# 40.16   44.51 "Yerevan"		color=Goldenrod1 # Armenia
+# 45.80   15.96 "Zagreb"		color=Goldenrod1 # Croatia
+
+# A few other points of interest:
+ 27.98   86.93 "Mt Everest"				# highest point
+ # NOTE: The position given here for Mariana Trench is actually the position
+ #  provided by the Getty site for the Northern Mariana Islands
+ 15.12  145.67 "Mariana Trench"				# lowest point
+ 90.00    0.00 "North Pole"		color=LightBlue # North Pole
+-90.00    0.00 "South Pole"		color=LightBlue # South Pole
