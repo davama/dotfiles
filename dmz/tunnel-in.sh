@@ -37,7 +37,7 @@ function ssh_dsb_web () {
 }
 function ssh_dsb_other () {
 	#~/dmz/bin/puppet-tunnel-in-others.exp $USER $zone $dsbamer $dsbemea $dsbapac $zabbix $racktables $intranet $usrds006 $redmine
-	~/dmz/bin/puppet-tunnel-in-others.exp $USER $zone $dsbamer $dsbemea $dsbapac $zabbix $racktables $intranet $windowsbox $redmine $mail $testing1 $testing2 $testing3 $archbox
+	~/dmz/bin/puppet-tunnel-in-others.exp $USER $zone $dsbamer $dsbemea $dsbapac $zabbix $racktables $intranet $windowsbox $redmine $mail $testing1 $testing2 $testing3 $testing4 $archbox
 	if [ $? -eq 0 ]; then echo " $name SSH Tun " >> /tmp/ssh-remote.txt; fi
 }
 function dynamic_ssh () {

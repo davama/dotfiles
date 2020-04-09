@@ -22,8 +22,9 @@ set MAIL [ lindex $argv 10 ]
 set TEST1 [lindex $argv 11 ]
 set TEST2 [lindex $argv 12 ]
 set TEST3 [lindex $argv 13 ]
+set TEST4 [lindex $argv 14 ]
 
-set ARCHBOX [lindex $argv 14 ]
+set ARCHBOX [lindex $argv 15 ]
 
 set PASSWORD [exec /usr/bin/pass show domain/windows]
 set SECRET [exec /usr/bin/pass show google-auth/dsb]
@@ -31,7 +32,7 @@ set GKEY [exec /usr/bin/oathtool --totp -b {*}$SECRET]
 
 set timeout 100
 # local ssh | racktables | zabbix | rdp | redmine | weboutlook
-spawn ssh -4 -i ~/.ssh/id_ed25519 -o "ServerAliveInterval 20" -f -N -L 22221:$AMER:22 -L 22222:$EMEA:22 -L 22223:$APAC:22 -L 20000:$RACKT:443 -L 20001:$ZABBIX:443 -L 3389:$USRDS:3389 -L 9876:$REDMINE:443 -L 4443:$MAIL:443 -L 22224:$TEST1:22 -L 22225:$TEST2:22 -L 22226:$TEST3:22 -L 33333:$ARCHBOX:22 -l $USER -p 2222 $SERVER;
+spawn ssh -4 -i ~/.ssh/id_ed25519 -o "ServerAliveInterval 20" -f -N -L 22221:$AMER:22 -L 22222:$EMEA:22 -L 22223:$APAC:22 -L 20000:$RACKT:443 -L 20001:$ZABBIX:443 -L 3389:$USRDS:3389 -L 9876:$REDMINE:443 -L 4443:$MAIL:443 -L 22224:$TEST1:22 -L 22225:$TEST2:22 -L 22226:$TEST3:22 -L 22227:$TEST4:22 -L 33333:$ARCHBOX:22 -l $USER -p 2222 $SERVER;
 set prompt ":|#|\\\$"
 interact -o -nobuffer -re $prompt return
 sleep 1

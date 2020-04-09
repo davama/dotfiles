@@ -61,7 +61,14 @@ case $1 in
 		default_vars;
 		teamam_vars;
 		;;
-	7)	SERVER="dummy-dev";
+	7)	SERVER="teamvoxel";
+		pass=$(/usr/bin/pass show teamam/teamvoxel);
+		USER=administrator;
+		default_vars;
+		DOMAIN_CREDENTIALS="/u:$USER /p:$pass"
+		#teamam_vars;
+		;;
+	8)	SERVER="dummy-dev";
 		pass=$(/usr/bin/pass show teamam/ad-vadmin);
 		USER=vadmin;
 		default_vars;
@@ -70,7 +77,7 @@ case $1 in
 	*)	echo Missing paramater 1; exit 1
 esac
 
-ping -c 2 $SERVER
+#ping -c 2 $SERVER
 # quit script if already running
 if ps ux | grep xfreerdp | grep -q $SERVER ; then
 	exit 0

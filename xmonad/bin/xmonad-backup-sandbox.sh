@@ -16,3 +16,5 @@ function create_backups () {
 create_backups
 	
 mv ~/.sandbox-backup-delta/$date ~/.sandbox-backup/
+
+find ~/.sandbox-backup -maxdepth 1 -mtime +5 -exec rm -f -r {} \;

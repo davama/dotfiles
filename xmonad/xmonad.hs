@@ -194,7 +194,7 @@ myManageHook = composeAll . concat $
      bars    = ["dzen2","desktop_window"]
      float   = ["feh","conky_mpd"]
      cfloat  = ["Xmessage","Gxmessage","Eog","Brasero","xclock"]
-            ++ ["SimpleScreenRecorder","Evolution-alarm-notify","Evolution","Gns3","Mtpaint","Calculator","world-clock","agenda-term"]
+            ++ ["SimpleScreenRecorder","Evolution-alarm-notify","Evolution","Gns3","Mtpaint","Calculator","world-clock","wifi-qrcode","agenda-term"]
             ++ ["xeyes","pinentry"]
      ws0     = ["nothing"]
      ws1     = ["Wine"]

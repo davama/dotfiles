@@ -7,7 +7,7 @@
 eth="net0"
 weth="wifi0"
 
-wifi_exist=$(ip link | grep -v "lo:" | grep -E "^[[:digit:]]" | grep -v net0 | cut -d: -f2)
+wifi_exist=$(ip link | grep -vE "lo:|tun0:" | grep -E "^[[:digit:]]" | grep -v net0 | cut -d: -f2)
 
 if [ -s $wifi_exist ]; then
 	# check if wifi connected if any

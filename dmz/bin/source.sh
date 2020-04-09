@@ -1,6 +1,6 @@
 #!/bin/bash
 
-trap 'rm output-$$' EXIT
+trap 'rm output-$$ 2> /dev/null' EXIT
 
 USER=dmacias
 
@@ -26,19 +26,20 @@ archbox=$(grep arch$ /etc/hosts | grep "10\." | awk '{print $1}')
 testing1=$(grep old-nld-dsb-lab /etc/hosts | grep "10\." | awk '{print $1}')
 testing2=$(grep login.nwk /etc/hosts | grep "10\." | awk '{print $1}')
 testing3=$(grep librenms-lab /etc/hosts | grep "10\." | awk '{print $1}')
+testing4=$(grep elastiflow-lab /etc/hosts | grep "10\." | awk '{print $1}')
 
 # other resources
 zabbix=$(grep zabbix.bet /etc/hosts | grep "10\." | awk '{print $1}')
 racktables=$(grep racktables /etc/hosts | grep "10\." | awk '{print $1}')
 intranet=$(grep intranet /etc/hosts | grep "10\." | awk '{print $1}')
-#windowsbox=$(grep usrds006 /etc/hosts | grep "10\." | awk '{print $1}')
-usrds006=$(grep usrds006 /etc/hosts | grep "10\." | awk '{print $1}')
+#windowsbox=$(grep usrds078 /etc/hosts | grep "10\." | awk '{print $1}')
+usrds078=$(grep usrds078 /etc/hosts | grep "10\." | awk '{print $1}')
 windowsbox=$(grep windowsbox /etc/hosts | grep "10\." | awk '{print $1}')
 mail=$(grep mail /etc/hosts | grep "10\." | awk '{print $1}')
 redmine=$(grep redmine /etc/hosts | grep "10\." | awk '{print $1}')
 
 # see all declared variables
-declare > output-$$
+#declare > output-$$
 #cat output-$$
 # loop through all variables; troubleshooting
 #for i in $(grep "=\$(" $0 | cut -d'=' -f1 | grep -v cut); do cat output-$$ | grep $i; done

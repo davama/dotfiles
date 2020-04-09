@@ -11,8 +11,8 @@ filename="conky_cover.png";
 placeholder="/tmp/mpd/placeholder.png"
 
 # extract image from mp3 file and saves as other
-#if [[ ! -f /tmp/"${mpd_array[1]}".album ]] ; then
-if [[ -f /tmp/"${mpd_array[1]}".album ]] ; then
+if [[ ! -f /tmp/"${mpd_array[1]}".album ]] ; then
+#if [[ -f /tmp/"${mpd_array[1]}".album ]] ; then
 	rm -f /tmp/*.album &> /dev/null
 	eyeD3 --write-images=/tmp/mpd $HOME/Music/${mpd_array[2]} &> /dev/null
 	touch /tmp/${mpd_array[1]}.album

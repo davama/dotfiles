@@ -48,7 +48,9 @@ $endif\
 ^fg(\#444444)| \
 \
 \
-^fg(\#87afd7)^ca(1,~/.xmonad/dzen2/popups/popup_network.sh)${exec ~/.xmonad/bin/connection.sh} \
+^fg(\#87afd7)^ca(2,~/.xmonad/dzen2/popups/popup_network.sh)^ca(1,`xterm -geometry 38x25 -T wifi-qrcode -e ~/.xmonad/bin/wifi-qrcode.sh`)\
+^fg(\#87afd7)${exec ~/.xmonad/bin/connection.sh} \
+^ca()^ca()\
 ^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/net_up_01.xbm) \
 \
 \
@@ -60,7 +62,8 @@ ${endif}\
 ${if_existing /sys/class/net/net0/operstate up}\
 ^fg(\#ffaf5f)${upspeedf net0}kb/s \
 ^fg(\#87afd7)^i(${exec echo $HOME}/.xmonad/dzen2/icons/net_down_01.xbm) \
-^fg(\#ffaf5f)${downspeedf net0}kb/s^ca() \
+^fg(\#ffaf5f)${downspeedf net0}kb/s\
+ \
 ${endif}\
 ^fg(\#444444)| \
 \
