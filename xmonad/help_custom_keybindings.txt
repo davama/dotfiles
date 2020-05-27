@@ -6,6 +6,7 @@ The default modifier key 'mod' is the 'windows key'.
 mod-ctrl-b               Launch Brasero CD/DVD Burning App
 mod-ctrl-c,p             Launch Pidgin. Key combination then 'p'
 mod-ctrl-c,s             Launch Skype. Key combination then 's'
+mod-ctrl-c,t             Launch Teams. Key combination then 't'
 mod-ctrl-c,x             Launch Hexchat. Key combination then 'x'
 mod-ctrl-e               Launch Evolution Email Client
 mod-ctrl-f               Launch Spacefm File Manager

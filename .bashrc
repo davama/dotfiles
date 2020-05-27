@@ -51,10 +51,19 @@ alias beep="beep -f 5000 -l 50 -r 2"
 alias sudo="sudo "
 alias tree='tree -C'
 alias grep='grep --color'
+alias sshr='/usr/bin/ssh -l root '
+alias sshc='/usr/bin/ssh -l config '
+
 
 function sshnasty () {
 	if [ -z $1 ]; then return; fi
 	for K in "$@"; do sed -i "$K"d ~/.ssh/known_hosts; done
+}
+function xev_keyboard_key_id () {
+	xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'
+}
+function xev_mouse_button_id () {
+	xev | grep -A2 --line-buffered '^ButtonRelease' | sed -n '/button /s/^.*button \([0-9]*\).*/\1/p'
 }
 PATH=$PATH:/home/dvmacias/.local/bin
 alias urgent="sleep 2; echo -e '\a'"
@@ -77,8 +86,6 @@ if [ $HOSTNAME == "ARCHWORK" ]; then
 	#alias ssh='/usr/bin/sshpass -f ~/.sshpass-teamam /usr/bin/ssh' 
 fi
 
-# grive2 recently changed; had to add "grive2" project to Google Console API. Got my client_id and client_secret
-alias grive='grive --id <redacted> --secret <redacted>'
 
 # mutt env variables
 TERM=xterm-256color
@@ -92,3 +99,5 @@ export MAIL_ACCOUNT_9=<redacted>@<email.com>
 source .rvm/scripts/rvm
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+source ~/.bash_test

@@ -1,0 +1,30 @@
+#!/usr/bin/expect
+
+# need https://github.com/arcanericky/ga-cmd
+
+# this script is called by another script
+
+set USER [lindex $argv 0 ]
+set SERVER [lindex $argv 1 ]
+
+set LOCAL [exec /usr/bin/pass show local]
+set PASSWORD [exec /usr/bin/pass show domain/windows]
+set SECRET [exec /usr/bin/pass show google-auth/dsb]
+set GKEY [exec /usr/bin/oathtool --totp -b {*}$SECRET]
+
+set timeout 100
+# local ssh | racktables | zabbix | rdp | redmine | weboutlook
+spawn /usr/bin/sshuttle @/home/$USER/.sshuttle_config --remote $USER@$SERVER:2222 10.0.0.0/8
+
+set prompt ":|#|\\\$"
+interact -o -nobuffer -re $prompt return
+sleep 1
+send "$LOCAL\r"
+interact -o -nobuffer -re $prompt return
+sleep 1
+send "$PASSWORD\r"
+interact -o -nobuffer -re $prompt return
+sleep 1
+send "$GKEY\r"
+
+wait

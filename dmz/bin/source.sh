@@ -27,14 +27,15 @@ testing1=$(grep old-nld-dsb-lab /etc/hosts | grep "10\." | awk '{print $1}')
 testing2=$(grep login.nwk /etc/hosts | grep "10\." | awk '{print $1}')
 testing3=$(grep librenms-lab /etc/hosts | grep "10\." | awk '{print $1}')
 testing4=$(grep elastiflow-lab /etc/hosts | grep "10\." | awk '{print $1}')
+testing5=$(grep salt-lab /etc/hosts | grep "10\." | awk '{print $1}')
 
 # other resources
 zabbix=$(grep zabbix.bet /etc/hosts | grep "10\." | awk '{print $1}')
 racktables=$(grep racktables /etc/hosts | grep "10\." | awk '{print $1}')
 intranet=$(grep intranet /etc/hosts | grep "10\." | awk '{print $1}')
-#windowsbox=$(grep usrds078 /etc/hosts | grep "10\." | awk '{print $1}')
 usrds078=$(grep usrds078 /etc/hosts | grep "10\." | awk '{print $1}')
 windowsbox=$(grep windowsbox /etc/hosts | grep "10\." | awk '{print $1}')
+windowsbox=$(grep usrds078 /etc/hosts | grep "10\." | awk '{print $1}')
 mail=$(grep mail /etc/hosts | grep "10\." | awk '{print $1}')
 redmine=$(grep redmine /etc/hosts | grep "10\." | awk '{print $1}')
 

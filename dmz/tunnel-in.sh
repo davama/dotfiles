@@ -12,6 +12,7 @@ if [ $# -eq 0 ]; then
 	amer emea apac dev
 	amerweb emeaweb apacweb
 	others
+	sshuttle
 	dynamic
 	teamam
 	EOL
@@ -23,6 +24,9 @@ trap 'rm output-$$' EXIT
 
 source ~/dmz/bin/source.sh
 
+function tunnel_sshuttle () {
+	~/dmz/bin/puppet-tunnel-sshuttle.exp $USER $zone
+}
 function tunnel_teamam () {
 	sudo openvpn --config .teamam-vpn/client.ovpn
 	if [ $? -eq 0 ]; then echo " TeaAM VPN Tun " >> /tmp/ssh-remote.txt; fi
@@ -37,7 +41,7 @@ function ssh_dsb_web () {
 }
 function ssh_dsb_other () {
 	#~/dmz/bin/puppet-tunnel-in-others.exp $USER $zone $dsbamer $dsbemea $dsbapac $zabbix $racktables $intranet $usrds006 $redmine
-	~/dmz/bin/puppet-tunnel-in-others.exp $USER $zone $dsbamer $dsbemea $dsbapac $zabbix $racktables $intranet $windowsbox $redmine $mail $testing1 $testing2 $testing3 $testing4 $archbox
+	~/dmz/bin/puppet-tunnel-in-others.exp $USER $zone $dsbamer $dsbemea $dsbapac $zabbix $racktables $intranet $windowsbox $redmine $mail $testing1 $testing2 $testing3 $testing4 $testing5 $archbox
 	if [ $? -eq 0 ]; then echo " $name SSH Tun " >> /tmp/ssh-remote.txt; fi
 }
 function dynamic_ssh () {
@@ -88,6 +92,7 @@ case $zone in
 	APAC)		name_apac; ssh_dsb ;;
 	DEV)		ssh_dsb ;;
 	TEAMAM)		name_teamam; tunnel_teamam ;;
+	SSHUTTLE)	select_region; tunnel_sshuttle;;
 	AMERWEB)	select_region; dsb=$dsbamer; inmon2=$inmonamer; inmon2port=10441; inmon=$inmonusa; inmonport=10443; dsbwebport=10444; ssh_dsb_web ;;
 	EMEAWEB)	select_region; dsb=$dsbemea; inmon2=$inmonamer; inmon2port=11441; inmon=$inmonemea; inmonport=11443; dsbwebport=11444; ssh_dsb_web ;;
 	APACWEB)	select_region; dsb=$dsbapac; inmon2=$inmonamer; inmon2port=12441; inmon=$inmonapac; inmonport=12443; dsbwebport=12444; ssh_dsb_web ;;

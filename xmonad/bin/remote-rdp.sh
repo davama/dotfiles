@@ -38,7 +38,7 @@ pass=$(/usr/bin/pass show domain/windows)
 # switch "-K" key machines key bindings
 
 case $1 in
-	1)	SERVER="usrds006";
+	1)	SERVER="usrds078";
 		default_vars;
 		;;
 	2)	SERVER="windowsbox"

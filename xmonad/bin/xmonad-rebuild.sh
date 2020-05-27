@@ -48,14 +48,18 @@ function rebuild_ghc () {
 }
 
 cd
+echo Updating Git Repos...
 update_git
 remove_local_files 2> /dev/null
 
 if [ -z $1 ]; then
-	remove_ghc_files 2> /dev/null
-	rebuild_ghc
+	echo Rebuilding Xmonad...
 	rebuild_xmonad
 else
+	remove_ghc_files 2> /dev/null
+	echo Rebuilding GHC...
+	rebuild_ghc
+	echo Rebuilding Xmonad...
 	rebuild_xmonad
 fi
 

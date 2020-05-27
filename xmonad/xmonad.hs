@@ -199,14 +199,14 @@ myManageHook = composeAll . concat $
      ws0     = ["nothing"]
      ws1     = ["Wine"]
      ws2     = ["google-chrome","chromium"]
-     ws3     = ["libreoffice-calc","libreoffice-writer","VirtualBox Manager","VirtualBox Machine","libreoffice","Firefox"]
+     ws3     = ["libreoffice-calc","libreoffice-writer","VirtualBox Manager","VirtualBox Machine","libreoffice","Firefox","firefox"]
      ws4     = ["xfreerdp","rdesktop"]
      ws5     = ["Brasero","Xpdf"]
      ws6     = ["Evolution"]
-     ws7     = ["Gvim","Xconfigs"]
-     ws8     = ["Pithos","Gimp","Ario","Vlc"]
-     ws9     = ["Hexchat","Pidgin","Skype"]
-     nsp     = ["nothing"]
+     ws7     = ["Gvim","Xconfigs","TeamViewer"]
+     ws8     = ["Pithos","Gimp","Ario","Vlc","retroarch"]
+     ws9     = ["Hexchat","Pidgin","Skype","Microsoft Teams","Microsoft Teams - Preview","zoom"]
+     nsp     = ["nothing","sendtonsp"]
      nsp1    = ["GNS3"]
      dev1    = ["nothing"]
      dev2    = ["nothing"]
@@ -562,6 +562,7 @@ myKeys (hostname) =  [
  , (((mod4Mask .|. controlMask), xK_c), submap . M.fromList $ -- chat clients
    [ ((0, xK_p), spawn "pidgin")
      , ((0, xK_s), spawn "skype")
+     , ((0, xK_t), spawn "teams")
      , ((0, xK_x), spawn "hexchat")
    ] )
  , ((mod4Mask .|. controlMask, xK_e), spawn "evolution")
@@ -617,7 +618,7 @@ myKeys (hostname) =  [
  , ((shiftMask, xK_Insert), spawn "xdotool click 2") -- paste x primary, simulates middle click
 -- Xprompts
  , ((mod4Mask .|. controlMask, xK_s), sshPrompt myXPConfig) -- ssh prompt
- , ((mod4Mask .|. controlMask, xK_x), prompt (myTerminal ++ " -e") myXPConfig) -- run command using prompt
+ , ((mod4Mask .|. controlMask, xK_x), prompt (myTerminal ++ " -T sendtonsp -e") myXPConfig) -- run command using prompt
  , ((mod4Mask .|. shiftMask, xK_b), windowPrompt myXPConfig Bring allWindows ) -- bring window client
  , ((mod4Mask .|. shiftMask, xK_g), windowPrompt myXPConfig Goto allWindows) -- go to window client in WS
  , ((mod4Mask, xK_s), SM.submap $ searchEngineMap $ S.promptSearchBrowser myXPConfig myInternet ) -- prompt search
