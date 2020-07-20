@@ -11,7 +11,7 @@ set REIP [lindex $argv 3]
 set REPORT [lindex $argv 4 ]
 set PASSWORD [exec /usr/bin/pass show domain/windows]
 set SECRET [exec /usr/bin/pass show google-auth/dsb]
-set GKEY [exec /usr/bin/oathtool --totp -b {*}$SECRET]
+set GKEY [exec /usr/bin/oathtool --totp -b $SECRET]
 
 set timeout 100
 # inmon | graylog | cgit

@@ -51,8 +51,9 @@ alias beep="beep -f 5000 -l 50 -r 2"
 alias sudo="sudo "
 alias tree='tree -C'
 alias grep='grep --color'
-alias sshr='/usr/bin/ssh -l root '
-alias sshc='/usr/bin/ssh -l config '
+alias ssh='/usr/bin/ssh -o "ServerAliveInterval 20"'
+alias sshr='/usr/bin/ssh -l root -o "ServerAliveInterval 20" '
+alias sshc='/usr/bin/ssh -l config -o "ServerAliveInterval 20" '
 
 
 function sshnasty () {

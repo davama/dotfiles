@@ -3,6 +3,7 @@
 # rdp into remove windows computers
 
 source ~/.xmonad/dzen2/source-config.sh
+USER=$(pass show dsb/username)
 
 if [[ $HOSTNAME == "ARCH" ]]; then
 	X=1672
@@ -96,7 +97,7 @@ while true; do
 	if ps ux | grep xfreerdp | grep -q $SERVER; then
 		:
 	else
-		beep
+		#beep
 		notify-send xfreerdp "$SERVER died"
 		exit 1
 	fi

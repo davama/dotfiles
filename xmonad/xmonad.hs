@@ -43,6 +43,7 @@ import qualified XMonad.Actions.Search as S
 import qualified XMonad.Actions.FlexibleResize as Flex
 import XMonad.Actions.FloatKeys
 import XMonad.Actions.Navigation2D
+import XMonad.Actions.GridSelect
 -- Utilities, other
 import XMonad.Util.Paste
 import XMonad.Util.Run
@@ -204,7 +205,7 @@ myManageHook = composeAll . concat $
      ws5     = ["Brasero","Xpdf"]
      ws6     = ["Evolution"]
      ws7     = ["Gvim","Xconfigs","TeamViewer"]
-     ws8     = ["Pithos","Gimp","Ario","Vlc","retroarch"]
+     ws8     = ["Pithos","Gimp","Ario","vlc","retroarch"]
      ws9     = ["Hexchat","Pidgin","Skype","Microsoft Teams","Microsoft Teams - Preview","zoom"]
      nsp     = ["nothing","sendtonsp"]
      nsp1    = ["GNS3"]
@@ -302,6 +303,44 @@ myFont sz = "Fixed:size=" ++ (show sz) ++ ":antialias=false" -- used in XPConfig
 myTitleFont sz = "Fixed:size=" ++ (show sz) ++ ":antialias=true" -- used for dzen bar, since use Dice font
 myEmptyTitleFont sz = "Fixed:size=" ++ (show sz) ++ ":antialias=true" -- used for dzen bar, since use Dice font
 myDiceFont sz = "Dice:size=" ++ (show sz) ++ ":antialias=true" -- used in dzen bar for NSP1
+
+
+-- | A synthwave monochrome colorizer based on window class
+myGSFont            = "xft:Noto Sans CJK KR:bold:pixelsize=10"
+myWinColorizer  :: Window -> Bool -> X (String, String)
+myWinColorizer  = colorRangeFromClassName
+                  (0x31,0x2e,0x39) -- lowest inactive bg
+                  (0x31,0x2e,0x39) -- highest inactive bg
+                  (0x78,0x3e,0x57) -- active bg
+                  (0xc0,0xa7,0x9a) -- inactive fg
+                  (0xff,0xff,0xff) -- active fg
+wiconfig colorizer  = (buildDefaultGSConfig myWinColorizer )
+    { gs_cellheight   = 30
+    , gs_cellwidth    = 200
+    , gs_cellpadding  = 16
+    , gs_originFractX = 0.5
+    , gs_originFractY = 0.5
+    , gs_font         = myGSFont
+  }
+
+-- spawnSelected Redefine
+spawnSelected' :: [(String, String)] -> X ()
+spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
+    where conf = def
+                   { gs_cellheight   = 40
+                   , gs_cellwidth    = 200
+                   , gs_cellpadding  = 6
+                   , gs_originFractX = 0.5
+                   , gs_originFractY = 0.5
+                   , gs_font         = myGSFont
+                   }
+myAppGrid = [
+          ("Roxterm"     , "roxterm"   )
+        , ("Xterm"       , "xterm"     )
+	, ("BGA"         , "~/bin/get-totp.sh 1" )
+	, ("WGA"         , "~/bin/get-totp.sh 2" )
+        ]
+
 -- }}}
 ------------------
 -- KeyNumList, ProfileList -- {{{
@@ -326,9 +365,9 @@ myLTATermProfiles = ["TAhap-L","TAhis-L","TAdbm-L","TAdbs1-L","TAdbs2-L","TAdbs3
 -- SearchEngince --  {{{
 searchEngineMap method = M.fromList $
  [ 
- , ((0, xK_a), method S.amazon)
+ ((0, xK_a), method S.amazon)
  , ((0, xK_d), method S.dictionary)
- , ((0, xK_e), method $ S.searchEngine "Ebay" "http://www.ebay.com/sch/i.html?_nkw=")
+ , ((0, xK_e), method S.ebay)
  , ((0, xK_g), method S.google)
  , ((0, xK_i), method S.images)
  , ((0, xK_j), method $ S.searchEngine "Jira" "https://teamamericany.atlassian.net/browse/")
@@ -340,7 +379,7 @@ searchEngineMap method = M.fromList $
 ------------------
 -- Scratchpads --  {{{
 myScratchPads = [ NS "scratchterm" spawnTerm  findTerm  manageTerm -- Named scratchpad
- , NS "scratchmpd" spawnMpd findMpd manageMpd -- Mpd scratchpad
+                , NS "scratchmpd" spawnMpd findMpd manageMpd -- Mpd scratchpad
                 ]
   where
     spawnMpd = myMpd ++ " roxterm"
@@ -558,6 +597,10 @@ myKeys (hostname) =  [
  , ((mod4Mask, xK_Left), screenGo L True) -- move to left neigh
  , ((mod4Mask, xK_Right), screenGo R True) -- move to right neigh
 -- Apps
+ --- using gridselect -- testing
+ , ((mod4Mask, xK_g), goToSelected  $ wiconfig myWinColorizer)
+ , ((mod4Mask, xK_y), spawnSelected' myAppGrid)
+
  , ((mod4Mask .|. controlMask, xK_b), spawn "brasero") -- open brasero
  , (((mod4Mask .|. controlMask), xK_c), submap . M.fromList $ -- chat clients
    [ ((0, xK_p), spawn "pidgin")

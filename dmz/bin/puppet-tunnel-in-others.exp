@@ -29,7 +29,7 @@ set ARCHBOX [lindex $argv 16 ]
 
 set PASSWORD [exec /usr/bin/pass show domain/windows]
 set SECRET [exec /usr/bin/pass show google-auth/dsb]
-set GKEY [exec /usr/bin/oathtool --totp -b {*}$SECRET]
+set GKEY [exec /usr/bin/oathtool --totp -b $SECRET]
 
 set timeout 100
 # local ssh | racktables | zabbix | rdp | redmine | weboutlook

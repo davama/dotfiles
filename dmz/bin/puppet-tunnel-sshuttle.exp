@@ -6,15 +6,17 @@
 
 set USER [lindex $argv 0 ]
 set SERVER [lindex $argv 1 ]
+set CONFIG [lindex $argv 2 ]
+set NSHOST [lindex $argv 3 ]
 
 set LOCAL [exec /usr/bin/pass show local]
 set PASSWORD [exec /usr/bin/pass show domain/windows]
 set SECRET [exec /usr/bin/pass show google-auth/dsb]
-set GKEY [exec /usr/bin/oathtool --totp -b {*}$SECRET]
+set GKEY [exec /usr/bin/oathtool --totp -b $SECRET]
 
 set timeout 100
 # local ssh | racktables | zabbix | rdp | redmine | weboutlook
-spawn /usr/bin/sshuttle @/home/$USER/.sshuttle_config --remote $USER@$SERVER:2222 10.0.0.0/8
+spawn /usr/bin/sshuttle --ns-hosts $NSHOST @$CONFIG --remote $USER@$SERVER:2222 10.0.0.0/8
 
 set prompt ":|#|\\\$"
 interact -o -nobuffer -re $prompt return

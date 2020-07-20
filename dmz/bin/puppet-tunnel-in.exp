@@ -8,7 +8,7 @@ set USER [lindex $argv 0 ]
 set SERVER [lindex $argv 1 ]
 set PASSWORD [exec /usr/bin/pass show domain/windows]
 set SECRET [exec /usr/bin/pass show google-auth/dsb]
-set GKEY [exec /usr/bin/oathtool --totp -b {*}$SECRET]
+set GKEY [exec /usr/bin/oathtool --totp -b $SECRET]
 
 set timeout 10
 spawn ssh -4 -i ~/.ssh/id_ed25519 -o "ServerAliveInterval 20" -l $USER -p 2222 $SERVER;
