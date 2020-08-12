@@ -152,5 +152,3 @@ urxvt.perl-ext-common: default,matcher,clipboard
 urxvt.keysym.M-c:   perl:clipboard:copy
 urxvt.keysym.M-v:   perl:clipboard:paste
 urxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-
-

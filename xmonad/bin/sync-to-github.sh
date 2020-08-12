@@ -54,6 +54,7 @@ cp ~/.ncmpcpp/config-btm ~/GITREPO/dotfiles/.ncmpcpp/
 cp ~/.Xdefaults ~/GITREPO/dotfiles/
 cp ~/.asoundrc ~/GITREPO/dotfiles/
 cp ~/.vimrc ~/GITREPO/dotfiles/
+cp ~/.xsession ~/GITREPO/dotfiles/
  
 if [ -z $1 ]; then
 	DIR=".git"

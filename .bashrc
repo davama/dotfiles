@@ -66,7 +66,7 @@ function xev_keyboard_key_id () {
 function xev_mouse_button_id () {
 	xev | grep -A2 --line-buffered '^ButtonRelease' | sed -n '/button /s/^.*button \([0-9]*\).*/\1/p'
 }
-PATH=$PATH:/home/dvmacias/.local/bin
+PATH=$PATH:~/.local/bin
 alias urgent="sleep 2; echo -e '\a'"
 
 export SYSTEMD_EDITOR="vim"

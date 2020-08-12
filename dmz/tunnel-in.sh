@@ -27,7 +27,8 @@ source ~/dmz/bin/source.sh
 function tunnel_sshuttle () {
 	file=~/.sshuttle_config
 	ns_host=$dsbamer
-	~/dmz/bin/puppet-tunnel-sshuttle.exp $USER $zone $file $ns_host
+	sshuttle_bin=$(which sshuttle)
+	~/dmz/bin/puppet-tunnel-sshuttle.exp $sshuttle_bin $USER $zone $file $ns_host
 }
 function tunnel_teamam () {
 	sudo openvpn --config .teamam-vpn/client.ovpn

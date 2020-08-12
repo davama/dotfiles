@@ -3,21 +3,8 @@ helpc = unlines ["My custom keybindings:
 The default modifier key 'mod' is the 'windows key'.
 
 -- Applications
-mod-ctrl-b               Launch Brasero CD/DVD Burning App
-mod-ctrl-c,p             Launch Pidgin. Key combination then 'p'
-mod-ctrl-c,s             Launch Skype. Key combination then 's'
-mod-ctrl-c,t             Launch Teams. Key combination then 't'
-mod-ctrl-c,x             Launch Hexchat. Key combination then 'x'
-mod-ctrl-e               Launch Evolution Email Client
-mod-ctrl-f               Launch Spacefm File Manager
-mod-ctrl-g               Launch Gvim
 mod-ctrl-i               Launch Google-Chrome
-mod-ctrl-m               Launch Ario
 mod-crtl-n               Launch mpd and ncmpcpp scratchpad
-mod-ctrl-o,c             Launch LibreOffice Calc. Key combination then 'c'
-mod-ctrl-o,w             Launch LibreOffice Writer. Key combination then 'w'
-mod-ctrl-o,i             Launch LibreOffice Impress. Key combination then 'i'
-mod-ctrl-p               Launch pithos
 mod-ctrl-q               Launch vlc
 mod-ctrl-r,[num1-9]      Launch rdp.
 mod-ctrl-s               Launch ssh Prompt
@@ -25,12 +12,10 @@ mod-ctrl-t,[num1-9,0,-]  Launch terminal using Specific profiles
 mod-ctrl-t,[pad1-9,0,-]  Launch terminal using Specific profiles
 mod-ctrl-enter           Launch terminal with Default profile
 mod-ctrl-padenter        Launch terminal with Default profile
-mod-ctrl-v               Launch Virtual Box
-mod-ctrl-w               Launch Gimp
-mod-ctrl-x               Launch Run Prompt
 mod-f11                  Open xmonad.hs with vim
 mod-f10                  Open primary dzen config file with vim
 mod-f9                   Open secondary dzen config file with vim
+mod-y                    Gridselect spawn application
 
 -- Search Engine
 -- mod-s,<L>        Prompt search. Key combination then '<Letter>'
@@ -49,6 +34,7 @@ y               Youtube search
 z               Zabbix search
 
 -- X-Prompts
+mod-ctrl-x        Spawn app prompt
 mod-ctrl-s        ssh prompt
 mod-ctrl-x        run command
 mod-shft-b        brind window client
@@ -72,6 +58,7 @@ mod-shft-n            Quit mpd and ncmpcpp
 mod-shft-button1      Quit mpd and ncmpcpp
 
 -- Navigation
+mod-g                     Gridselect goto window
 mod-[num1..0]             Switch to workSpace N
 mod-shft-[num1..0]        Move client to workspace N
 mod-shft-ctrl-[num1..0]   Copy client to workspace N

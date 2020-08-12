@@ -117,15 +117,10 @@ myXTerminal     = "xterm"
 myTerminal      = "roxterm" -- roxterm-gtk2
 myInternet      = "google-chrome-stable"
 --myInternet      = "chromium"
-myCalc          = "libreoffice --calc"
-myWriter        = "libreoffice --writer"
-myImpress       = "libreoffice --impress"
-myEditor        = "gvim -c 'startinsert'"
 myBackground    = "~/.xmonad/bin/wallpaper.sh"
 myBackgrdcolor  = "~/.xmonad/bin/background-set.sh"
 myScreenshot    = "scrot ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
 myMouseshot     = "sleep 0.2; scrot -s ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
-myVirtual       = "virtualbox"
 myRdesktop      = "~/.xmonad/bin/remote-rdp.sh "
 myMpd           = "~/.xmonad/bin/tmux-Ncmpcpp.sh"
 myMpdterm       = myTerminal ++ " -T mpd -e ~/.xmonad/bin/tmux-Ncmpcpp.sh"
@@ -194,7 +189,7 @@ myManageHook = composeAll . concat $
    where
      bars    = ["dzen2","desktop_window"]
      float   = ["feh","conky_mpd"]
-     cfloat  = ["Xmessage","Gxmessage","Eog","Brasero","xclock"]
+     cfloat  = ["Xmessage","Gxmessage","Eog","xclock"]
             ++ ["SimpleScreenRecorder","Evolution-alarm-notify","Evolution","Gns3","Mtpaint","Calculator","world-clock","wifi-qrcode","agenda-term"]
             ++ ["xeyes","pinentry"]
      ws0     = ["nothing"]
@@ -202,7 +197,7 @@ myManageHook = composeAll . concat $
      ws2     = ["google-chrome","chromium"]
      ws3     = ["libreoffice-calc","libreoffice-writer","VirtualBox Manager","VirtualBox Machine","libreoffice","Firefox","firefox"]
      ws4     = ["xfreerdp","rdesktop"]
-     ws5     = ["Brasero","Xpdf"]
+     ws5     = ["Xpdf"]
      ws6     = ["Evolution"]
      ws7     = ["Gvim","Xconfigs","TeamViewer"]
      ws8     = ["Pithos","Gimp","Ario","vlc","retroarch"]
@@ -299,48 +294,59 @@ myFocusFollowsMouse = True
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
 -- fonts
+myGSFont  = "xft:Noto Sans CJK KR:bold:pixelsize=10" -- used in gridselect
 myFont sz = "Fixed:size=" ++ (show sz) ++ ":antialias=false" -- used in XPConfig and UrgentHook
 myTitleFont sz = "Fixed:size=" ++ (show sz) ++ ":antialias=true" -- used for dzen bar, since use Dice font
 myEmptyTitleFont sz = "Fixed:size=" ++ (show sz) ++ ":antialias=true" -- used for dzen bar, since use Dice font
 myDiceFont sz = "Dice:size=" ++ (show sz) ++ ":antialias=true" -- used in dzen bar for NSP1
 
-
--- | A synthwave monochrome colorizer based on window class
-myGSFont            = "xft:Noto Sans CJK KR:bold:pixelsize=10"
-myWinColorizer  :: Window -> Bool -> X (String, String)
-myWinColorizer  = colorRangeFromClassName
-                  (0x31,0x2e,0x39) -- lowest inactive bg
-                  (0x31,0x2e,0x39) -- highest inactive bg
-                  (0x78,0x3e,0x57) -- active bg
-                  (0xc0,0xa7,0x9a) -- inactive fg
-                  (0xff,0xff,0xff) -- active fg
-wiconfig colorizer  = (buildDefaultGSConfig myWinColorizer )
+-- | A synthwave monochrome colorizer
+myColorizer :: a -> Bool -> X (String, String)
+myColorizer _ True = return ("#783e57", "#ffffff") -- #bg-active, #fg-active
+myColorizer _ False = return ("#312e39", "#c0a79a") -- #bg-inactive, #fg-inactive
+-- gridselect gsconfig
+myGSConfig :: t -> GSConfig Window
+myGSConfig colorizer = (buildDefaultGSConfig myColorizer)
     { gs_cellheight   = 30
     , gs_cellwidth    = 200
-    , gs_cellpadding  = 16
+    , gs_cellpadding  = 6
     , gs_originFractX = 0.5
     , gs_originFractY = 0.5
+    , gs_colorizer = myColorizer
     , gs_font         = myGSFont
-  }
-
+    }
 -- spawnSelected Redefine
 spawnSelected' :: [(String, String)] -> X ()
 spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
     where conf = def
-                   { gs_cellheight   = 40
+                   { gs_cellheight   = 30
                    , gs_cellwidth    = 200
                    , gs_cellpadding  = 6
                    , gs_originFractX = 0.5
                    , gs_originFractY = 0.5
+                   , gs_colorizer = myColorizer
                    , gs_font         = myGSFont
-                   }
+                  }
+-- apps for spawnSelected
 myAppGrid = [
-          ("Roxterm"     , "roxterm"   )
-        , ("Xterm"       , "xterm"     )
-	, ("BGA"         , "~/bin/get-totp.sh 1" )
-	, ("WGA"         , "~/bin/get-totp.sh 2" )
+        ( "Ario - MPD GUI"            , "ario"                     )
+        , ("GA-B"                     , "~/bin/get-totp.sh 1"      )
+        , ("GA-W"                    , "~/bin/get-totp.sh 2"      )
+        , ("Gimp"                    , "gimp"                     )
+        , ("Google Chrome"           , "google-chrome-stable"     )
+        , ("Firefox"                 , "firefox"                  )
+        , ("Gvim"                    , "gvim"                     )
+        , ("Hexchat"                 , "hexchat"                  )
+        , ("LibreOffice Calc"        , "libreoffice --calc"       )
+        , ("LibreOffice Writer"      , "libreoffice --writer"     )
+        , ("LibreOffice Impress"     , "libreoffice --impress"    )
+        , ("Pithos"                  , "pithos"                   )
+        , ("Roxterm"                 , "roxterm"                  )
+        , ("Teams"                   , "teams"                    )
+        , ("Virtualbox"              , "virtualbox"               )
+        , ("Vlc"                     , "vlc"                      )
+        , ("Xterm"                   , "xterm"                    )
         ]
-
 -- }}}
 ------------------
 -- KeyNumList, ProfileList -- {{{
@@ -449,20 +455,12 @@ myStartupHook = do
 --   , (SCUpperLeft, something)
 --   , (SCLowerLeft,  spawn myTerminal)
    ]
- spawnHere "unclutter -idle 3 -root &" -- makes cursor disappeare
- spawnHere "numlockx on &" -- turns numlock on
- spawnHere "xautolock -detectsleep -time 5 -locker '~/.xmonad/bin/my-hacky-screensaver.sh &> /tmp/failed.txt'"
- spawnHere "/usr/bin/udiskie -q -N -a -t &" -- usb automounting
- spawnHere "compton -CG --active-opacity 4.0 --shadow-ignore-shaped" -- turn on transparency
- spawnHere "~/.xmonad/bin/ssh_connections.sh" -- for conky/dzen2 label
  --spawnHere "conky -c ~/.config/conky/stats_circle/greatcircle" -- use cool conky circle
  --spawnHere "xplanet -utclabel -pango -transparency --projection merc -config ~/.xplanet/default -wait 1800"
  --spawnHere myBackground -- feh wallpaper script; with APOD
- spawnHere $ myBackgrdcolor ++ " \"" ++ (colorLook Hue 1) ++ "\"" -- using xmonad variable as bash argument, pretty cool
+ spawnHere $ myBackgrdcolor ++ " \"" ++ (colorLook Hue 0) ++ "\"" -- using xmonad variable as bash argument, pretty cool
  spawnHere myClearclip -- clear clipboard
  spawnHere myMonitors -- script to see # of monitors and which ones
- spawnHere "~/.xmonad/bin/get-installed-packages.sh"
- spawnHere "~/.xmonad/bin/xmonad-backup-sandbox.sh"
  return ()
 
 myDzenStartup = do
@@ -597,37 +595,15 @@ myKeys (hostname) =  [
  , ((mod4Mask, xK_Left), screenGo L True) -- move to left neigh
  , ((mod4Mask, xK_Right), screenGo R True) -- move to right neigh
 -- Apps
- --- using gridselect -- testing
- , ((mod4Mask, xK_g), goToSelected  $ wiconfig myWinColorizer)
+ , ((mod4Mask, xK_g), goToSelected  $ myGSConfig myColorizer)
  , ((mod4Mask, xK_y), spawnSelected' myAppGrid)
-
- , ((mod4Mask .|. controlMask, xK_b), spawn "brasero") -- open brasero
- , (((mod4Mask .|. controlMask), xK_c), submap . M.fromList $ -- chat clients
-   [ ((0, xK_p), spawn "pidgin")
-     , ((0, xK_s), spawn "skype")
-     , ((0, xK_t), spawn "teams")
-     , ((0, xK_x), spawn "hexchat")
-   ] )
- , ((mod4Mask .|. controlMask, xK_e), spawn "evolution")
- , ((mod4Mask .|. controlMask, xK_f), spawn "firefox")
- , ((mod4Mask .|. controlMask, xK_g), spawn myEditor)
  , ((mod4Mask .|. controlMask, xK_i), spawn myInternet)
- , ((mod4Mask .|. controlMask, xK_m), spawn "ario")
  --, ((mod4Mask .|. controlMask, xK_n), (windows $ W.greedyView (myWorkspaces !! 7)) >> spawn "sleep 2" >> spawn myMpdterm) -- workaround for tmux
  , ((mod4Mask .|. controlMask, xK_n), namedScratchpadAction myScratchPads "scratchmpd") -- now using scratchpad for mpd spawn
  , ((mod4Mask .|. controlMask .|. shiftMask, xK_n), spawn myConkympd)
- , (((mod4Mask .|. controlMask), xK_o), submap . M.fromList $ -- libreoffice
-   [ ((0, xK_c), spawn myCalc)
-     , ((0, xK_i), spawn myImpress)
-     , ((0, xK_w), spawn myWriter)
-   ] )
- , ((mod4Mask .|. controlMask, xK_p), spawn "pithos")
- , ((mod4Mask .|. controlMask, xK_q), spawn "vlc")
  , ((mod4Mask .|. shiftMask, xK_KP_Enter), spawn myXTerminal) -- open terminal
  , ((mod4Mask .|. controlMask, xK_Return), spawn myTerminal) -- open terminal
  , ((mod4Mask .|. controlMask, xK_KP_Enter), spawn myTerminal) -- open terminal
- , ((mod4Mask .|. controlMask, xK_v), spawn myVirtual) -- virtualbox
- , ((mod4Mask .|. controlMask, xK_w), spawn "gimp")
  -- Remote Desktop RDP; dependent on script
  , (((mod4Mask .|. controlMask), xK_r), submap . M.fromList $
    [ ((0, k), spawn (myRdesktop ++ " " ++ show i))

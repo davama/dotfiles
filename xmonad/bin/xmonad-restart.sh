@@ -25,13 +25,8 @@ pkill dzen2
 pkill xmobar
 #pkill mpd
 pkill wallpaper.sh
-pkill xautolock
-pkill udiskie
-pkill compton
 pkill xplanet
 pkill conky
-pkill unclutter
-ps aux | grep ssh_connections.sh | grep -v grep | awk '{print $2}' | xargs kill
 
 
 #exit

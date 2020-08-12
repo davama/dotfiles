@@ -14,6 +14,8 @@ pkill wallpaper.sh
 pkill screensaver
 pkill udiskie
 pkill unclutter
+ps aux | grep ssh_connections.sh | grep -v grep | awk '{print $2}' | xargs kill
+
 
 for i in $(ps aux | grep dzen | grep -v grep | awk '{print $2}'); do
 	kill $i
