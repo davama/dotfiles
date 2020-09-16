@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# kill background sound from sddm
-~/.xmonad/bin/PostLogin.sh
-
 # makes cursor disappeare
 pkill unclutter
 unclutter -idle 3 -root & 
