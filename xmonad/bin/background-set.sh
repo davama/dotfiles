@@ -8,6 +8,7 @@ pkill wallpaper.sh
 pkill xplanet
 
 ### normally from xmonad process ###
+#hsetroot -solid "#0e2f44"
 
 if [ $# -eq 1 ]; then
 	if [[ $1 == "#"* ]] ; then

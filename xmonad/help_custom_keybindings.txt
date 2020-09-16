@@ -120,6 +120,7 @@ print-key             Screenshot of all Monitors
 insert-key            Paste mouse selected text
 shft-insert-key       Similar as above but simulates a middle click.
 mod-print-key         Screenshot in select mode
+alt-print-key         Screenshot focused window
 mod-f12-key           Opens the CD tray
 scroll-lock-key       Open scratchpad
 B-right-hot-corner    Open terminal

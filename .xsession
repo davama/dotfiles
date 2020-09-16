@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# kill background sound from sddm
+~/.xmonad/bin/PostLogin.sh
 
 # makes cursor disappeare
 pkill unclutter
@@ -25,3 +27,8 @@ compton -CG --active-opacity 4.0 --shadow-ignore-shaped &
 ~/.xmonad/bin/get-installed-packages.sh &
 #~/.xmonad/bin/xmonad-backup-sandbox.sh &
 
+# set background color
+#hsetroot -solid "#0e2f44"
+
+# set background image
+feh --bg-scale Google-Drive/Linux/manjaro/NuFVbLW.jpg

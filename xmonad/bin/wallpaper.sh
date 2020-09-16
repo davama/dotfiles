@@ -147,6 +147,11 @@ clean_up
 sleep 1m
 }
 
+if ! [ -z "$1" ]; then
+	feh --bg-scale $1
+	exit
+fi
+
 # infinte loop to loop through images
 while true; do
 	# loop through itself; get all function names

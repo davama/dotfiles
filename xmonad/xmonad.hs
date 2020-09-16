@@ -98,7 +98,7 @@ main = do
           , startupHook = composeAll [
                      myStartupHook
                      , docksStartupHook
-                     , setWMName "Xmonad"
+                     , setWMName "LG3D"
                      , myCaseHook hostname -- pass hostname variable
                      , myDzenStartup
           ]
@@ -120,6 +120,7 @@ myInternet      = "google-chrome-stable"
 myBackground    = "~/.xmonad/bin/wallpaper.sh"
 myBackgrdcolor  = "~/.xmonad/bin/background-set.sh"
 myScreenshot    = "scrot ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
+myScreenshotW   = "sleep 1; scrot -u ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
 myMouseshot     = "sleep 0.2; scrot -s ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
 myRdesktop      = "~/.xmonad/bin/remote-rdp.sh "
 myMpd           = "~/.xmonad/bin/tmux-Ncmpcpp.sh"
@@ -198,7 +199,7 @@ myManageHook = composeAll . concat $
      ws3     = ["libreoffice-calc","libreoffice-writer","VirtualBox Manager","VirtualBox Machine","libreoffice","Firefox","firefox"]
      ws4     = ["xfreerdp","rdesktop"]
      ws5     = ["Xpdf"]
-     ws6     = ["Evolution"]
+     ws6     = ["Chiaki"]
      ws7     = ["Gvim","Xconfigs","TeamViewer"]
      ws8     = ["Pithos","Gimp","Ario","vlc","retroarch"]
      ws9     = ["Hexchat","Pidgin","Skype","Microsoft Teams","Microsoft Teams - Preview","zoom"]
@@ -327,11 +328,17 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_colorizer = myColorizer
                    , gs_font         = myGSFont
                   }
+-- custom apps for spawnSelected
+myCustomAppsGrid = [
+        ("MPD Conky Album"          , "~/.xmonad/bin/conky_mpd_cover.sh " )
+        , ("GA-B"                    , "~/bin/get-totp.sh 1"      )
+        , ("GA-W"                    , "~/bin/get-totp.sh 2"      )
+        ]
 -- apps for spawnSelected
 myAppGrid = [
-        ( "Ario - MPD GUI"            , "ario"                     )
-        , ("GA-B"                     , "~/bin/get-totp.sh 1"      )
-        , ("GA-W"                    , "~/bin/get-totp.sh 2"      )
+        ( "Ario - MPD GUI"           , "ario"                     )
+        , ("Calculator"              , "xcalc"                    )
+        , ("Chiaki PS4 Remote"       , "chiaki"                   )
         , ("Gimp"                    , "gimp"                     )
         , ("Google Chrome"           , "google-chrome-stable"     )
         , ("Firefox"                 , "firefox"                  )
@@ -346,6 +353,7 @@ myAppGrid = [
         , ("Virtualbox"              , "virtualbox"               )
         , ("Vlc"                     , "vlc"                      )
         , ("Xterm"                   , "xterm"                    )
+        , ("Zoiper"                  , "zoiper"                   )
         ]
 -- }}}
 ------------------
@@ -458,7 +466,7 @@ myStartupHook = do
  --spawnHere "conky -c ~/.config/conky/stats_circle/greatcircle" -- use cool conky circle
  --spawnHere "xplanet -utclabel -pango -transparency --projection merc -config ~/.xplanet/default -wait 1800"
  --spawnHere myBackground -- feh wallpaper script; with APOD
- spawnHere $ myBackgrdcolor ++ " \"" ++ (colorLook Hue 0) ++ "\"" -- using xmonad variable as bash argument, pretty cool
+ --spawnHere $ myBackgrdcolor ++ " \"" ++ (colorLook Hue 0) ++ "\"" -- using xmonad variable as bash argument, pretty cool
  spawnHere myClearclip -- clear clipboard
  spawnHere myMonitors -- script to see # of monitors and which ones
  return ()
@@ -597,6 +605,7 @@ myKeys (hostname) =  [
 -- Apps
  , ((mod4Mask, xK_g), goToSelected  $ myGSConfig myColorizer)
  , ((mod4Mask, xK_y), spawnSelected' myAppGrid)
+ , ((mod4Mask, xK_u), spawnSelected' myCustomAppsGrid)
  , ((mod4Mask .|. controlMask, xK_i), spawn myInternet)
  --, ((mod4Mask .|. controlMask, xK_n), (windows $ W.greedyView (myWorkspaces !! 7)) >> spawn "sleep 2" >> spawn myMpdterm) -- workaround for tmux
  , ((mod4Mask .|. controlMask, xK_n), namedScratchpadAction myScratchPads "scratchmpd") -- now using scratchpad for mpd spawn
@@ -631,6 +640,7 @@ myKeys (hostname) =  [
  , ((mod4Mask, xK_b), sendMessage ToggleStruts) -- hide bar
  , ((0, 0x1008FF2F), spawn myScreenLock) -- screensaver lock
  , ((0, xK_Print), spawn myScreenshot)
+ , ((mod1Mask, xK_Print), spawn myScreenshotW)
  --, ((0, xK_Insert), pasteSelection) -- uses getSelection from XMonad.Util.XSelection and so is heir to its flaws
  , ((0, xK_Insert), spawn "xdotool click 2") -- paste x primary, simulates middle click
  , ((0, xK_Scroll_Lock), namedScratchpadAction myScratchPads "scratchterm") -- open scratchpad
