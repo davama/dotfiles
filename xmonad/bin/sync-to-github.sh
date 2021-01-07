@@ -29,7 +29,6 @@ cp -r ~/dmz/* ~/GITREPO/dotfiles/dmz/
 # dotfiles git repo
 # https://github.com/davama/dotfiles
 cp ~/.bashrc ~/GITREPO/dotfiles/
-sed -i "s/alias grive='grive --id.*/alias grive='grive --id <redacted> --secret <redacted>'/g" ~/GITREPO/dotfiles/.bashrc
 for i in 1 2 3 4 5 9; do
 	sed -i "s/export MAIL_ACCOUNT_$i=.*/export MAIL_ACCOUNT_$i=<redacted>@<email.com>/g" ~/GITREPO/dotfiles/.bashrc
 done
@@ -61,6 +60,8 @@ if [ -z $1 ]; then
 else
 	exit
 fi
+
+exit
 
 for d in $(ls -d ~/GITREPO/*); do
 	cd $d

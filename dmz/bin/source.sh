@@ -28,6 +28,9 @@ testing2=$(grep login.nwk /etc/hosts | grep "10\." | awk '{print $1}')
 testing3=$(grep librenms-lab /etc/hosts | grep "10\." | awk '{print $1}')
 testing4=$(grep elastiflow-lab /etc/hosts | grep "10\." | awk '{print $1}')
 testing5=$(grep salt-lab /etc/hosts | grep "10\." | awk '{print $1}')
+ilo_manager_amer=$(grep ilo-manager.amer /etc/hosts | grep "10\." | awk '{print $1}')
+ilo_manager_emea=$(grep ilo-manager.emea /etc/hosts | grep "10\." | awk '{print $1}')
+ilo_manager_apac=$(grep ilo-manager.apac /etc/hosts | grep "10\." | awk '{print $1}')
 
 # other resources
 zabbix=$(grep zabbix.bet /etc/hosts | grep "10\." | awk '{print $1}')

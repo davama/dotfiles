@@ -191,14 +191,14 @@ myManageHook = composeAll . concat $
      bars    = ["dzen2","desktop_window"]
      float   = ["feh","conky_mpd"]
      cfloat  = ["Xmessage","Gxmessage","Eog","xclock"]
-            ++ ["SimpleScreenRecorder","Evolution-alarm-notify","Evolution","Gns3","Mtpaint","Calculator","world-clock","wifi-qrcode","agenda-term"]
-            ++ ["xeyes","pinentry"]
+            ++ ["SimpleScreenRecorder","Evolution-alarm-notify","Evolution","Gns3","Mtpaint","Calculator","world-clock","wifi-qrcode","agenda-term","arandr"]
+            ++ ["xeyes","pinentry","zoiper"]
      ws0     = ["nothing"]
      ws1     = ["Wine"]
      ws2     = ["google-chrome","chromium"]
      ws3     = ["libreoffice-calc","libreoffice-writer","VirtualBox Manager","VirtualBox Machine","libreoffice","Firefox","firefox"]
      ws4     = ["xfreerdp","rdesktop"]
-     ws5     = ["Xpdf"]
+     ws5     = ["Xpdf","zoiper"]
      ws6     = ["Chiaki"]
      ws7     = ["Gvim","Xconfigs","TeamViewer"]
      ws8     = ["Pithos","Gimp","Ario","vlc","retroarch"]
@@ -207,7 +207,7 @@ myManageHook = composeAll . concat $
      nsp1    = ["GNS3"]
      dev1    = ["nothing"]
      dev2    = ["nothing"]
-     im      = ["nothing"]
+     im      = ["browser-window"] -- teams
      role    = stringProperty "WM_WINDOW_ROLE" -- example
 -- }}}
 ------------------
@@ -333,6 +333,7 @@ myCustomAppsGrid = [
         ("MPD Conky Album"          , "~/.xmonad/bin/conky_mpd_cover.sh " )
         , ("GA-B"                    , "~/bin/get-totp.sh 1"      )
         , ("GA-W"                    , "~/bin/get-totp.sh 2"      )
+        , ("GA-BM"                    , "~/bin/get-totp.sh 3"     )
         ]
 -- apps for spawnSelected
 myAppGrid = [
@@ -350,10 +351,12 @@ myAppGrid = [
         , ("Pithos"                  , "pithos"                   )
         , ("Roxterm"                 , "roxterm"                  )
         , ("Teams"                   , "teams"                    )
+        , ("Teamviewer"              , "teamviewer"               )
         , ("Virtualbox"              , "virtualbox"               )
         , ("Vlc"                     , "vlc"                      )
         , ("Xterm"                   , "xterm"                    )
         , ("Zoiper"                  , "zoiper"                   )
+        , ("Zoom"                    , "zoom"                     )
         ]
 -- }}}
 ------------------
@@ -478,6 +481,7 @@ myDzenStartup = do
 myCaseHook :: String -> X ()
 myCaseHook hostname = case hostname of
   "ARCHLAP" -> return ()
+  "ARCHOLD" -> return ()
   "ARCHWORK" -> return ()
   _         -> return ()
 --  _       -> do { spawnHere myTerminal ;
@@ -675,6 +679,12 @@ myKeys (hostname) =  [
  , ((0, 0x1008FF14), spawn myMpdToggle)
  , ((0, 0x1008FF17), spawn myMpdNext)
  , ((0, 0x1008FF15), spawn myMpdStop)
+ , ((0, 0x1008FF02), spawn "xbacklight -inc 10") -- brightness up
+ , ((0, 0x1008FF03), spawn "xbacklight -dec 10") -- brightness down
+ , ((0, 0x1008FF1D), spawn "xcalc") -- invoke calculator
+ , ((0, 0x1008FF30), spawnSelected' myAppGrid) -- function key XF86Favorites
+ , ((0, 0x1008FF59), spawn "arandr") -- funciton key XF86Display
+
 -- TESTING
  --, ((mod4Mask, xK_y), pickPlayListItem RunMPD myXPConfig)
 -- ENDTESTING
@@ -696,6 +706,14 @@ myKeys (hostname) =  [
  ++
  (case hostname of
    "ARCHLAP" -> [
+        (((mod4Mask .|. controlMask), xK_space), submap . M.fromList $
+         [ ((0, k), spawn (myTerminal ++ " -p " ++ show i)) | (i,k) <- (zip myLTermProfiles numKeys ++ zip myLTermProfiles numPadKeys) ] -- mod-ctrl-t,[0..9] or [numPad0..9]
+        )
+        , (((mod4Mask .|. modalt), xK_space), submap . M.fromList $
+         [ ((0, k), spawn (myTerminal ++ " -p " ++ show i)) | (i,k) <- (zip myLTATermProfiles numKeys ++ zip myLTATermProfiles numPadKeys) ] -- mod-ctrl-t,[0..9] or [numPad0..9]
+        )
+     ]
+   "ARCHOLD" -> [
         (((mod4Mask .|. controlMask), xK_space), submap . M.fromList $
          [ ((0, k), spawn (myTerminal ++ " -p " ++ show i)) | (i,k) <- (zip myLTermProfiles numKeys ++ zip myLTermProfiles numPadKeys) ] -- mod-ctrl-t,[0..9] or [numPad0..9]
         )

@@ -2,6 +2,9 @@
 # ~/.bashrc
 #
 
+# display
+export DISPLAY=:0.0
+
 # If not running interactively, don't do anything
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
@@ -99,6 +102,14 @@ export MAIL_ACCOUNT_9=<redacted>@<email.com>
 
 source .rvm/scripts/rvm
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.rvm/bin:/snap/bin"
 
 source ~/.bash_test
+
+function sync_date() {
+sudo ntpdate -u 0.arch.pool.ntp.org
+}
+
+#for pass to not use gui
+#GPG_TTY=$(tty)
+#export GPG_TTY

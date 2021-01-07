@@ -8,8 +8,8 @@ mod-crtl-n               Launch mpd and ncmpcpp scratchpad
 mod-ctrl-q               Launch vlc
 mod-ctrl-r,[num1-9]      Launch rdp.
 mod-ctrl-s               Launch ssh Prompt
-mod-ctrl-t,[num1-9,0,-]  Launch terminal using Specific profiles
-mod-ctrl-t,[pad1-9,0,-]  Launch terminal using Specific profiles
+mod-ctrl-SB,[num1-9,0,-] Launch terminal using Specific profiles
+mod-ctrl-SB,[pad1-9,0,-] Launch terminal using Specific profiles
 mod-ctrl-enter           Launch terminal with Default profile
 mod-ctrl-padenter        Launch terminal with Default profile
 mod-f11                  Open xmonad.hs with vim
@@ -45,14 +45,18 @@ mod-alt-p         Generate hash password
 mod-ctrl-shift-p  Remove hash password
 
 -- Media Actions: Most use the function key
-function-sleep        Locks the screen
-function-mute         Mutes volume
-function-volup        Increases volume by 10
-function-voldown      Decreases volume by 10
-function-prev         Switch to previus song
-function-next         Switch to next song
-function-pause        Pause/Play song
-function-stop         Stops the song
+fn-sleep              Locks the screen
+fn-mute               Mutes volume
+fn-volup              Increases volume by 10
+fn-voldown            Decreases volume by 10
+fn-prev               Switch to previus song
+fn-next               Switch to next song
+fn-pause              Pause/Play song
+fn-stop               Stops the song
+fn-brightnessup       Screen brightness up
+fn-brightnessdown     Screen brightness down
+fn-display            Launch arandr for monitor settings
+fn-favorites          Launch gridselect spawn application
 mod-crtl-n            Launch mpd and ncmpcpp
 mod-shft-n            Quit mpd and ncmpcpp
 mod-shft-button1      Quit mpd and ncmpcpp
