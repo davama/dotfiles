@@ -70,7 +70,6 @@ import qualified Network.MPD as MPD
 -- MAIN -- {{{
 ------------------
 main = do
- dir <- getXMonadDir -- xmonad dir = ~/.xmonad
  hostname <- fmap nodeName getSystemID
  xmproc <- spawnPipe myDzenStatus
  xmonad $ withUrgencyHookC myUrgentHook myUrgencyConfig -- working
@@ -103,7 +102,7 @@ main = do
                      , myDzenStartup
           ]
           , logHook = composeAll [
-                    myDzenLogHook dir xmproc -- pass dir variable
+                    myDzenLogHook xmproc
                     , myLogHook
           ]
  } `additionalKeys` myKeys hostname `additionalMouseBindings` myMouseBindings hostname -- pass hostname variable
@@ -502,7 +501,7 @@ myLogHook = updatePointer (0.5, 0.5) (0, 0) -- moves pointer to center of focuse
        where fadeAmount = 0.8
 
 myDzenStatus = myDzenbar1
-myDzenLogHook dir h = do
+myDzenLogHook h = do
     copies <- wsContainingCopies
     let check ws | ws `elem` copies = dzenColor (colorLook Black 0) (colorLook Purple 0) $ ws | otherwise = ws -- color of WS with copied clients
     dynamicLogWithPP dzenPP { 
@@ -563,7 +562,7 @@ myDzenLogHook dir h = do
   where
     noScratch ws = if ws == "0" || ws == "NSP" || ws == "NSP1" || ws == "DEV1" || ws == "DEV2" then "" else ws  -- if WS with client, then dont show
     noScratchPad ws = if ws == "0" || ws == "NSP" || ws == "NSP1" || ws == "DEV1" || ws == "DEV2" then "" else ""  -- dont show specific WS at all
-    iconsdir = (dir ++ "/icons/") -- ~/.xmonad/icons
+    iconsdir = ("/home/dmacias" ++ "/icons/") -- ~/.xmonad/icons
 
 -- }}}
 ------------------
