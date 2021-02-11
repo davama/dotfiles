@@ -76,9 +76,9 @@ function select_region () {
 	PS3="SSH server to forward to: "
 	select remote_ssh in "AMER" "EMEA" "APAC" "DEV" "TEAMAM"; do
 		case "$remote_ssh" in
-			"AMER")		name_amer; zone=$AMER; break;;
-			"EMEA")		name_emea; zone=$EMEA; break;;
-			"APAC")		name_apac; zone=$APAC; break;;
+			"AMER")		name_amer; zone=$name; break;;
+			"EMEA")		name_emea; zone=$name; break;;
+			"APAC")		name_apac; zone=$name; break;;
 			"DEV")		zone=$DEV; break;;
 			*)		echo "Not in list. Exiting"; exit 1;;
 		esac

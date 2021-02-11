@@ -27,7 +27,7 @@ function update_git () {
 	for i in $(ls); do 
 		cd ~/xmonad-git/$i
 		pwd
-		git pull
+		#git pull
 		echo; cd ~/xmonad-git
 	done
 }
@@ -43,7 +43,9 @@ function rebuild_ghc () {
 	# NOTE: For idea which ghc version to use, see <package>.cabal file
 	#      grep tested-with ~/.xmonad/xmonad-git/xmonad*/xmonad*.cabal
 	#      stack ghc -- --version # see current ghc version stack is using
-	stack --resolver ghc-8.6.5 setup || build_failed
+	#stack --resolver ghc-8.6.5 setup || build_failed
+	#stack --resolver ghc-8.8.4 setup || build_failed
+	stack --resolver ghc-8.10.3 setup || build_failed
 }
 
 cd
@@ -51,15 +53,17 @@ echo Updating Git Repos...
 update_git
 remove_local_files 2> /dev/null
 
+# if provide argument
 if [ -z $1 ]; then
-	echo Rebuilding Xmonad...
+	echo -e "\n################### Rebuilding Xmonad... ########################\n"
 	rebuild_xmonad
 else
 	remove_ghc_files 2> /dev/null
-	echo Rebuilding GHC...
+	echo -e "\n################### Rebuilding GHC... ########################\n"
 	rebuild_ghc
-	echo Rebuilding Xmonad...
+	echo -e "\n################### Rebuilding Xmonad... ########################\n"
+	rebuild_xmonad
 	rebuild_xmonad
 fi
 
-echo -e "\n\nXmonad has been successfully rebuilt"
+echo -e "\n################### Xmonad has successfully rebuilt ########################\n"

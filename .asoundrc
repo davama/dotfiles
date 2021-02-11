@@ -1,17 +1,13 @@
 pcm.!default {
-  playback.pcm {
     type hw
     card 0
-    device 0
-  }
-  playback.capture {
-    type hw
-    card 0
-    device 0
-  }
 }
 
 ctl.!default {
     type hw           
     card 0
 }
+control{ 
+	name Headset
+	card 1
+} 

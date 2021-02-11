@@ -200,8 +200,8 @@ myManageHook = composeAll . concat $
      ws5     = ["Xpdf","zoiper"]
      ws6     = ["Chiaki"]
      ws7     = ["Gvim","Xconfigs","TeamViewer"]
-     ws8     = ["Pithos","Gimp","Ario","vlc","retroarch"]
-     ws9     = ["Hexchat","Pidgin","Skype","Microsoft Teams","Microsoft Teams - Preview","zoom"]
+     ws8     = ["Pithos","Gimp","Ario","vlc","retroarch","google-meet-desktop"]
+     ws9     = ["Hexchat","Pidgin","Skype","Microsoft Teams","Microsoft Teams - Preview","zoom","Slack"]
      nsp     = ["nothing","sendtonsp"]
      nsp1    = ["GNS3"]
      dev1    = ["nothing"]
@@ -341,6 +341,7 @@ myAppGrid = [
         , ("Chiaki PS4 Remote"       , "chiaki"                   )
         , ("Gimp"                    , "gimp"                     )
         , ("Google Chrome"           , "google-chrome-stable"     )
+        , ("Google Meets"            , "google-meet-desktop"     )
         , ("Firefox"                 , "firefox"                  )
         , ("Gvim"                    , "gvim"                     )
         , ("Hexchat"                 , "hexchat"                  )
@@ -349,6 +350,7 @@ myAppGrid = [
         , ("LibreOffice Impress"     , "libreoffice --impress"    )
         , ("Pithos"                  , "pithos"                   )
         , ("Roxterm"                 , "roxterm"                  )
+        , ("Slack"                   , "slack -s"                 )
         , ("Teams"                   , "teams"                    )
         , ("Teamviewer"              , "teamviewer"               )
         , ("Virtualbox"              , "virtualbox"               )
@@ -562,7 +564,7 @@ myDzenLogHook h = do
   where
     noScratch ws = if ws == "0" || ws == "NSP" || ws == "NSP1" || ws == "DEV1" || ws == "DEV2" then "" else ws  -- if WS with client, then dont show
     noScratchPad ws = if ws == "0" || ws == "NSP" || ws == "NSP1" || ws == "DEV1" || ws == "DEV2" then "" else ""  -- dont show specific WS at all
-    iconsdir = ("/home/dmacias" ++ "/icons/") -- ~/.xmonad/icons
+    iconsdir = ("/home/dmacias/.xmonad" ++ "/icons/") -- ~/.xmonad/icons
 
 -- }}}
 ------------------

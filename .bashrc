@@ -2,6 +2,11 @@
 # ~/.bashrc
 #
 
+# XMonad
+export XMONAD_DATA_DIR=~/.xmonad
+export XMONAD_CONFIG_DIR=~/.xmonad
+export XMONAD_CACHE_DIR=~/.xmonad
+
 # display
 export DISPLAY=:0.0
 
@@ -111,5 +116,10 @@ sudo ntpdate -u 0.arch.pool.ntp.org
 }
 
 #for pass to not use gui
-#GPG_TTY=$(tty)
-#export GPG_TTY
+export GPG_TTY=$(tty)
+
+# serial connection
+function serial_console () {
+	echo "To exit screen Ctrl-a then K"
+	sudo screen /dev/ttyUSB0 115200
+}

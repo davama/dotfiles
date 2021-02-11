@@ -54,14 +54,13 @@ cp ~/.Xdefaults ~/GITREPO/dotfiles/
 cp ~/.asoundrc ~/GITREPO/dotfiles/
 cp ~/.vimrc ~/GITREPO/dotfiles/
 cp ~/.xsession ~/GITREPO/dotfiles/
- 
+
+# if no paramater provided
 if [ -z $1 ]; then
 	DIR=".git"
 else
 	exit
 fi
-
-exit
 
 for d in $(ls -d ~/GITREPO/*); do
 	cd $d
