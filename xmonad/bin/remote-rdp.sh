@@ -87,9 +87,9 @@ fi
 
 # ctrl-alt-enter to toggle full screen mode
 if [ $SERVER == "windowswork" ] || [ $SERVER == "windowsbox" ]; then
-	xfreerdp /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SERVER_HOST $SOUND $SIZE $SHARE_DRIVE $DOMAIN_CREDENTIALS &> /tmp/rdp-log-$SERVER.txt &
+	xfreerdp /timeout:10000 /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SERVER_HOST $SOUND $SIZE $SHARE_DRIVE $DOMAIN_CREDENTIALS &> /tmp/rdp-log-$SERVER.txt &
 else
-	xfreerdp /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SERVER_HOST $SIZE $SHARE_DRIVE $DOMAIN_CREDENTIALS &> /tmp/rdp-log-$SERVER.txt &
+	xfreerdp /timeout:10000 /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SERVER_HOST $SIZE $SHARE_DRIVE $DOMAIN_CREDENTIALS &> /tmp/rdp-log-$SERVER.txt &
 fi
 
 while true; do

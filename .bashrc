@@ -2,11 +2,6 @@
 # ~/.bashrc
 #
 
-# XMonad
-export XMONAD_DATA_DIR=~/.xmonad
-export XMONAD_CONFIG_DIR=~/.xmonad
-export XMONAD_CACHE_DIR=~/.xmonad
-
 # display
 export DISPLAY=:0.0
 
@@ -68,12 +63,6 @@ function sshnasty () {
 	if [ -z $1 ]; then return; fi
 	for K in "$@"; do sed -i "$K"d ~/.ssh/known_hosts; done
 }
-function xev_keyboard_key_id () {
-	xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'
-}
-function xev_mouse_button_id () {
-	xev | grep -A2 --line-buffered '^ButtonRelease' | sed -n '/button /s/^.*button \([0-9]*\).*/\1/p'
-}
 PATH=$PATH:~/.local/bin
 alias urgent="sleep 2; echo -e '\a'"
 
@@ -83,18 +72,12 @@ export EDITOR=/usr/bin/vim
 
 alias jcontrol='/usr/lib/jvm/java-9-jdk/bin/jcontrol'
 
-#if [ -z "$SSH_AUTH_SOCK" ] ; then
-#  eval `ssh-agent -s`
-#  ssh-add
-#fi
-
 SSH_DMZ_OPTIONS='-o "ServerAliveInterval 20"'
 alias sshn="/usr/bin/ssh"
 if [ $HOSTNAME == "ARCHWORK" ]; then
 	alias sshr="/usr/bin/ssh -l root $SSH_DMZ_OPTIONS"
 	#alias ssh='/usr/bin/sshpass -f ~/.sshpass-teamam /usr/bin/ssh' 
 fi
-
 
 # mutt env variables
 TERM=xterm-256color
@@ -109,17 +92,17 @@ source .rvm/scripts/rvm
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin:/snap/bin"
 
-source ~/.bash_test
-
 function sync_date() {
-sudo ntpdate -u 0.arch.pool.ntp.org
+	sudo ntpdate -u 0.arch.pool.ntp.org
+}
+# serial 
+function serial_console () {
+	echo "To exit screen Ctrl-a then K"
+	sudo screen /dev/ttyUSB0 115200
 }
 
 #for pass to not use gui
 export GPG_TTY=$(tty)
 
-# serial connection
-function serial_console () {
-	echo "To exit screen Ctrl-a then K"
-	sudo screen /dev/ttyUSB0 115200
-}
+source ~/.bash_test
+source ~/.xmonad/xmonadrc

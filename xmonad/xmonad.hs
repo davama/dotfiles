@@ -220,7 +220,7 @@ gapper s = (gaps [(U, s), (R, s), (L, s), (D, s)]) . mySpacing (toInteger s)
 grid orientation s = gapper s $ G.SplitGrid orientation 1 1 (1/2) (16/9) (5/100)
 
 --myLayoutHook = (avoidStruts (standardLayouts) ||| fullscreen)
-myLayoutHook = onWorkspace (myWorkspaces !! 8) (avoidStruts (imLayout) ||| avoidStruts (standardLayouts))
+myLayoutHook = onWorkspace (myWorkspaces !! 8) (avoidStruts (tabbedLayout) ||| avoidStruts (imLayout) ||| avoidStruts (standardLayouts))
              $ onWorkspace (myWorkspaces !! 7) (avoidStruts (gimpLayout) ||| avoidStruts (standardLayouts)) 
              $ onWorkspace (myWorkspaces !! 3) (avoidStruts (tabbedLayout) ||| avoidStruts (standardLayouts)) 
              $ onWorkspace (myWorkspaces !! 1) (avoidStruts (chatLayout) ||| avoidStruts (standardLayouts)) 

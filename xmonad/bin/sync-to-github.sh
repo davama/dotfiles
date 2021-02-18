@@ -16,6 +16,7 @@ mkdir -p ~/GITREPO/dotfiles/dmz
 
 # https://github.com/davama/dotfiles
 cp ~/.xmonad/xmonad.hs ~/GITREPO/dotfiles/xmonad/
+cp ~/.xmonad/xmonadrc ~/GITREPO/dotfiles/xmonad/
 cp ~/.xmonad/stack.yaml ~/GITREPO/dotfiles/xmonad/
 cp ~/.xmonad/build ~/GITREPO/dotfiles/xmonad/
 cp ~/.xmonad/help_* ~/GITREPO/dotfiles/xmonad/

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Env vars and functions for xmonad
+
+# XMonad
+export XMONAD_DATA_DIR=~/.xmonad
+export XMONAD_CONFIG_DIR=~/.xmonad
+export XMONAD_CACHE_DIR=~/.xmonad
+
+function gpg_export_password-store () {
+	key=$(gpg --list-secret-keys davama@gmail.com | head -2 | tail -1 | tail -c 9)
+	key_delta=$(echo $key | sed 's/^/0x/g')
+	tar -cz .password-store | gpg --sign --encrypt -r $key_delta > password-store-backup.tar.gz.gpg
+	ls password-store-backup.tar.gz.gpg
+	unset key key_delta
+}
+function gpg_trust-key () {
+	key=$(gpg --list-secret-keys davama@gmail.com | head -2 | tail -1 | tail -c 9)
+	gpg --edit-key $key
+	unset key
+}
+
+function xev_keyboard_key_id () {
+	xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'
+}
+
+function xev_mouse_button_id () {
+	xev | grep -A2 --line-buffered '^ButtonRelease' | sed -n '/button /s/^.*button \([0-9]*\).*/\1/p'
+}
