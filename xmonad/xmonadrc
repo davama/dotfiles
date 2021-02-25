@@ -14,10 +14,14 @@ function gpg_export_password-store () {
 	ls password-store-backup.tar.gz.gpg
 	unset key key_delta
 }
-function gpg_trust-key () {
-	key=$(gpg --list-secret-keys davama@gmail.com | head -2 | tail -1 | tail -c 9)
-	gpg --edit-key $key
-	unset key
+function gpg_import_password-store () {
+	if [ -z $1 ]; then
+		echo "Need password store tar file"
+	else
+		file=$1
+		gpg --decrypt < $file | tar -xz
+		unset file
+	fi
 }
 
 function xev_keyboard_key_id () {

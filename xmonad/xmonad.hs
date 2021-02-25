@@ -121,6 +121,7 @@ myBackgrdcolor  = "~/.xmonad/bin/background-set.sh"
 myScreenshot    = "scrot ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
 myScreenshotW   = "sleep 1; scrot -u ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
 myMouseshot     = "sleep 0.2; scrot -s ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
+myScreenshotFlm = "flameshot gui -p ~/Pictures/"
 myRdesktop      = "~/.xmonad/bin/remote-rdp.sh "
 myMpd           = "~/.xmonad/bin/tmux-Ncmpcpp.sh"
 myMpdterm       = myTerminal ++ " -T mpd -e ~/.xmonad/bin/tmux-Ncmpcpp.sh"
@@ -136,6 +137,46 @@ myDzenbar2      = "~/.xmonad/bin/start_dzen2.sh"
 myScreenLock    = "~/.xmonad/bin/my-hacky-screensaver.sh "
 myMsg           = "~/.xmonad/bin/mymsg.sh"
 myVol           = "~/.xmonad/bin/volume.sh"
+
+-- custom apps for spawnSelected
+myCustomAppsGrid = [
+        ("MPD Conky Album"          , "~/.xmonad/bin/conky_mpd_cover.sh " )
+        , ("GA-B"                    , "~/bin/get-totp.sh 1"      )
+        , ("GA-W"                    , "~/bin/get-totp.sh 2"      )
+        , ("GA-BM"                    , "~/bin/get-totp.sh 3"     )
+        , ("GA-AW"                    , "~/bin/get-totp.sh 4"     )
+        ]
+-- apps for spawnSelected
+myAppGrid = [
+        ( "Ario - MPD GUI"           , "ario"                     )
+        , ("Arandr"                  , "arandr"                   )
+        , ("Calculator"              , "xcalc"                    )
+        , ("Chiaki PS4 Remote"       , "chiaki"                   )
+        , ("Gimp"                    , "gimp"                     )
+        , ("Google Chrome"           , "google-chrome-stable"     )
+        , ("Google Meets"            , "google-meet-desktop"      )
+        , ("Firefox"                 , "firefox"                  )
+        , ("Gvim"                    , "gvim"                     )
+        , ("Hexchat"                 , "hexchat"                  )
+        , ("LibreOffice Calc"        , "libreoffice --calc"       )
+        , ("LibreOffice Writer"      , "libreoffice --writer"     )
+        , ("LibreOffice Impress"     , "libreoffice --impress"    )
+        , ("Pithos"                  , "pithos"                   )
+        , ("Roxterm"                 , "roxterm"                  )
+        , ("Slack"                   , "slack -s"                 )
+        , ("Teams"                   , "teams"                    )
+        , ("Teamviewer"              , "teamviewer"               )
+        , ("Virtualbox"              , "virtualbox"               )
+        , ("Vlc"                     , "vlc"                      )
+        , ("Xterm"                   , "xterm"                    )
+        , ("Zoiper"                  , "zoiper"                   )
+        , ("Zoom"                    , "zoom"                     )
+        ]
+mySystemApps = [
+        ( "Printers"                 , "system-config-printer"    )
+        , ("Bluetooth"               , "blueman-manager"          )
+        , ( "TrackBall"              , "solaar"                   )
+        ]
 -- }}}
 ------------------
 -- Workspaces & Clickable WS -- {{{
@@ -191,17 +232,17 @@ myManageHook = composeAll . concat $
      float   = ["feh","conky_mpd"]
      cfloat  = ["Xmessage","Gxmessage","Eog","xclock"]
             ++ ["SimpleScreenRecorder","Evolution-alarm-notify","Evolution","Gns3","Mtpaint","Calculator","world-clock","wifi-qrcode","agenda-term","arandr"]
-            ++ ["xeyes","pinentry","zoiper"]
+            ++ ["xeyes","pinentry","zoiper","blueman-manager","system-config-printer","Solaar"]
      ws0     = ["nothing"]
      ws1     = ["Wine"]
      ws2     = ["google-chrome","chromium"]
      ws3     = ["libreoffice-calc","libreoffice-writer","VirtualBox Manager","VirtualBox Machine","libreoffice","Firefox","firefox"]
      ws4     = ["xfreerdp","rdesktop"]
-     ws5     = ["Xpdf","zoiper"]
+     ws5     = ["Xpdf","zoom"]
      ws6     = ["Chiaki"]
      ws7     = ["Gvim","Xconfigs","TeamViewer"]
      ws8     = ["Pithos","Gimp","Ario","vlc","retroarch","google-meet-desktop"]
-     ws9     = ["Hexchat","Pidgin","Skype","Microsoft Teams","Microsoft Teams - Preview","zoom","Slack"]
+     ws9     = ["Hexchat","Pidgin","Microsoft Teams","Microsoft Teams - Preview","Slack"]
      nsp     = ["nothing","sendtonsp"]
      nsp1    = ["GNS3"]
      dev1    = ["nothing"]
@@ -327,38 +368,6 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_colorizer = myColorizer
                    , gs_font         = myGSFont
                   }
--- custom apps for spawnSelected
-myCustomAppsGrid = [
-        ("MPD Conky Album"          , "~/.xmonad/bin/conky_mpd_cover.sh " )
-        , ("GA-B"                    , "~/bin/get-totp.sh 1"      )
-        , ("GA-W"                    , "~/bin/get-totp.sh 2"      )
-        , ("GA-BM"                    , "~/bin/get-totp.sh 3"     )
-        ]
--- apps for spawnSelected
-myAppGrid = [
-        ( "Ario - MPD GUI"           , "ario"                     )
-        , ("Calculator"              , "xcalc"                    )
-        , ("Chiaki PS4 Remote"       , "chiaki"                   )
-        , ("Gimp"                    , "gimp"                     )
-        , ("Google Chrome"           , "google-chrome-stable"     )
-        , ("Google Meets"            , "google-meet-desktop"     )
-        , ("Firefox"                 , "firefox"                  )
-        , ("Gvim"                    , "gvim"                     )
-        , ("Hexchat"                 , "hexchat"                  )
-        , ("LibreOffice Calc"        , "libreoffice --calc"       )
-        , ("LibreOffice Writer"      , "libreoffice --writer"     )
-        , ("LibreOffice Impress"     , "libreoffice --impress"    )
-        , ("Pithos"                  , "pithos"                   )
-        , ("Roxterm"                 , "roxterm"                  )
-        , ("Slack"                   , "slack -s"                 )
-        , ("Teams"                   , "teams"                    )
-        , ("Teamviewer"              , "teamviewer"               )
-        , ("Virtualbox"              , "virtualbox"               )
-        , ("Vlc"                     , "vlc"                      )
-        , ("Xterm"                   , "xterm"                    )
-        , ("Zoiper"                  , "zoiper"                   )
-        , ("Zoom"                    , "zoom"                     )
-        ]
 -- }}}
 ------------------
 -- KeyNumList, ProfileList -- {{{
@@ -611,6 +620,7 @@ myKeys (hostname) =  [
  , ((mod4Mask, xK_g), goToSelected  $ myGSConfig myColorizer)
  , ((mod4Mask, xK_y), spawnSelected' myAppGrid)
  , ((mod4Mask, xK_u), spawnSelected' myCustomAppsGrid)
+ , ((mod4Mask, xK_i), spawnSelected' mySystemApps)
  , ((mod4Mask .|. controlMask, xK_i), spawn myInternet)
  --, ((mod4Mask .|. controlMask, xK_n), (windows $ W.greedyView (myWorkspaces !! 7)) >> spawn "sleep 2" >> spawn myMpdterm) -- workaround for tmux
  , ((mod4Mask .|. controlMask, xK_n), namedScratchpadAction myScratchPads "scratchmpd") -- now using scratchpad for mpd spawn
@@ -646,6 +656,7 @@ myKeys (hostname) =  [
  , ((0, 0x1008FF2F), spawn myScreenLock) -- screensaver lock
  , ((0, xK_Print), spawn myScreenshot)
  , ((mod1Mask, xK_Print), spawn myScreenshotW)
+ , ((controlMask, xK_Print), spawn myScreenshotFlm)
  --, ((0, xK_Insert), pasteSelection) -- uses getSelection from XMonad.Util.XSelection and so is heir to its flaws
  , ((0, xK_Insert), spawn "xdotool click 2") -- paste x primary, simulates middle click
  , ((0, xK_Scroll_Lock), namedScratchpadAction myScratchPads "scratchterm") -- open scratchpad

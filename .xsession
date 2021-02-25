@@ -16,6 +16,9 @@ pkill udiskie
 pkill compton
 compton -CG --active-opacity 4.0 --shadow-ignore-shaped &
 
+# logitech trachball mouse
+solaar -w hide &
+
 # background scrpts
 
 # for conky/dzen2 label
