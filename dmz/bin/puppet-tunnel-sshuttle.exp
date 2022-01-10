@@ -12,7 +12,7 @@ set NSHOST [lindex $argv 4 ]
 
 set LOCAL [exec /usr/bin/pass show local]
 set PASSWORD [exec /usr/bin/pass show domain/windows]
-set SECRET [exec /usr/bin/pass show google-auth/dsb]
+set SECRET [exec /usr/bin/pass show otp-secrets/dsb]
 set GKEY [exec /usr/bin/oathtool --totp -b $SECRET]
 
 set timeout 100

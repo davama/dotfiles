@@ -32,3 +32,6 @@ solaar -w hide &
 
 # set background image
 feh --bg-scale Google-Drive/Linux/manjaro/NuFVbLW.jpg
+
+# flameshot
+flameshot &

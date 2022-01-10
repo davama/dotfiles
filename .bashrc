@@ -3,7 +3,7 @@
 #
 
 # display
-export DISPLAY=:0.0
+#export DISPLAY=:0.0
 
 # If not running interactively, don't do anything
 txtblk='\e[0;30m' # Black - Regular
@@ -57,11 +57,24 @@ alias grep='grep --color'
 alias ssh='/usr/bin/ssh -o "ServerAliveInterval 20"'
 alias sshr='/usr/bin/ssh -l root -o "ServerAliveInterval 20" '
 alias sshc='/usr/bin/ssh -l config -o "ServerAliveInterval 20" '
+alias ssht='/usr/bin/ssh -l techs -o "ServerAliveInterval 20" '
+alias ssh-proxy='/usr/bin/ssh -o "ServerAliveInterval 20" -fN '
+alias ssh-proxy-check='/usr/bin/ssh -o "ServerAliveInterval 20" -O check '
+alias ssh-proxy-off='/usr/bin/ssh -o "ServerAliveInterval 20" -O exit '
+alias ssh-proxy-appcard='/usr/bin/ssh -o "ServerAliveInterval 20" -fN appcardproxy'
 
 
 function sshnasty () {
 	if [ -z $1 ]; then return; fi
 	for K in "$@"; do sed -i "$K"d ~/.ssh/known_hosts; done
+}
+function dd-bar () {
+	if [ -z $1 ]; then
+		echo Provide two parameters
+		echo dd-bar source destination
+		return
+	fi
+	sudo dd if=$1 of=$2 bs=4M status=progress
 }
 PATH=$PATH:~/.local/bin
 alias urgent="sleep 2; echo -e '\a'"
@@ -92,17 +105,14 @@ source .rvm/scripts/rvm
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin:/snap/bin"
 
-function sync_date() {
-	sudo ntpdate -u 0.arch.pool.ntp.org
-}
-# serial 
-function serial_console () {
-	echo "To exit screen Ctrl-a then K"
-	sudo screen /dev/ttyUSB0 115200
-}
 
 #for pass to not use gui
 export GPG_TTY=$(tty)
 
+source ~/.bash_functions
 source ~/.bash_test
 source ~/.xmonad/xmonadrc
+
+# add ssh key to agent
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519

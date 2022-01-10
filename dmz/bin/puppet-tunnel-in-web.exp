@@ -15,7 +15,7 @@ set DSBPORT [lindex $argv 5 ]
 set INMON2 [lindex $argv 6 ]
 set IN2PORT [lindex $argv 7 ]
 set PASSWORD [exec /usr/bin/pass show domain/windows]
-set SECRET [exec /usr/bin/pass show google-auth/dsb]
+set SECRET [exec /usr/bin/pass show otp-secrets/dsb]
 set GKEY [exec /usr/bin/oathtool --totp -b $SECRET]
 set timeout 100
 

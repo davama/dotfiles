@@ -43,9 +43,9 @@ function rebuild_ghc () {
 	# NOTE: For idea which ghc version to use, see <package>.cabal file
 	#      grep tested-with ~/.xmonad/xmonad-git/xmonad*/xmonad*.cabal
 	#      stack ghc -- --version # see current ghc version stack is using
-	#stack --resolver ghc-8.6.5 setup || build_failed
-	#stack --resolver ghc-8.8.4 setup || build_failed
-	stack --resolver ghc-8.10.3 setup || build_failed
+	#stack --resolver ghc-8.10.3 setup || build_failed
+	#stack --resolver ghc-8.10.4 setup || build_failed
+	stack --resolver ghc-9.0.1 setup || build_failed
 }
 
 cd

@@ -24,7 +24,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Named
 import XMonad.Layout.Spacing
 import XMonad.Layout.PerWorkspace
-import XMonad.Layout.IM
+import XMonad.Layout.IM (withIM, Property( Role, Title ), gridIM)
 import XMonad.Layout.Gaps
 import qualified XMonad.Layout.GridVariants as G
 import XMonad.Layout.Reflect
@@ -78,7 +78,7 @@ main = do
         $ withNavigation2DConfig def
 -- xmonad $ withUrgencyHook myUrgentHook
 -- xmonad $ withUrgencyHook LibNotifyUrgencyHook
-        $ docks $ ewmh def {
+	$ docks $ ewmhFullscreen . ewmh $ def {
           terminal = myTerminal
           , focusFollowsMouse = myFocusFollowsMouse
           , clickJustFocuses = myClickJustFocuses
@@ -96,7 +96,7 @@ main = do
           ]
           , startupHook = composeAll [
                      myStartupHook
-                     , docksStartupHook
+                     --, docksStartupHook
                      , setWMName "LG3D"
                      , myCaseHook hostname -- pass hostname variable
                      , myDzenStartup
@@ -141,15 +141,16 @@ myVol           = "~/.xmonad/bin/volume.sh"
 -- custom apps for spawnSelected
 myCustomAppsGrid = [
         ("MPD Conky Album"          , "~/.xmonad/bin/conky_mpd_cover.sh " )
-        , ("GA-B"                    , "~/bin/get-totp.sh 1"      )
-        , ("GA-W"                    , "~/bin/get-totp.sh 2"      )
-        , ("GA-BM"                    , "~/bin/get-totp.sh 3"     )
-        , ("GA-AW"                    , "~/bin/get-totp.sh 4"     )
+        , ("GA-DSB"                 , "~/bin/get-totp.sh 1"     )
+        , ("GA-BM"                  , "~/bin/get-totp.sh 2"     )
+        , ("GA-TA"                  , "~/bin/get-totp.sh 3"     )
+        , ("GA-AC-AW"               , "~/bin/get-totp.sh 4"     )
+        , ("GA-AC-LM"               , "~/bin/get-totp.sh 5"     )
+        , ("GA-GIT"                 , "~/bin/get-totp.sh 6"     )
         ]
 -- apps for spawnSelected
 myAppGrid = [
         ( "Ario - MPD GUI"           , "ario"                     )
-        , ("Arandr"                  , "arandr"                   )
         , ("Calculator"              , "xcalc"                    )
         , ("Chiaki PS4 Remote"       , "chiaki"                   )
         , ("Gimp"                    , "gimp"                     )
@@ -163,6 +164,7 @@ myAppGrid = [
         , ("LibreOffice Impress"     , "libreoffice --impress"    )
         , ("Pithos"                  , "pithos"                   )
         , ("Roxterm"                 , "roxterm"                  )
+        , ("Screen Recorder"         , "simplescreenrecorder"     )
         , ("Slack"                   , "slack -s"                 )
         , ("Teams"                   , "teams"                    )
         , ("Teamviewer"              , "teamviewer"               )
@@ -174,7 +176,9 @@ myAppGrid = [
         ]
 mySystemApps = [
         ( "Printers"                 , "system-config-printer"    )
+        , ("Arandr"                  , "arandr"                   )
         , ("Bluetooth"               , "blueman-manager"          )
+        , ("Net-Manager"             , "nm-connection-editor"     )
         , ( "TrackBall"              , "solaar"                   )
         ]
 -- }}}
@@ -229,10 +233,10 @@ myManageHook = composeAll . concat $
    ]
    where
      bars    = ["dzen2","desktop_window"]
-     float   = ["feh","conky_mpd"]
+     float   = ["feh","conky_mpd","Slack | mini panel"]
      cfloat  = ["Xmessage","Gxmessage","Eog","xclock"]
-            ++ ["SimpleScreenRecorder","Evolution-alarm-notify","Evolution","Gns3","Mtpaint","Calculator","world-clock","wifi-qrcode","agenda-term","arandr"]
-            ++ ["xeyes","pinentry","zoiper","blueman-manager","system-config-printer","Solaar"]
+            ++ ["SimpleScreenRecorder","Evolution-alarm-notify","Evolution","Gns3","Mtpaint","Calculator","world-clock","wifi-qrcode","agenda-term","arandr","nm-connection-editor"]
+            ++ ["xeyes","pinentry","zoiper","blueman-manager","system-config-printer","Solaar","xmonad-float"]
      ws0     = ["nothing"]
      ws1     = ["Wine"]
      ws2     = ["google-chrome","chromium"]
@@ -399,6 +403,7 @@ searchEngineMap method = M.fromList $
  , ((0, xK_i), method S.images)
  , ((0, xK_j), method $ S.searchEngine "Jira" "https://teamamericany.atlassian.net/browse/")
  , ((0, xK_m), method S.maps)
+ , ((0, xK_s), method $ S.searchEngine "Salesforce" "https://appcard.my.salesforce.com/_ui/search/ui/UnifiedSearchResults?str=")
  , ((0, xK_w), method S.wikipedia)
  , ((0, xK_y), method S.youtube)
  ]
@@ -499,7 +504,6 @@ myCaseHook hostname = case hostname of
 --           }
 
 myEventHook = screenCornerEventHook
- <+> E.fullscreenEventHook
  <+> debugKeyEvents -- see ~/.xsession-errors
 -- <+> docksEventHook
 -- }}}
@@ -593,20 +597,20 @@ myKeys (hostname) =  [
 
 -- Custom Keybindings --
 -- Window movement
- , ((mod4Mask .|. shiftMask, xK_Up), windows . W.shift =<< findWorkspace getSortByIndexNoWSList Next EmptyWS 1) -- send window to next empty WS except WSlist
- , ((mod4Mask .|. shiftMask, xK_Down), windows . W.shift =<< findWorkspace getSortByIndexNoWSList Prev EmptyWS 1) -- send window to prev empty WS except WSlist
- , ((mod4Mask .|. shiftMask, xK_Page_Up), (windows . W.shift =<< findWorkspace getSortByIndexNoWSList Next EmptyWS 1) >> (windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next NonEmptyWS 1) ) -- same but follow focus to next WS except WSlist
- , ((mod4Mask .|. shiftMask, xK_Page_Down), (windows . W.shift =<< findWorkspace getSortByIndexNoWSList Prev EmptyWS 1) >> (windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev NonEmptyWS 1) ) -- same but follow focus to prev WS except WSlist
+ , ((mod4Mask .|. shiftMask, xK_Up), windows . W.shift =<< findWorkspace getSortByIndexNoWSList Next emptyWS 1) -- send window to next empty WS except WSlist
+ , ((mod4Mask .|. shiftMask, xK_Down), windows . W.shift =<< findWorkspace getSortByIndexNoWSList Prev emptyWS 1) -- send window to prev empty WS except WSlist
+ , ((mod4Mask .|. shiftMask, xK_Page_Up), (windows . W.shift =<< findWorkspace getSortByIndexNoWSList Next emptyWS 1) >> (windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next (Not emptyWS) 1) ) -- same but follow focus to next WS except WSlist
+ , ((mod4Mask .|. shiftMask, xK_Page_Down), (windows . W.shift =<< findWorkspace getSortByIndexNoWSList Prev emptyWS 1) >> (windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev (Not emptyWS) 1) ) -- same but follow focus to prev WS except WSlist
 -- Swap workspaces on adjacent screens
  , ((mod4Mask .|. shiftMask, xK_Left), screenSwap L False)
  , ((mod4Mask .|. shiftMask, xK_Right), screenSwap R False)
  , ((mod4Mask .|. shiftMask, xK_h), screenSwap L False) -- mimic vim
  , ((mod4Mask .|. shiftMask, xK_l), screenSwap R False) -- mimic vim
 -- Workspace Navigation
- , ((mod4Mask, xK_Up), windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next HiddenNonEmptyWS 1) -- move to next WS except WSlist
- , ((mod4Mask, xK_Down), windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev HiddenNonEmptyWS 1) -- move to prev WS except WSlist
- , ((mod4Mask, xK_Page_Up), windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next EmptyWS 1) -- move to next WS except WSlist
- , ((mod4Mask, xK_Page_Down), windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev EmptyWS 1) -- move to prev WS except WSlist
+ , ((mod4Mask, xK_Up), windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next (hiddenWS :&: Not emptyWS) 1) -- move to next WS except WSlist
+ , ((mod4Mask, xK_Down), windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev (hiddenWS :&: Not emptyWS) 1) -- move to prev WS except WSlist
+ , ((mod4Mask, xK_Page_Up), windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next emptyWS 1) -- move to next WS except WSlist
+ , ((mod4Mask, xK_Page_Down), windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev emptyWS 1) -- move to prev WS except WSlist
  , ((mod4Mask, xK_BackSpace), focusUrgent) -- move to URGENT WS
  , ((mod4Mask, xK_z), toggleWS) -- move to prev visible WS
  , ((modalt, xK_j), windowGo U False)
@@ -773,15 +777,15 @@ myMouseBindings (hostname) = [
   , ((mod1Mask .|. controlMask, 7), (\w -> focus w >>  spawn myMpdNext))
   , ((mod1Mask .|. shiftMask, button1), (\w -> focus w >> spawn myMpdKill))
   , ((mod4Mask .|. shiftMask, button2), (\w -> focus w >> kill))
-  , ((mod4Mask .|. shiftMask, button4), (\w -> windows . W.shift =<< findWorkspace getSortByIndexNoWSList Next EmptyWS 1))
-  , ((mod4Mask .|. shiftMask, button5), (\w -> windows . W.shift =<< findWorkspace getSortByIndexNoWSList Prev EmptyWS 1))
-  , ((mod4Mask, button4), (\w -> windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next HiddenNonEmptyWS 1))
-  , ((mod4Mask, button5), (\w -> windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev HiddenNonEmptyWS 1))
+  , ((mod4Mask .|. shiftMask, button4), (\w -> windows . W.shift =<< findWorkspace getSortByIndexNoWSList Next emptyWS 1))
+  , ((mod4Mask .|. shiftMask, button5), (\w -> windows . W.shift =<< findWorkspace getSortByIndexNoWSList Prev emptyWS 1))
+  , ((mod4Mask, button4), (\w -> windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next (hiddenWS :&: Not emptyWS) 1))
+  , ((mod4Mask, button5), (\w -> windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev (hiddenWS :&: Not emptyWS) 1))
   , ((mod1Mask, button2), (\w -> focus w >> spawn myMpdToggle))
   , ((mod1Mask, button4), (\w -> focus w >> spawn myMpdNext))
   , ((mod1Mask, button5), (\w -> focus w >> spawn myMpdPrev))
-  , ((mod4Mask, 8), (\w -> windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next HiddenEmptyWS 1))
-  , ((mod4Mask, 9), (\w -> windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev HiddenEmptyWS 1))
+  , ((mod4Mask, 8), (\w -> windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next (hiddenWS :&: emptyWS) 1))
+  , ((mod4Mask, 9), (\w -> windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev (hiddenWS :&: emptyWS) 1))
  ]
  where
   getSortByIndexNoWSList = fmap (. filter (\(W.Workspace tag _ _) -> not (tag `elem` myExtraWSs))) getSortByIndex
