@@ -44,7 +44,8 @@ function ssh_dsb_web () {
 }
 function ssh_dsb_others () {
 	#~/dmz/bin/puppet-tunnel-in-others.exp $USER $zone $dsbamer $dsbemea $dsbapac $zabbix $racktables $intranet $usrds006 $redmine
-	~/dmz/bin/puppet-tunnel-in-others.exp $USER $zone $dsbamer $dsbemea $dsbapac $zabbix $racktables $intranet $windowsbox $redmine $mail $testing1 $testing2 $testing3 $testing4 $testing5 $ilo_manager_apac $archbox
+	#~/dmz/bin/puppet-tunnel-in-others.exp $USER $zone $dsbamer $dsbemea $dsbapac $zabbix $racktables $intranet $windowsbox $redmine $mail $testing1 $testing2 $testing3 $testing4 $testing5 $ilo_manager_apac $archbox
+	~/dmz/bin/puppet-tunnel-in-others.exp $USER $zone $dsbamer $dsbemea $dsbapac $zabbix $racktables $windowsbox $redmine $mail $testing1 $testing2 $testing3 $testing4 $testing5 $ilo_manager_apac $archbox
 	if [ $? -eq 0 ]; then echo " $name SSH Tun " >> /tmp/ssh-remote.txt; fi
 }
 function dynamic_ssh () {
@@ -58,6 +59,9 @@ function dynamic_ssh () {
 	elif [ $remote_port -eq 80 ]; then
 		echo "http://localhost:$local_port"
 	fi
+}
+function name_usa () {
+	name="USA"
 }
 function name_amer () {
 	name="AMER"
@@ -74,8 +78,9 @@ function name_teamam () {
 
 function select_region () {
 	PS3="SSH server to forward to: "
-	select remote_ssh in "AMER" "EMEA" "APAC" "DEV" "TEAMAM"; do
+	select remote_ssh in "USA" "AMER" "EMEA" "APAC" "DEV" "TEAMAM"; do
 		case "$remote_ssh" in
+			"USA")		name_usa; zone=$name; break;;
 			"AMER")		name_amer; zone=$name; break;;
 			"EMEA")		name_emea; zone=$name; break;;
 			"APAC")		name_apac; zone=$name; break;;
@@ -90,6 +95,7 @@ zone=$(echo $1 | tr '[:lower:]' '[:upper:]')
 
 # do nothing unless wrong
 case $zone in
+	USA)		name_usa; ssh_dsb ;;
 	AMER)		name_amer; ssh_dsb ;;
 	EMEA)		name_emea; ssh_dsb ;;
 	APAC)		name_apac; ssh_dsb ;;

@@ -21,14 +21,14 @@ import XMonad.Hooks.DebugKeyEvents
 -- Layouts
 import XMonad.Layout.Fullscreen -- hiding (fullscreenEventHook)
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Named
+import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.IM (withIM, Property( Role, Title ), gridIM)
 import XMonad.Layout.Gaps
 import qualified XMonad.Layout.GridVariants as G
 import XMonad.Layout.Reflect
-import XMonad.Layout.TrackFloating
+import XMonad.Layout.FocusTracking
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 -- Actions
@@ -78,7 +78,7 @@ main = do
         $ withNavigation2DConfig def
 -- xmonad $ withUrgencyHook myUrgentHook
 -- xmonad $ withUrgencyHook LibNotifyUrgencyHook
-	$ docks $ ewmhFullscreen . ewmh $ def {
+        $ docks $ ewmhFullscreen . ewmh $ def {
           terminal = myTerminal
           , focusFollowsMouse = myFocusFollowsMouse
           , clickJustFocuses = myClickJustFocuses
@@ -118,9 +118,9 @@ myInternet      = "google-chrome-stable"
 --myInternet      = "chromium"
 myBackground    = "~/.xmonad/bin/wallpaper.sh"
 myBackgrdcolor  = "~/.xmonad/bin/background-set.sh"
-myScreenshot    = "scrot ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
-myScreenshotW   = "sleep 1; scrot -u ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
-myMouseshot     = "sleep 0.2; scrot -s ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send \"ScreenShot Done\""
+myScreenshot    = "scrot ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send --transient \"ScreenShot Done\""
+myScreenshotW   = "sleep 1; scrot -u ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send --transient \"ScreenShot Done\""
+myMouseshot     = "sleep 0.2; scrot -s ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1 && sleep 1 && notify-send --transient \"ScreenShot Done\""
 myScreenshotFlm = "flameshot gui -p ~/Pictures/"
 myRdesktop      = "~/.xmonad/bin/remote-rdp.sh "
 myMpd           = "~/.xmonad/bin/tmux-Ncmpcpp.sh"
@@ -143,10 +143,11 @@ myCustomAppsGrid = [
         ("MPD Conky Album"          , "~/.xmonad/bin/conky_mpd_cover.sh " )
         , ("GA-DSB"                 , "~/bin/get-totp.sh 1"     )
         , ("GA-BM"                  , "~/bin/get-totp.sh 2"     )
-        , ("GA-TA"                  , "~/bin/get-totp.sh 3"     )
-        , ("GA-AC-AW"               , "~/bin/get-totp.sh 4"     )
-        , ("GA-AC-LM"               , "~/bin/get-totp.sh 5"     )
-        , ("GA-GIT"                 , "~/bin/get-totp.sh 6"     )
+        , ("GA-BMW"                 , "~/bin/get-totp.sh 3"     )
+        , ("GA-TA"                  , "~/bin/get-totp.sh 4"     )
+        , ("GA-AC-AW"               , "~/bin/get-totp.sh 5"     )
+        , ("GA-AC-LM"               , "~/bin/get-totp.sh 6"     )
+        , ("GA-GIT"                 , "~/bin/get-totp.sh 7"     )
         ]
 -- apps for spawnSelected
 myAppGrid = [
@@ -170,6 +171,7 @@ myAppGrid = [
         , ("Teamviewer"              , "teamviewer"               )
         , ("Virtualbox"              , "virtualbox"               )
         , ("Vlc"                     , "vlc"                      )
+        , ("Wireshark"               , "wireshark"                )
         , ("Xterm"                   , "xterm"                    )
         , ("Zoiper"                  , "zoiper"                   )
         , ("Zoom"                    , "zoom"                     )
@@ -233,7 +235,7 @@ myManageHook = composeAll . concat $
    ]
    where
      bars    = ["dzen2","desktop_window"]
-     float   = ["feh","conky_mpd","Slack | mini panel"]
+     float   = ["feh","conky_mpd"]
      cfloat  = ["Xmessage","Gxmessage","Eog","xclock"]
             ++ ["SimpleScreenRecorder","Evolution-alarm-notify","Evolution","Gns3","Mtpaint","Calculator","world-clock","wifi-qrcode","agenda-term","arandr","nm-connection-editor"]
             ++ ["xeyes","pinentry","zoiper","blueman-manager","system-config-printer","Solaar","xmonad-float"]
@@ -245,13 +247,13 @@ myManageHook = composeAll . concat $
      ws5     = ["Xpdf","zoom"]
      ws6     = ["Chiaki"]
      ws7     = ["Gvim","Xconfigs","TeamViewer"]
-     ws8     = ["Pithos","Gimp","Ario","vlc","retroarch","google-meet-desktop"]
-     ws9     = ["Hexchat","Pidgin","Microsoft Teams","Microsoft Teams - Preview","Slack"]
+     ws8     = ["Pithos","Gimp","Ario","vlc","retroarch","google-meet-desktop","Slack | mini panel"]
+     ws9     = ["Hexchat","Pidgin","Microsoft Teams","Microsoft Teams - Insiders","Microsoft Teams - Preview","Slack"]
      nsp     = ["nothing","sendtonsp"]
      nsp1    = ["GNS3"]
      dev1    = ["nothing"]
      dev2    = ["nothing"]
-     im      = ["browser-window"] -- teams
+     im      = ["nothing"]
      role    = stringProperty "WM_WINDOW_ROLE" -- example
 -- }}}
 ------------------
@@ -266,24 +268,24 @@ grid orientation s = gapper s $ G.SplitGrid orientation 1 1 (1/2) (16/9) (5/100)
 
 --myLayoutHook = (avoidStruts (standardLayouts) ||| fullscreen)
 myLayoutHook = onWorkspace (myWorkspaces !! 8) (avoidStruts (tabbedLayout) ||| avoidStruts (imLayout) ||| avoidStruts (standardLayouts))
-             $ onWorkspace (myWorkspaces !! 7) (avoidStruts (gimpLayout) ||| avoidStruts (standardLayouts)) 
-             $ onWorkspace (myWorkspaces !! 3) (avoidStruts (tabbedLayout) ||| avoidStruts (standardLayouts)) 
-             $ onWorkspace (myWorkspaces !! 1) (avoidStruts (chatLayout) ||| avoidStruts (standardLayouts)) 
+             $ onWorkspace (myWorkspaces !! 7) (avoidStruts (tabbedLayout) ||| avoidStruts (standardLayouts))
+             $ onWorkspace (myWorkspaces !! 3) (avoidStruts (tabbedLayout) ||| avoidStruts (standardLayouts))
+             $ onWorkspace (myWorkspaces !! 1) (avoidStruts (chatLayout) ||| avoidStruts (standardLayouts))
              $ onWorkspaces ["DEV1","DEV2"] (avoidStruts (threeLayout) ||| avoidStruts (standardLayouts))
              $ avoidStruts (standardLayouts) ||| fullscreen
   where
-    standardLayouts = 
-                    named "+" (mySpacing (toInteger myBorderSpace) $ reflectVert $ G.Grid (16/10)) -- grid -- reflectvert spawns windows on the left
-                    ||| named "TT" (grid G.B myBorderSpace) -- grid ; bottom ; spacing
-                    ||| named "=[]" (grid G.L myBorderSpace) -- grid ; left ; spacing
-                    ||| named "_+_" (grid G.T myBorderSpace) -- grid ; Top ; spacing
-                    ||| named "[]=" (grid G.R myBorderSpace) -- grid ; right ; spacing
-    tabbedLayout = named "Tab" $ (simpleTabbed)
-    fullscreen = named "[_]" (noBorders (fullscreenFull Full)) -- full
-    imLayout = named "IML" $ gridIM (1/5) (Title "Buddy List") -- for pidgin
-    chatLayout = named "IML" $ withIM 0.4 (Role "pop-up") $ reflectHoriz $ withIM 0.3 (Role "pop-up") (trackFloating (grid G.T 0)) -- pop-up is WhatApp and Google Hangouts; whoever opens first
-    gimpLayout = named "GimpL" $ withIM 0.2 (Role "gimp-dock") $ reflectVert $ withIM 0.3 (Role "gimp-dock") (trackFloating (grid G.T 0)) -- Gimp Layout -- reflectvert spawns windows at the bottom
-    threeLayout = named "|||" $ (ThreeColMid 1 (3/100) (1/3))
+    standardLayouts =
+                    renamed [Replace "+"] (mySpacing (toInteger myBorderSpace) $ reflectHoriz $ G.Grid (16/10)) -- grid -- reflecthoriz spawns master on the right
+                    ||| renamed [Replace "TT"] (grid G.B myBorderSpace) -- grid ; bottom ; spacing
+                    ||| renamed [Replace "=[]"] (grid G.L myBorderSpace) -- grid ; left ; spacing
+                    ||| renamed [Replace "_+_"] (grid G.T myBorderSpace) -- grid ; Top ; spacing
+                    ||| renamed [Replace "[]="] (grid G.R myBorderSpace) -- grid ; right ; spacing
+    tabbedLayout = renamed [Replace "Tab"] $ (simpleTabbed)
+    fullscreen = renamed [Replace "[_]"] (noBorders (fullscreenFull Full)) -- full
+    imLayout = renamed [Replace "IML"] $ gridIM (1/5) (Title "Buddy List") -- for pidgin
+    chatLayout = renamed [Replace "IML"] $ withIM 0.4 (Role "pop-up") $ reflectHoriz $ withIM 0.3 (Role "pop-up") (focusTracking (grid G.T 0)) -- pop-up is WhatApp and Google Hangouts; whoever opens first
+    --gimpLayout = renamed [Replace "GimpL"] $ withIM 0.2 (Role "gimp-dock") $ reflectVert $ withIM 0.3 (Role "gimp-dock") (focusTracking (grid G.T 0)) -- Gimp Layout -- reflectvert spawns windows at the bottom
+    threeLayout = renamed [Replace "|||"] $ (ThreeColMid 1 (3/100) (1/3))
 -- }}}
 ------------------
 -- Config Functions, Colors, Borders, Mouse Focus, Fonts -- {{{
@@ -316,7 +318,7 @@ colorLook color n =
 colors :: ColorMap
 colors = M.fromList
     [ (Black , ("#000000", "#121212")) -- black and gray7
-    , (Red , ("#ff0000", "#f21835")) -- 
+    , (Red , ("#ff0000", "#f21835")) --
     , (Green , ("#0dd40d", "#006400")) --
     , (Yellow , ("#FFFF00", "#C3C32D")) --
     , (Blue , ("#000040", "#80c0ff")) --
@@ -335,7 +337,7 @@ myFocusedBorderColor = (colorLook Green 1)
 -- True if your focus should follow your mouse cursor.
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
--- True if want to mimic MSWindows Env. 
+-- True if want to mimic MSWindows Env.
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
 -- fonts
@@ -388,20 +390,21 @@ numPadKeys = [ xK_KP_End,  xK_KP_Down,  xK_KP_Page_Down -- 1, 2, 3
 numKeys = [ xK_1, xK_2, xK_3, xK_4, xK_5, xK_6, xK_7, xK_8, xK_9 ] ++ [ xK_0, xK_minus, xK_equal ] ++ [ xK_bracketleft, xK_bracketright ] -- [ = dev1; ] = dev2
 nums = map show [1..9] ++ ["0","-","="]
 myTermProfiles = ["AMER","EMEA","APAC","AMERc","EMEAc","APACc","AMERr","EMEAr","APACr"] ++ ["Default","Defaultr"] -- roxterm profiles
-myLTermProfiles = ["AMER-L","EMEA-L","APAC-L","AMER-Lc","EMEA-Lc","APAC-Lc","AMER-Lr","EMEA-Lr","APAC-Lr"] ++ ["Default","Defaultr"] -- roxterm profiles
+---myLTermProfiles = ["AMER-L","EMEA-L","APAC-L","AMER-Lc","EMEA-Lc","APAC-Lc","AMER-Lr","EMEA-Lr","APAC-Lr"] ++ ["Default","Defaultr"] -- roxterm profiles
+myLTermProfiles = ["AMER","EMEA","APAC","AMERc","EMEAc","APACc","AMERr","EMEAr","APACr"] ++ ["Default","Defaultr"] -- roxterm profiles
 myTATermProfiles = ["TAhap","TAhis","TAdbm","TAdbs1","TAdbs2","TAdbs3","TAdbs4","TAdbb","TAsrv1"] ++ ["TAzabb","Default"] -- roxterm profiles for work
 myLTATermProfiles = ["TAhap-L","TAhis-L","TAdbm-L","TAdbs1-L","TAdbs2-L","TAdbs3-L","TAdbs4-L","TAdbb-L","TAsrv1-L"] ++ ["TAzabb-L","Default"] -- roxterm profiles for work
 -- }}}
 ------------------
 -- SearchEngince --  {{{
 searchEngineMap method = M.fromList $
- [ 
+ [
  ((0, xK_a), method S.amazon)
  , ((0, xK_d), method S.dictionary)
  , ((0, xK_e), method S.ebay)
  , ((0, xK_g), method S.google)
  , ((0, xK_i), method S.images)
- , ((0, xK_j), method $ S.searchEngine "Jira" "https://teamamericany.atlassian.net/browse/")
+ , ((0, xK_j), method $ S.searchEngine "Jira" "https://appcard.atlassian.net/secure/QuickSearch.jspa?searchString=")
  , ((0, xK_m), method S.maps)
  , ((0, xK_s), method $ S.searchEngine "Salesforce" "https://appcard.my.salesforce.com/_ui/search/ui/UnifiedSearchResults?str=")
  , ((0, xK_w), method S.wikipedia)
@@ -433,6 +436,16 @@ myScratchPads = [ NS "scratchterm" spawnTerm  findTerm  manageTerm -- Named scra
         l = (1 - w)/2 -- distance from left edge
 -- }}}
 ------------------
+-- WSNotify -- {{{
+------------------
+-- print workspace location using notify-send
+notifyWSHint :: String -> X()
+notifyWSHint index = spawn $ "notify-send --transient -t 500 \"workspace: " ++ index ++ "\""
+workspaceHint f i = do
+  windows $ f i
+  notifyWSHint i
+-- }}}
+------------------
 -- LibNotify -- {{{
 ------------------
 -- to evoke urgent bell on terminal run:
@@ -443,10 +456,11 @@ instance UrgencyHook LibNotifyUrgencyHook where
     urgencyHook LibNotifyUrgencyHook w = do
         name     <- getName w
         Just idx <- fmap (W.findTag w) $ gets windowset
-        safeSpawn "notify-send" [show name, "" ++ idx]
+        safeSpawn "notify-send --transient" [show name, "" ++ idx]
 -- }}}
 ------------------
 -- DzenVol --  {{{
+------------------
 showVol = dzenConfig centered . show . round
 centered = onCurr (center 150 66)
     >=> D.font "-*-helvetica-*-r-*-*-64-*-*-*-*-*-*-*"
@@ -455,8 +469,9 @@ centered = onCurr (center 150 66)
 -- }}}
 ------------------
 -- UrgentHook --  {{{
+------------------
 myUrgentHook = dzenUrgencyHook
- { args = 
+ { args =
   [ "-fg", (colorLook Orange 0)
   , "-bg", (colorLook Green 1)
   , "-title-name", "UrgentDzen"
@@ -475,7 +490,7 @@ myUrgencyConfig = UrgencyConfig {suppressWhen = XMonad.Hooks.UrgencyHook.Never, 
 -- Startup/Event Hooks -- {{{
 ------------------
 myStartupHook = do
- addScreenCorners [ 
+ addScreenCorners [
    (SCLowerRight, spawn myTerminal)
 --   , (SCUpperRight, nextWS)
 --   , (SCUpperLeft, something)
@@ -519,14 +534,14 @@ myDzenStatus = myDzenbar1
 myDzenLogHook h = do
     copies <- wsContainingCopies
     let check ws | ws `elem` copies = dzenColor (colorLook Black 0) (colorLook Purple 0) $ ws | otherwise = ws -- color of WS with copied clients
-    dynamicLogWithPP dzenPP { 
+    dynamicLogWithPP dzenPP {
       ppOutput = hPutStrLn h
       , ppHidden = dzenColor (colorLook White 1) "" . wrap "" "" . check . noScratch
       , ppHiddenNoWindows = noScratchPad
       , ppSort = getSortByXineramaRule
       , ppSep = " "
       , ppWsSep = " "
-      , ppTitle = dzenColor "" "" . 
+      , ppTitle = dzenColor "" "" .
                                (\x -> if null x -- If there are actually no clients here, display the following ...
                                 then "^fn(" ++ myEmptyTitleFont 8 ++ ")" ++ "^fg(" ++ (colorLook Green 0) ++ ")" ++ ""
                                 -- ... and the focused windows' title with a maximum length of 100 chars and trailing dots otherwise:
@@ -571,7 +586,7 @@ myDzenLogHook h = do
                                 "|||" -> "^i("++iconsdir++"layout-threecol.xbm)"
                                 _  -> "^fg(" ++ (colorLook Red 0) ++ ")" ++ "^i("++iconsdir++"flag20n.xbm)" -- red flag for unknown layout name
                                 --_  -> "^fn(" ++ myTitleFont 10 ++ ")" ++ "^fg(" ++ (colorLook Red 0) ++ ")" ++ x -- if want to see the actual name of the layout
-                               ) 
+                               )
                                -- . wrap "^ca(1,xdotool key super+space)^ca(3,xdotool key super+shift+space)" "^ca()^ca()"
     }
   where
@@ -613,10 +628,10 @@ myKeys (hostname) =  [
  , ((mod4Mask, xK_Page_Down), windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev emptyWS 1) -- move to prev WS except WSlist
  , ((mod4Mask, xK_BackSpace), focusUrgent) -- move to URGENT WS
  , ((mod4Mask, xK_z), toggleWS) -- move to prev visible WS
- , ((modalt, xK_j), windowGo U False)
- , ((modalt, xK_k), windowGo D False)
- , ((modalt, xK_h), windowGo L False)
- , ((modalt, xK_l), windowGo R False)
+ --, ((modalt, xK_j), windowGo U False)
+ --, ((modalt, xK_k), windowGo D False)
+ --, ((modalt, xK_h), windowGo L False)
+ --, ((modalt, xK_l), windowGo R False)
  -- Screen Naviation
  , ((mod4Mask, xK_Left), screenGo L True) -- move to left neigh
  , ((mod4Mask, xK_Right), screenGo R True) -- move to right neigh
@@ -672,7 +687,7 @@ myKeys (hostname) =  [
  , ((mod4Mask .|. shiftMask, xK_g), windowPrompt myXPConfig Goto allWindows) -- go to window client in WS
  , ((mod4Mask, xK_s), SM.submap $ searchEngineMap $ S.promptSearchBrowser myXPConfig myInternet ) -- prompt search
  , ((mod4Mask, xK_p), passPrompt myXPConfig) -- $ pass show -c group/name
- , ((mod4Mask .|. mod1Mask, xK_p), passGeneratePrompt myXPConfig) -- $ gpg --full-gen-key ; pass init <last8digitsofkey> ; pass insert group/name 
+ , ((mod4Mask .|. mod1Mask, xK_p), passGeneratePrompt myXPConfig) -- $ gpg --full-gen-key ; pass init <last8digitsofkey> ; pass insert group/name
  , ((mod4Mask .|. controlMask  .|. shiftMask, xK_p), passRemovePrompt myXPConfig) -- $ pass rm group/name
 -- Help Messege
  , ((mod4Mask .|. shiftMask, xK_slash ), spawn ("cat " ++ help_default_keybindings ++ " | gxmessage -geometry 900x700 -font monospace -file -")) -- show messege of default xmonad keybindings
@@ -745,7 +760,7 @@ myKeys (hostname) =  [
          [ ((0, k), spawn (myTerminal ++ " -p " ++ show i)) | (i,k) <- (zip myTATermProfiles numKeys ++ zip myTATermProfiles numPadKeys) ] -- mod-ctrl-t,[0..9] or [numPad0..9]
         )
      ]
-   _  -> [ 
+   _  -> [
         (((mod4Mask .|. controlMask), xK_space), submap . M.fromList $
          [ ((0, k), spawn (myTerminal ++ " -p " ++ show i)) | (i,k) <- (zip myTermProfiles numKeys ++ zip myTermProfiles numPadKeys) ] -- mod-ctrl-t,[0..9] or [numPad0..9]
         )
@@ -755,7 +770,8 @@ myKeys (hostname) =  [
      ]
  )
  ++
- [ ((m .|. mod4Mask, k), windows $ f i)
+ -- [ ((m .|. mod4Mask, k), windows $ f i)
+ [ ((m .|. mod4Mask, k), workspaceHint f i)
    | (i, k) <- (zip myWorkspaces numKeys ++ zip myWorkspaces numPadKeys) -- minus and KP_Subtract go to NSP WS; = and KP_add go to NSP1; KP_/ to DEV1 ; KP_* to DEV2
    , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask), (copy, shiftMask .|. controlMask)]
  ]
@@ -797,4 +813,4 @@ myMouseBindings (hostname) = [
 help_default_keybindings="~/.xmonad/help_default_keybindings.txt"
 -- Custom Key bindings  --
 help_custom_keybindings="~/.xmonad/help_custom_keybindings.txt"
--- }}} 
+-- }}}
