@@ -44,6 +44,7 @@ import qualified XMonad.Actions.FlexibleResize as Flex
 import XMonad.Actions.FloatKeys
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.GridSelect
+import XMonad.Hooks.ShowWName
 -- Utilities, other
 import XMonad.Util.Paste
 import XMonad.Util.Run
@@ -104,6 +105,7 @@ main = do
           , logHook = composeAll [
                     myDzenLogHook xmproc
                     , myLogHook
+		    , showWNameLogHook mySWNConfig
           ]
  } `additionalKeys` myKeys hostname `additionalMouseBindings` myMouseBindings hostname -- pass hostname variable
 -- }}}
@@ -362,6 +364,14 @@ myGSConfig colorizer = (buildDefaultGSConfig myColorizer)
     , gs_colorizer = myColorizer
     , gs_font         = myGSFont
     }
+-- showWName swnconfig
+mySWNConfig :: SWNConfig
+mySWNConfig = SWNC
+        { swn_font    = "xft:Droid Sans:pixelsize=28"
+        , swn_bgcolor = "black"
+	, swn_fade    = 1
+        , swn_color   = "green"
+	}
 -- spawnSelected Redefine
 spawnSelected' :: [(String, String)] -> X ()
 spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
@@ -434,16 +444,6 @@ myScratchPads = [ NS "scratchterm" spawnTerm  findTerm  manageTerm -- Named scra
         w = 1 -- width, 100%
         t = 1 - h -- distance from top edge
         l = (1 - w)/2 -- distance from left edge
--- }}}
-------------------
--- WSNotify -- {{{
-------------------
--- print workspace location using notify-send
-notifyWSHint :: String -> X()
-notifyWSHint index = spawn $ "notify-send --transient -t 500 \"workspace: " ++ index ++ "\""
-workspaceHint f i = do
-  windows $ f i
-  notifyWSHint i
 -- }}}
 ------------------
 -- LibNotify -- {{{
@@ -519,7 +519,7 @@ myCaseHook hostname = case hostname of
 --           }
 
 myEventHook = screenCornerEventHook
- <+> debugKeyEvents -- see ~/.xsession-errors
+-- <+> debugKeyEvents -- see ~/.xsession-errors
 -- <+> docksEventHook
 -- }}}
 ------------------
@@ -770,8 +770,7 @@ myKeys (hostname) =  [
      ]
  )
  ++
- -- [ ((m .|. mod4Mask, k), windows $ f i)
- [ ((m .|. mod4Mask, k), workspaceHint f i)
+ [ ((m .|. mod4Mask, k), windows $ f i)
    | (i, k) <- (zip myWorkspaces numKeys ++ zip myWorkspaces numPadKeys) -- minus and KP_Subtract go to NSP WS; = and KP_add go to NSP1; KP_/ to DEV1 ; KP_* to DEV2
    , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask), (copy, shiftMask .|. controlMask)]
  ]
