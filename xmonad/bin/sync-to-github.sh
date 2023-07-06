@@ -30,8 +30,10 @@ cp -r ~/dmz/* ~/GITREPO/dotfiles/dmz/
 # dotfiles git repo
 # https://github.com/davama/dotfiles
 cp ~/.bashrc ~/GITREPO/dotfiles/
+cp ~/.bashrc_custom ~/GITREPO/dotfiles/
+cp ~/.bashrc_functions ~/GITREPO/dotfiles/
 for i in 1 2 3 4 5 9; do
-	sed -i "s/export MAIL_ACCOUNT_$i=.*/export MAIL_ACCOUNT_$i=<redacted>@<email.com>/g" ~/GITREPO/dotfiles/.bashrc
+	sed -i "s/export MAIL_ACCOUNT_$i=.*/export MAIL_ACCOUNT_$i=<redacted>@<email.com>/g" ~/GITREPO/dotfiles/.bashrc_custom
 done
 cp ~/.urlview ~/GITREPO/dotfiles/
 cp ~/.mailcap ~/GITREPO/dotfiles/

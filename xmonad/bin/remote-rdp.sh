@@ -3,6 +3,7 @@
 # rdp into remove windows computers
 
 source ~/.xmonad/dzen2/source-config.sh
+source ~/.bashrc_custom
 USER=$(pass show dsb/username)
 
 if [[ $HOSTNAME == "ARCH" ]]; then
@@ -28,7 +29,7 @@ function default_vars () {
 	SIZE=$(echo $SIZE_delta | sed "s/$/x$Y/g")
 	#SIZE="/w:$X /h:$Y"
 	#SIZE="/f"
-	DOMAIN_CREDENTIALS="/u:$USER@BETHEL /p:$pass"
+	DOMAIN_CREDENTIALS="/u:$USER@$MAIL_ACCOUNT_5 /p:$pass"
 	SHARE_DRIVE="/drive:ARCH,$HOME"
 }
 function teamam_vars () {
@@ -39,7 +40,8 @@ pass=$(/usr/bin/pass show domain/windows)
 # switch "-K" key machines key bindings
 
 case $1 in
-	1)	SERVER="usrds078";
+	#1)	SERVER="usrds078";
+	1)	SERVER="usrdcb014";
 		default_vars;
 		;;
 	2)	SERVER="windowsbox"
@@ -48,7 +50,7 @@ case $1 in
 	3)	SERVER="localhost" # if ssh tunneling
 		default_vars;
 		;;
-	4)	SERVER="nlrds004"
+	4)	SERVER="usrds078";
 		default_vars;
 		;;
 	5)	SERVER="windowsw";
@@ -84,17 +86,22 @@ if ps ux | grep xfreerdp | grep -q $SERVER ; then
 	exit 0
 fi
 
-
 # ctrl-alt-enter to toggle full screen mode
-if [ $SERVER == "windowswork" ] || [ $SERVER == "windowsbox" ]; then
+if [ $SERVER == "usrds078" ]; then
+	xfreerdp /timeout:10000 /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SERVER_HOST $SIZE $SHARE_DRIVE $DOMAIN_CREDENTIALS &> /tmp/rdp-log-$SERVER.txt &
+elif [ $SERVER == "localhost" ]; then
+	xfreerdp /timeout:10000 /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SERVER_HOST $SIZE $SHARE_DRIVE $DOMAIN_CREDENTIALS &> /tmp/rdp-log-$SERVER.txt &
+elif [ $SERVER == "windowswork" ] || [ $SERVER == "windowsbox" ]; then
 	xfreerdp /timeout:10000 /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SERVER_HOST $SOUND $SIZE $SHARE_DRIVE $DOMAIN_CREDENTIALS &> /tmp/rdp-log-$SERVER.txt &
 else
-	xfreerdp /timeout:10000 /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SERVER_HOST $SIZE $SHARE_DRIVE $DOMAIN_CREDENTIALS &> /tmp/rdp-log-$SERVER.txt &
+#	xfreerdp /timeout:10000 /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SERVER_HOST $SIZE $SHARE_DRIVE $DOMAIN_CREDENTIALS &> /tmp/rdp-log-$SERVER.txt &
+	xfreerdp ~/rdp-remote.rdp /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SIZE $SHARE_DRIVE &> /tmp/rdp-log-$SERVER.txt &
 fi
 
+
 while true; do
-	sleep 2
-	if ps ux | grep xfreerdp | grep -q $SERVER; then
+	sleep 5
+	if ps ux | grep xfreerdp | grep -qE "$SERVER|rdp-remote"; then
 		:
 	else
 		#beep

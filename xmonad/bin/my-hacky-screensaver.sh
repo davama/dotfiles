@@ -9,7 +9,8 @@ function destroy_conky_proc () {
 	ps ux | grep conky | grep greatcircle | awk '{print $2}' | xargs kill
 }
 
-trap 'destroy_conky_proc; rm /tmp/*-$$' EXIT
+#trap 'destroy_conky_proc; rm /tmp/*-$$' EXIT
+trap 'destroy_conky_proc' EXIT
 
 function monitor_1 () {
 	# about bottom left hand corner of monitor 1
@@ -22,7 +23,7 @@ function monitor_1 () {
 }
 function monitor_2 () {
 	# about bottom left hand corner of monitor 2
-	xdotool mousemove 1720 1010 click 1 
+	xdotool mousemove 3720 1010 click 1 
 	RAN_WS=$(cat /tmp/xmonad-all-WS-$$ | awk '{print $1}' | sort -R | head -1)
 	wmctrl -s $RAN_WS
 	sed -i "/^$RAN_WS /d" /tmp/xmonad-all-WS-$$

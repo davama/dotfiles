@@ -19,7 +19,6 @@ set timeout 100
 # local ssh | racktables | zabbix | rdp | redmine | weboutlook
 #spawn $SSHUTTLE --ns-hosts $NSHOST @$CONFIG --remote $USER@$SERVER:2222 10.0.0.0/8
 spawn $SSHUTTLE --dns --remote $USER@$SERVER:2222 --ssh-cmd '/usr/bin/ssh -i /home/$USER/.ssh/id_ed25519' 10.0.0.0/8
-#sudo /usr/bin/sshuttle --dns -v --remote $USER@amer:2222 --ssh-cmd 'ssh -i /home/$USER/.ssh/id_ed25519' 10.0.0.0/8 
 
 set prompt ":|#|\\\$"
 interact -o -nobuffer -re $prompt return

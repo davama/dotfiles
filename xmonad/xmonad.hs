@@ -105,7 +105,7 @@ main = do
           , logHook = composeAll [
                     myDzenLogHook xmproc
                     , myLogHook
-		    , showWNameLogHook mySWNConfig
+                    , showWNameLogHook mySWNConfig
           ]
  } `additionalKeys` myKeys hostname `additionalMouseBindings` myMouseBindings hostname -- pass hostname variable
 -- }}}
@@ -369,9 +369,9 @@ mySWNConfig :: SWNConfig
 mySWNConfig = SWNC
         { swn_font    = "xft:Droid Sans:pixelsize=28"
         , swn_bgcolor = "black"
-	, swn_fade    = 1
+        , swn_fade    = 0.25
         , swn_color   = "green"
-	}
+        }
 -- spawnSelected Redefine
 spawnSelected' :: [(String, String)] -> X ()
 spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
@@ -617,8 +617,10 @@ myKeys (hostname) =  [
  , ((mod4Mask .|. shiftMask, xK_Page_Up), (windows . W.shift =<< findWorkspace getSortByIndexNoWSList Next emptyWS 1) >> (windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Next (Not emptyWS) 1) ) -- same but follow focus to next WS except WSlist
  , ((mod4Mask .|. shiftMask, xK_Page_Down), (windows . W.shift =<< findWorkspace getSortByIndexNoWSList Prev emptyWS 1) >> (windows . W.greedyView =<< findWorkspace getSortByIndexNoWSList Prev (Not emptyWS) 1) ) -- same but follow focus to prev WS except WSlist
 -- Swap workspaces on adjacent screens
- , ((mod4Mask .|. shiftMask, xK_Left), screenSwap L False)
- , ((mod4Mask .|. shiftMask, xK_Right), screenSwap R False)
+-- , ((mod4Mask .|. shiftMask, xK_Left), screenSwap L False)
+-- , ((mod4Mask .|. shiftMask, xK_Right), screenSwap R False)
+ , ((mod4Mask .|. shiftMask, xK_Left), screenSwap L False >> screenGo L False ) -- same but follow focus to next WS except WSlist
+ , ((mod4Mask .|. shiftMask, xK_Right), screenSwap R False >> screenGo R False ) -- same but follow focus to next WS except WSlist
  , ((mod4Mask .|. shiftMask, xK_h), screenSwap L False) -- mimic vim
  , ((mod4Mask .|. shiftMask, xK_l), screenSwap R False) -- mimic vim
 -- Workspace Navigation
@@ -742,22 +744,6 @@ myKeys (hostname) =  [
         )
         , (((mod4Mask .|. modalt), xK_space), submap . M.fromList $
          [ ((0, k), spawn (myTerminal ++ " -p " ++ show i)) | (i,k) <- (zip myLTATermProfiles numKeys ++ zip myLTATermProfiles numPadKeys) ] -- mod-ctrl-t,[0..9] or [numPad0..9]
-        )
-     ]
-   "ARCHOLD" -> [
-        (((mod4Mask .|. controlMask), xK_space), submap . M.fromList $
-         [ ((0, k), spawn (myTerminal ++ " -p " ++ show i)) | (i,k) <- (zip myLTermProfiles numKeys ++ zip myLTermProfiles numPadKeys) ] -- mod-ctrl-t,[0..9] or [numPad0..9]
-        )
-        , (((mod4Mask .|. modalt), xK_space), submap . M.fromList $
-         [ ((0, k), spawn (myTerminal ++ " -p " ++ show i)) | (i,k) <- (zip myLTATermProfiles numKeys ++ zip myLTATermProfiles numPadKeys) ] -- mod-ctrl-t,[0..9] or [numPad0..9]
-        )
-     ]
-   "ARCHWORK" -> [
-        (((mod4Mask .|. controlMask), xK_space), submap . M.fromList $
-         [ ((0, k), spawn (myTerminal ++ " -p " ++ show i)) | (i,k) <- (zip myLTermProfiles numKeys ++ zip myLTermProfiles numPadKeys) ] -- mod-ctrl-t,[0..9] or [numPad0..9]
-        )
-        , (((mod4Mask .|. modalt), xK_space), submap . M.fromList $
-         [ ((0, k), spawn (myTerminal ++ " -p " ++ show i)) | (i,k) <- (zip myTATermProfiles numKeys ++ zip myTATermProfiles numPadKeys) ] -- mod-ctrl-t,[0..9] or [numPad0..9]
         )
      ]
    _  -> [

@@ -17,7 +17,7 @@ fi
 # show SSID and signal strength
 function wifi_stngth () {
 	# get SSID name
-	essid=$(iwconfig $weth | head -1 | awk '{ print $NF}' | cut -d':' -f2 | sed 's/"//g')
+	essid=$(iwconfig $weth | head -1 | grep ESSID | cut -d: -f2 | tail -1 | sed 's/"//g')
 	# get signal strength; raw
 	stngth=$(iwconfig $weth | grep Quality | awk '{ print $2 }' | cut -d'=' -f2 | cut -d'/' -f1)
 	# divide by 10

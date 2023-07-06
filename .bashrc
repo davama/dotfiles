@@ -2,117 +2,138 @@
 # ~/.bashrc
 #
 
-# display
-#export DISPLAY=:0.0
-
-# If not running interactively, don't do anything
-txtblk='\e[0;30m' # Black - Regular
-txtred='\e[0;31m' # Red
-txtgrn='\e[0;32m' # Green
-txtylw='\e[0;33m' # Yellow
-txtblu='\e[0;34m' # Blue
-txtpur='\e[0;35m' # Purple
-txtcyn='\e[0;36m' # Cyan
-txtwht='\e[0;37m' # White
-bldblk='\e[1;30m' # Black - Bold
-bldred='\e[1;31m' # Red
-bldgrn='\e[1;32m' # Green
-bldylw='\e[1;33m' # Yellow
-bldblu='\e[1;34m' # Blue
-bldpur='\e[1;35m' # Purple
-bldcyn='\e[1;36m' # Cyan
-bldwht='\e[1;37m' # White
-unkblk='\e[4;30m' # Black - Underline
-undred='\e[4;31m' # Red
-undgrn='\e[4;32m' # Green
-undylw='\e[4;33m' # Yellow
-undblu='\e[4;34m' # Blue
-undpur='\e[4;35m' # Purple
-undcyn='\e[4;36m' # Cyan
-undwht='\e[4;37m' # White
-bakblk='\e[40m'   # Black - Background
-bakred='\e[41m'   # Red
-bakgrn='\e[42m'   # Green
-bakylw='\e[43m'   # Yellow
-bakblu='\e[44m'   # Blue
-bakpur='\e[45m'   # Purple
-bakcyn='\e[46m'   # Cyan
-bakwht='\e[47m'   # White
-txtrst='\e[0m'    # Text Reset
-
 [[ $- != *i* ]] && return
 
-# https://superuser.com/questions/275685/how-to-customize-bash-to-add-a-system-bell-to-all-command-line-questions-read
-PS1="\n$txtgrn\w\[\a\]\n$txtylw** \# ** $bldblu\$(/bin/date) $txtpur\u@\h: $txtcyn\$(/usr/bin/tty | /bin/sed -e 's:/dev/::'): \$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b$txtrst\n-> "
+colors() {
+	local fgc bgc vals seq0
 
-alias ls='ls --color=auto'
-alias ll='ls -al'
-alias vi='vim'
-complete -cf sudo
-complete -cf *
-alias beep="beep -f 5000 -l 50 -r 2"
-alias sudo="sudo "
-alias tree='tree -C'
-alias grep='grep --color'
-alias ssh='/usr/bin/ssh -o "ServerAliveInterval 20"'
-alias sshr='/usr/bin/ssh -l root -o "ServerAliveInterval 20" '
-alias sshc='/usr/bin/ssh -l config -o "ServerAliveInterval 20" '
-alias ssht='/usr/bin/ssh -l techs -o "ServerAliveInterval 20" '
-alias ssh-proxy='/usr/bin/ssh -o "ServerAliveInterval 20" -fN '
-alias ssh-proxy-check='/usr/bin/ssh -o "ServerAliveInterval 20" -O check '
-alias ssh-proxy-off='/usr/bin/ssh -o "ServerAliveInterval 20" -O exit '
-alias ssh-proxy-appcard='/usr/bin/ssh -o "ServerAliveInterval 20" -fN appcardproxy'
+	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
+	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
 
+	# foreground colors
+	for fgc in {30..37}; do
+		# background colors
+		for bgc in {40..47}; do
+			fgc=${fgc#37} # white
+			bgc=${bgc#40} # black
 
-function sshnasty () {
-	if [ -z $1 ]; then return; fi
-	for K in "$@"; do sed -i "$K"d ~/.ssh/known_hosts; done
+			vals="${fgc:+$fgc;}${bgc}"
+			vals=${vals%%;}
+
+			seq0="${vals:+\e[${vals}m}"
+			printf "  %-9s" "${seq0:-(default)}"
+			printf " ${seq0}TEXT\e[m"
+			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
+		done
+		echo; echo
+	done
 }
-function dd-bar () {
-	if [ -z $1 ]; then
-		echo Provide two parameters
-		echo dd-bar source destination
-		return
+
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
+# Change the window title of X terminals
+case ${TERM} in
+	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
+		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+		;;
+	screen*)
+		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+		;;
+esac
+
+use_color=true
+
+# Set colorful PS1 only on colorful terminals.
+# dircolors --print-database uses its own built-in database
+# instead of using /etc/DIR_COLORS.  Try to use the external file
+# first to take advantage of user additions.  Use internal bash
+# globbing instead of external grep binary.
+safe_term=${TERM//[^[:alnum:]]/?}   # sanitize TERM
+match_lhs=""
+[[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
+[[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
+[[ -z ${match_lhs}    ]] \
+	&& type -P dircolors >/dev/null \
+	&& match_lhs=$(dircolors --print-database)
+[[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
+
+if ${use_color} ; then
+	# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
+	if type -P dircolors >/dev/null ; then
+		if [[ -f ~/.dir_colors ]] ; then
+			eval $(dircolors -b ~/.dir_colors)
+		elif [[ -f /etc/DIR_COLORS ]] ; then
+			eval $(dircolors -b /etc/DIR_COLORS)
+		fi
 	fi
-	sudo dd if=$1 of=$2 bs=4M status=progress
-}
-PATH=$PATH:~/.local/bin
-alias urgent="sleep 2; echo -e '\a'"
 
-export SYSTEMD_EDITOR="vim"
-export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
-export EDITOR=/usr/bin/vim
+	if [[ ${EUID} == 0 ]] ; then
+		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
+	else
+		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+	fi
 
-alias jcontrol='/usr/lib/jvm/java-9-jdk/bin/jcontrol'
-
-SSH_DMZ_OPTIONS='-o "ServerAliveInterval 20"'
-alias sshn="/usr/bin/ssh"
-if [ $HOSTNAME == "ARCHWORK" ]; then
-	alias sshr="/usr/bin/ssh -l root $SSH_DMZ_OPTIONS"
-	#alias ssh='/usr/bin/sshpass -f ~/.sshpass-teamam /usr/bin/ssh' 
+	alias ls='ls --color=auto'
+	alias grep='grep --colour=auto'
+	alias egrep='egrep --colour=auto'
+	alias fgrep='fgrep --colour=auto'
+else
+	if [[ ${EUID} == 0 ]] ; then
+		# show root@ when we don't have colors
+		PS1='\u@\h \W \$ '
+	else
+		PS1='\u@\h \w \$ '
+	fi
 fi
 
-# mutt env variables
-TERM=xterm-256color
-export MAIL_ACCOUNT_1=<redacted>@<email.com>
-export MAIL_ACCOUNT_2=<redacted>@<email.com>
-export MAIL_ACCOUNT_3=<redacted>@<email.com>
-export MAIL_ACCOUNT_4=<redacted>@<email.com>
-export MAIL_ACCOUNT_5=<redacted>@<email.com>
-export MAIL_ACCOUNT_9=<redacted>@<email.com>
+unset use_color safe_term match_lhs sh
 
-source .rvm/scripts/rvm
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin:/snap/bin"
+#alias cp="cp -i"                          # confirm before overwriting something
+#alias df='df -h'                          # human-readable sizes
+#alias free='free -m'                      # show sizes in MB
+#alias np='nano -w PKGBUILD'
+#alias more=less
 
+xhost +local:root > /dev/null 2>&1
 
-#for pass to not use gui
-export GPG_TTY=$(tty)
+# Bash won't get SIGWINCH if another process is in the foreground.
+# Enable checkwinsize so that bash will check the terminal size when
+# it regains control.  #65623
+# http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
+shopt -s checkwinsize
 
-source ~/.bash_functions
-source ~/.bash_test
-source ~/.xmonad/xmonadrc
+shopt -s expand_aliases
 
-# add ssh key to agent
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
+# export QT_SELECT=4
+
+# Enable history appending instead of overwriting.  #139609
+shopt -s histappend
+
+#
+# # ex - archive extractor
+# # usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1     ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+source ~/.bashrc_custom
+source ~/.bashrc_functions

@@ -86,3 +86,5 @@ endfunction
 " space to unfold and "za" to fold
 "au BufWinLeave * mkview
 "au BufWinEnter * silent loadview
+
+autocmd FileType yaml set expandtab
