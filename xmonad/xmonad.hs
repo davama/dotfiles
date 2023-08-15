@@ -165,7 +165,7 @@ myAppGrid = [
         , ("LibreOffice Calc"        , "libreoffice --calc"       )
         , ("LibreOffice Writer"      , "libreoffice --writer"     )
         , ("LibreOffice Impress"     , "libreoffice --impress"    )
-        , ("Pithos"                  , "pithos"                   )
+        , ("Postman"                 , "postman"                  )
         , ("Roxterm"                 , "roxterm"                  )
         , ("Screen Recorder"         , "simplescreenrecorder"     )
         , ("Slack"                   , "slack -s"                 )
@@ -244,7 +244,7 @@ myManageHook = composeAll . concat $
      ws0     = ["nothing"]
      ws1     = ["Wine"]
      ws2     = ["google-chrome","chromium"]
-     ws3     = ["libreoffice-calc","libreoffice-writer","VirtualBox Manager","VirtualBox Machine","libreoffice","Firefox","firefox"]
+     ws3     = ["libreoffice-calc","libreoffice-writer","VirtualBox Manager","VirtualBox Machine","LibreOffice","libreoffice","Firefox","firefox"]
      ws4     = ["xfreerdp","rdesktop"]
      ws5     = ["Xpdf","zoom"]
      ws6     = ["Chiaki"]

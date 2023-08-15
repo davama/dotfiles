@@ -25,7 +25,8 @@ function default_vars () {
 	SERVER_HOST="/v:$SERVER"
 	SOUND="/sound:sys:alsa /microphone:sys:alsa"
 	SOUND=""
-	SIZE_delta="/size:$X"
+	#SIZE_delta="/size:$X"
+	SIZE_delta="/size:1080"
 	SIZE=$(echo $SIZE_delta | sed "s/$/x$Y/g")
 	#SIZE="/w:$X /h:$Y"
 	#SIZE="/f"
@@ -41,7 +42,7 @@ pass=$(/usr/bin/pass show domain/windows)
 
 case $1 in
 	#1)	SERVER="usrds078";
-	1)	SERVER="usrdcb014";
+	1)	SERVER="usrds115";
 		default_vars;
 		;;
 	2)	SERVER="windowsbox"
@@ -96,6 +97,7 @@ elif [ $SERVER == "windowswork" ] || [ $SERVER == "windowsbox" ]; then
 else
 #	xfreerdp /timeout:10000 /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SERVER_HOST $SIZE $SHARE_DRIVE $DOMAIN_CREDENTIALS &> /tmp/rdp-log-$SERVER.txt &
 	xfreerdp ~/rdp-remote.rdp /t:"xfreerdp $SERVER" $OTHER_OPTIONS $SIZE $SHARE_DRIVE &> /tmp/rdp-log-$SERVER.txt &
+
 fi
 
 
