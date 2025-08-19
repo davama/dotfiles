@@ -22,6 +22,10 @@ source $VIMRUNTIME/vimrc_example.vim
 " not set newline at end of file
 :set nofixeol
 :set nofixendofline
+" change temp files creation locations
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swap//
+set undodir=~/.vim/tmp/undo//
 
 set nocompatible
 filetype off

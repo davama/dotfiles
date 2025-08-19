@@ -32,8 +32,10 @@ call vundle#begin('~/.vim/plugged')
   Plugin 'matze/vim-move'
   " planttuml-syntax - syntax file for plantuml
   Plugin 'aklt/plantuml-syntax'
-  " vim-slumlord - gives you a 'live preview' of your UML diagrams when you save
-  Plugin 'scrooloose/vim-slumlord'
+  " open-browser - Open URI with your favorite browser
+  Plugin 'tyru/open-browser.vim'
+  " plantuml-previewer
+  Plugin 'weirongxu/plantuml-previewer.vim'
   " indent guide - visually displaying indent levels
   Plugin 'nathanaelkane/vim-indent-guides'
   " fugitive - git wrapper
@@ -46,8 +48,9 @@ call vundle#begin('~/.vim/plugged')
   Plugin 'nvie/vim-flake8'
   " black - uncompromising Python code formatter
   Plugin 'psf/black'
-  " lightline - A light and configurable statusline/tabline
-  Plugin 'itchyny/lightline.vim'
+  " vim-airline/vim-airline - Lean & mean status/tabline
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
   " vim-gitbranch - provides a function which returns the name of the git branch - used in lightline.vim
   Plugin 'itchyny/vim-gitbranch'
   " vim-floaterm - Use (neo)vim terminal in the floating/popup window
@@ -58,4 +61,7 @@ call vundle#begin('~/.vim/plugged')
   Plugin 'tpope/vim-eunuch'
   " vim-gitgutter - shows a git diff in the sign column
   Plugin 'airblade/vim-gitgutter'
+  " markdown-preview - preview markdown in browser
+  " other requirements - https://github.com/iamcco/markdown-preview.nvim/issues/637#issuecomment-2266213843
+  Plugin 'iamcco/markdown-preview.nvim'
 call vundle#end()
