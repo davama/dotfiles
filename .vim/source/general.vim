@@ -1,21 +1,9 @@
 " ------------------------------------------------------------
 " basic vim configuration
 " ------------------------------------------------------------
-" testing
-set mousemodel=extend
-" end testing
-
 let g:syntastic_python_python_exec = 'python3'
 " Ignore case when searching
 set ignorecase
-" set F2 as write and quit when in COMMAND mode
-map <F2> :wqa!<CR>
-" set F3 as quit without saving when in COMMAND mode
-map <F3> :qa!<CR>
-" set F4 as write without quitting when in COMMAND mode
-map <F4> :w!<CR>
-" Press F6 to toggle syntax highlighting on/off, and show current value.
-:map <F6> :if exists("g:syntax_on") <Bar> syntax off <Bar> else <Bar> syntax enable <Bar> endif <CR>
 
 " enable open file to last cursor position
 source $VIMRUNTIME/vimrc_example.vim
@@ -28,7 +16,7 @@ set directory=~/.vim/tmp/swap//
 set undodir=~/.vim/tmp/undo//
 
 set nocompatible
-filetype off
+filetype off            " filetype detection
 set nu                  " Enable line numbers
 syntax on               " Enable synax highlighting
 set incsearch           " Enable incremental search
@@ -43,3 +31,10 @@ if !has('nvim')
 endif
 " set background=dark     " Set background
 " colorscheme scheakur    " Set color scheme
+
+" set F2 as write and quit when in COMMAND mode
+map <F2> :wqa!<CR>
+" set F3 as quit without saving when in COMMAND mode
+map <F3> :qa!<CR>
+" set F4 as write without quitting when in COMMAND mode
+map <F4> :w!<CR>

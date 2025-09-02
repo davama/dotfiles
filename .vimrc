@@ -22,6 +22,7 @@ if !(&diff)
     source ~/.vim/source/flake8_plugin.vim
     source ~/.vim/source/vim-floaterm_plugin.vim
     source ~/.vim/source/markdown-preview_plugin.vim
+    source ~/.vim/source/vimwiki_plugin.vim
 
     source ~/.vim/source/misc.vim
     source ~/.vim/source/visual.vim

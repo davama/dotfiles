@@ -64,4 +64,10 @@ call vundle#begin('~/.vim/plugged')
   " markdown-preview - preview markdown in browser
   " other requirements - https://github.com/iamcco/markdown-preview.nvim/issues/637#issuecomment-2266213843
   Plugin 'iamcco/markdown-preview.nvim'
+  " Dockerfile.vim - Vim syntax file for Docker's Dockerfile
+  Plugin 'ekalinin/Dockerfile.vim'
+  " wincent/terminus - enhance vim integration with the terminal
+  Plugin 'wincent/terminus'
+  " vimwiki/vimwiki - personal wiki for vim
+  Plugin 'vimwiki/vimwiki'
 call vundle#end()
