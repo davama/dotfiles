@@ -70,4 +70,6 @@ call vundle#begin('~/.vim/plugged')
   Plugin 'wincent/terminus'
   " vimwiki/vimwiki - personal wiki for vim
   Plugin 'vimwiki/vimwiki'
+  " patrickdavey/vimwiki_markdown - allow wiki pages to be written in markdown
+  Plugin 'patrickdavey/vimwiki_markdown'
 call vundle#end()
