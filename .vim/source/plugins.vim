@@ -72,4 +72,8 @@ call vundle#begin('~/.vim/plugged')
   Plugin 'vimwiki/vimwiki'
   " patrickdavey/vimwiki_markdown - allow wiki pages to be written in markdown
   Plugin 'patrickdavey/vimwiki_markdown'
+  " tpope/vim-commentary - comment stuff out
+  Plugin 'tpope/vim-commentary'
+  " tpope/vim-endwise - helps to end certain structures automatically
+  Plugin 'tpope/vim-endwise'
 call vundle#end()
