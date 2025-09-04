@@ -62,7 +62,7 @@ call vundle#begin('~/.vim/plugged')
   " vim-gitgutter - shows a git diff in the sign column
   Plugin 'airblade/vim-gitgutter'
   " markdown-preview - preview markdown in browser
-  " other requirements - https://github.com/iamcco/markdown-preview.nvim/issues/637#issuecomment-2266213843
+  " other requirements - https://github.com/iamcco/markdown-preview.nvim/issues/637#issuecomment-2266213843A
   Plugin 'iamcco/markdown-preview.nvim'
   " Dockerfile.vim - Vim syntax file for Docker's Dockerfile
   Plugin 'ekalinin/Dockerfile.vim'
@@ -76,4 +76,16 @@ call vundle#begin('~/.vim/plugged')
   Plugin 'tpope/vim-commentary'
   " tpope/vim-endwise - helps to end certain structures automatically
   Plugin 'tpope/vim-endwise'
+  " pseewald/vim-anyfold - Generic folding mechanism and motion based on indentation
+  Plugin 'pseewald/vim-anyfold'
+  " machakann/vim-highlightedyank - Make the yanked region apparent
+  Plugin 'machakann/vim-highlightedyank'
+  " AndrewRadev/splitjoin.vim - switching between a single-line statement and a multi-line one
+  Plugin 'AndrewRadev/splitjoin.vim'
+  " romainl/vim-cool - disables search highlighting when you are done searching and re-enables it when you search again
+  Plugin 'romainl/vim-cool'
+  " dense-analysis/ale - ALE (Asynchronous Lint Engine) is a plugin providing linting (syntax checking and semantic errors) while you edit your text files, and acts as a Vim Language Server Protocol client.
+  Plugin 'dense-analysis/ale'
+  " pearofducks/ansible-vim - vim syntax plugin for Ansible 2.x
+  Plugin 'pearofducks/ansible-vim'
 call vundle#end()

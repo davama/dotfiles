@@ -19,6 +19,13 @@ augroup uml_ft
   autocmd BufNewFile,BufRead *.pu,*.uml,*.plantuml,*.puml,*.iuml PlantumlOpen
 augroup END
 
+" yaml filetype configuration
+augroup yaml_ft
+  au!
+  autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml.ansible
+  autocmd Filetype yaml.ansible AnyFoldActivate
+augroup END
+
 " Press F6 to toggle syntax highlighting on/off, and show current value.
 :map <F6> :if exists("g:syntax_on") <Bar> syntax off <Bar> else <Bar> syntax enable <Bar> endif <CR>
 
