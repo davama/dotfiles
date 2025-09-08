@@ -1,6 +1,6 @@
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'yaml.ansible': ['ansible-lint', 'prettier'],
+\   'yaml.ansible': ['ansible-lint --fix', 'prettier'],
 \   'sh': ['shfmt'],
 \   'python': ['isort', 'black', 'add_blank_lines_for_python_control_statements'],
 \   'json': ['jq'],
