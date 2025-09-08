@@ -1,0 +1,51 @@
+# https://jvns.ca/blog/2024/02/16/popular-git-config-options/
+[diff]
+	tool = difftastic
+	algorithm = histogram
+	submodule = log
+	colorMoved = default
+[difftool]
+	prompt = false
+[alias]
+	d = difftool
+[fetch]
+	recurseSubmodules = true
+	prune = true
+[clone]
+	recurseSubmodules = true
+[user]
+	email = <email>
+	name = <name>
+[http]
+	sslVerify = false
+[credential "https://github.com"]
+	helper = !pass personal/github.com/pat_classic
+[init]
+	defaultBranch = main
+[submodule]
+	recurse = true
+[merge]
+	conflictstyle = zdiff3
+	tool = meld
+[rebase]
+	autosquash = true
+	autostash = true
+[push]
+	autoSetupRemote = true
+	followtags = true
+[commit]
+	verbose = true
+[help]
+	autocorrect = 10
+# https://github.com/dandavison/delta
+[core]
+	pager = delta
+	excludeFiles = ~/.gitignore
+	editor = vim
+[status]
+	submoduleSummary = true
+[branch]
+	sort = -committerdate
+[log]
+	date = iso
+[https]
