@@ -88,6 +88,6 @@ call vundle#begin('~/.vim/plugged')
   Plugin 'dense-analysis/ale'
   " pearofducks/ansible-vim - vim syntax plugin for Ansible 2.x
   Plugin 'pearofducks/ansible-vim'
-  " justinmk/vim-sneak - Jump to any location specified by two characters
-  Plugin 'justinmk/vim-sneak'
+  " tpope/vim-surround - mappings to easily delete, change and add such surroundings in pairs
+  Plugin 'tpope/vim-surround'
 call vundle#end()
