@@ -1,0 +1,11 @@
+# youcompleteme
+cmake
+# vim-plantuml-preview
+graphviz
+# markdown_preview
+nodejs yarn
+cd app && yarn install
+# vimwiki_markdown
+ruby
+gem install vimwiki_markdown
+
