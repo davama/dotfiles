@@ -1,3 +1,9 @@
+" disable ale
+" let g:ale_enabled = 0
+
+" disable code completion; already handled by YCM
+let g:ale_completion_enabled = 0
+
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'yaml.ansible': ['ansible-lint --fix', 'prettier'],
@@ -26,7 +32,3 @@ let g:ale_fix_on_save = 1
 
 " disable specific highlights
 let g:ale_exclude_highlights = ['line too long', 'E501']
-let g:ale_yaml_yamllint_options='-d "{extends: relaxed, rules: {line-length: disable}}"'
-
-" disable code completion; already handled by YCM
-let g:ale_completion_enabled = 0
