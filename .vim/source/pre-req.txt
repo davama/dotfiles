@@ -3,9 +3,14 @@ cmake
 # vim-plantuml-preview
 graphviz
 # markdown_preview
-nodejs yarn
-cd app && yarn install
+nodejs npm
+npm install
 # vimwiki_markdown
 ruby
 gem install vimwiki_markdown
+
+cd ~/.vim/plugged/YouCompleteMe/
+./install.py
+cd ~/.vim/plugged/markdown-preview.nvim
+npm install
 
