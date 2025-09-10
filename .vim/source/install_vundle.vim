@@ -1,3 +1,4 @@
+" https://github.com/VundleVim/Vundle.vim/issues/769
 " START - Setting up Vundle - the vim plugin bundler
 let iCanHazVundle=1
 let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
