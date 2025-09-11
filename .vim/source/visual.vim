@@ -9,4 +9,7 @@
  if (has("termguicolors"))
   set termguicolors
  endif
+" set background=dark     " Set background
+" colorscheme scheakur    " Set color scheme
+" colorscheme tir_black
 colorscheme OceanicNext

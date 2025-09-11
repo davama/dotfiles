@@ -35,8 +35,6 @@ set expandtab           " Use spaces when tabbing
 if !has('nvim')
     set termwinsize=15x0    " Set terminal size
 endif
-" set background=dark     " Set background
-" colorscheme scheakur    " Set color scheme
 
 " set F2 as write and quit when in COMMAND mode
 map <F2> :wqa!<CR>
