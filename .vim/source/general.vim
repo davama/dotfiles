@@ -21,6 +21,7 @@ set backupdir=~/.vim/tmp/backup//
 set directory=~/.vim/tmp/swap//
 set undodir=~/.vim/tmp/undo//
 
+filetype indent on
 set nocompatible
 filetype off            " filetype detection
 set nu                  " Enable line numbers
@@ -29,6 +30,7 @@ set incsearch           " Enable incremental search
 set hlsearch            " Enable highlight search
 set splitbelow          " Always split below"
 set mouse=a             " Enable mouse drag on window splits
+set smartindent         " auto-indent
 set tabstop=4           " How many columns of whitespace a \t is worth
 set shiftwidth=4        " How many columns of whitespace a “level of indentation” is worth
 set expandtab           " Use spaces when tabbing

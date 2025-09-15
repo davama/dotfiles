@@ -6,7 +6,7 @@ let g:ale_completion_enabled = 0
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'yaml.ansible': ['ansible-lint --fix', 'prettier'],
+\   'yaml.ansible': ['ansible-lint --fix=all', 'yamlfix'],
 \   'sh': ['shfmt'],
 \   'python': ['isort', 'black', 'add_blank_lines_for_python_control_statements'],
 \   'json': ['jq'],
@@ -14,7 +14,7 @@ let g:ale_fixers = {
 
 let g:ale_linters = {
 \   'yaml.ansible': ['ansible-lint'],
-\   'python': ['flake8'],
+\   'python': ['flake8', 'prettier'],
 \   'json': ['jq'],
 \}
 
