@@ -1,4 +1,5 @@
 # https://jvns.ca/blog/2024/02/16/popular-git-config-options/
+# https://github.com/Wilfred/difftastic/releases
 [diff]
 	tool = difftastic
 	algorithm = histogram
@@ -16,8 +17,6 @@
 [user]
 	email = <email>
 	name = <name>
-[http]
-	sslVerify = false
 [credential "https://github.com"]
 	helper = !pass personal/github.com/pat_classic
 [init]
@@ -26,7 +25,7 @@
 	recurse = true
 [merge]
 	conflictstyle = zdiff3
-	tool = meld
+	tool = vimdiff
 [rebase]
 	autosquash = true
 	autostash = true
@@ -49,3 +48,7 @@
 [log]
 	date = iso
 [https]
+[http]
+	sslVerify = false
+[mergetool]
+	prompt = false

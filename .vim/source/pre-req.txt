@@ -1,16 +1,16 @@
-# youcompleteme
-cmake
 # vim-plantuml-preview
 graphviz
+
 # markdown_preview
 nodejs npm
+cd .vim/plugged/markdown-preview.nvim/
 npm install
+
 # vimwiki_markdown
 ruby
 gem install vimwiki_markdown
 
+# youcompleteme
+cmake c++
 cd ~/.vim/plugged/YouCompleteMe/
 ./install.py
-cd ~/.vim/plugged/markdown-preview.nvim
-npm install
-
