@@ -27,7 +27,7 @@ call vundle#begin('~/.vim/plugged')
   " vim-fswitch - help switching between companion files
   Plugin 'derekwyatt/vim-fswitch'
   " YouCompleteMe - fast, as-you-type, fuzzy-search code completion, comprehension and refactoring engine
-  Plugin 'ycm-core/YouCompleteMe'
+  " Plugin 'ycm-core/YouCompleteMe'
   " vim-move - moves lines and selections in a more visual manner
   Plugin 'matze/vim-move'
   " planttuml-syntax - syntax file for plantuml
@@ -65,7 +65,7 @@ call vundle#begin('~/.vim/plugged')
   " other requirements - https://github.com/iamcco/markdown-preview.nvim/issues/637#issuecomment-2266213843A
   Plugin 'iamcco/markdown-preview.nvim'
   " Dockerfile.vim - Vim syntax file for Docker's Dockerfile
-  Plugin 'ekalinin/Dockerfile.vim'
+  " Plugin 'ekalinin/Dockerfile.vim'
   " wincent/terminus - enhance vim integration with the terminal
   Plugin 'wincent/terminus'
   " vimwiki/vimwiki - personal wiki for vim

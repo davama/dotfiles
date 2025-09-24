@@ -17,7 +17,7 @@ if !(&diff)
     source ~/.vim/source/vim-fswitch_plugin.vim
     source ~/.vim/source/ctrlsf_plugin.vim
     source ~/.vim/source/ctrlsf_plugin.vim
-    source ~/.vim/source/YouCompleteMe_plugin.vim
+    " source ~/.vim/source/YouCompleteMe_plugin.vim
     source ~/.vim/source/tagbar_plugin.vim
     source ~/.vim/source/vim-airline_plugin.vim
     source ~/.vim/source/flake8_plugin.vim
@@ -28,6 +28,7 @@ if !(&diff)
     source ~/.vim/source/vim-anyfold_plugin.vim
     source ~/.vim/source/ale_plugin.vim
     source ~/.vim/source/copilot_plugin.vim
+    source ~/.vim/source/coc_plugin.vim
 
     source ~/.vim/source/misc.vim
     source ~/.vim/source/visual.vim
