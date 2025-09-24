@@ -18,3 +18,7 @@ cd ~/.vim/plugged/YouCompleteMe/
 # ale
 go
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
+
+# coc
+cd ~/.vim/plugged/coc.nvim
+npm ci

@@ -92,4 +92,5 @@ call vundle#begin('~/.vim/plugged')
   Plugin 'tpope/vim-surround'
   " github/copilot.vim - GitHub Copilot is an AI pair programmer tool that helps you write code faster and smarter
   Plugin 'github/copilot.vim'
+  Plugin 'neoclide/coc.nvim'
 call vundle#end()
