@@ -1,8 +1,10 @@
 " disable ale
 " let g:ale_enabled = 0
 
-" disable code completion; already handled by YCM
+" disable code completion; handled by coc.nvim
 let g:ale_completion_enabled = 0
+" disable its LSP features; handled by coc.nvim
+let g:ale_disable_lsp = 1
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
