@@ -24,7 +24,7 @@ if !(&diff)
     source ~/.vim/source/vim-floaterm_plugin.vim
     source ~/.vim/source/markdown-preview_plugin.vim
     source ~/.vim/source/vimwiki_plugin.vim
-    source ~/.vim/source/vim-highlightedyank_plugin.vim
+    " source ~/.vim/source/vim-highlightedyank_plugin.vim
     source ~/.vim/source/vim-anyfold_plugin.vim
     source ~/.vim/source/ale_plugin.vim
     source ~/.vim/source/copilot_plugin.vim

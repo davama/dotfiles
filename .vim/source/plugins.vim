@@ -79,7 +79,7 @@ call vundle#begin('~/.vim/plugged')
   " pseewald/vim-anyfold - Generic folding mechanism and motion based on indentation
   Plugin 'pseewald/vim-anyfold'
   " machakann/vim-highlightedyank - Make the yanked region apparent
-  Plugin 'machakann/vim-highlightedyank'
+  " Plugin 'machakann/vim-highlightedyank'
   " AndrewRadev/splitjoin.vim - switching between a single-line statement and a multi-line one
   Plugin 'AndrewRadev/splitjoin.vim'
   " romainl/vim-cool - disables search highlighting when you are done searching and re-enables it when you search again

@@ -11,7 +11,7 @@ autocmd BufWinLeave <buffer> call clearmatches()
 " sls filetype configuration
 augroup sls_ft
   au!
-  autocmd BufNewFile,BufRead *.sls   set syntax=yaml
+  autocmd BufNewFile,BufRead *.sls set syntax=yaml
 augroup END
 " uml filetype configuration
 augroup uml_ft

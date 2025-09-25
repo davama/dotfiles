@@ -2,7 +2,7 @@
   " \ 'coc-black-formatter',
   " \ 'coc-mypy',
 let g:coc_global_extensions = [
-  \ 'coc-copilot',
+  \ '@hexuhua/coc-copilot',
   \ 'coc-docker',
   \ 'coc-explorer',
   \ 'coc-git',
@@ -12,6 +12,7 @@ let g:coc_global_extensions = [
   \ 'coc-pydocstring',
   \ 'coc-sh',
   \ 'coc-yaml',
+  \ 'coc-yank',
   \]
 
 Plugin 'yaegassy/coc-ansible'
