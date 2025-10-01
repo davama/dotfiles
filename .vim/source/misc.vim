@@ -19,6 +19,11 @@ augroup uml_ft
   autocmd BufNewFile,BufRead *.pu,*.uml,*.plantuml,*.puml,*.iuml PlantumlOpen
 augroup END
 
+augroup j2_ft
+  au!
+  autocmd BufNewFile,BufRead *.jinja,*.j2 set filetype=jinja2
+augroup END
+
 " yaml filetype configuration
 augroup yaml_ft
   au!

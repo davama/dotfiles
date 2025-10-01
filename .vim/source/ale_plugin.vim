@@ -17,6 +17,7 @@ let g:ale_fixers = {
 let g:ale_linters = {
 \   'yaml.ansible': ['ansible-lint'],
 \   'python': ['flake8', 'prettier'],
+\   'jinja2': ['j2lint'],
 \   'json': ['jq'],
 \}
 

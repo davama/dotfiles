@@ -1,4 +1,4 @@
-source ~/.vim/source/install_vundle.vim
+source ~/.vim/source/01_install_vundle.vim
 source ~/.vim/source/general.vim
 
 " ------------------------------------------------------------

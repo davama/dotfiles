@@ -20,3 +20,9 @@ if iCanHazVundle == 0
   :PluginInstall
 endif
 " END - Setting up Vundle - the vim plugin bundler
+
+" create tmp dir
+let my_backup_dirs = ['/.vim/tmp/backup', '/.vim/tmp/swap', '/.vim/tmp/undo']
+for item in my_backup_dirs
+  call mkdir($HOME . item, "p", 0700)
+endfor

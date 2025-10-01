@@ -18,6 +18,7 @@ gem install vimwiki_markdown
 # ale
 go
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
+pip install j2lint
 
 # coc
 cd ~/.vim/plugged/coc.nvim

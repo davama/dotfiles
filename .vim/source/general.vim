@@ -11,11 +11,6 @@ source $VIMRUNTIME/vimrc_example.vim
 :set nofixeol
 :set nofixendofline
 
-" create tmp dir
-call mkdir($HOME . "/.vim/tmp/backup", "p", 0700)
-call mkdir($HOME . "/.vim/tmp/swap", "p", 0700)
-call mkdir($HOME . "/.vim/tmp/undo", "p", 0700)
-
 " change temp files creation locations
 set backupdir=~/.vim/tmp/backup//
 set directory=~/.vim/tmp/swap//
