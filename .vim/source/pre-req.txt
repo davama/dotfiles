@@ -10,11 +10,6 @@ npm install
 ruby
 gem install vimwiki_markdown
 
-/* # youcompleteme */
-/* cmake c++ */
-/* cd ~/.vim/plugged/YouCompleteMe/ */
-/* ./install.py */
-
 # ale
 go
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
