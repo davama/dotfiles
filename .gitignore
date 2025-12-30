@@ -1,0 +1,5 @@
+.vim/black/*
+.vim/bundle/*
+.vim/pack/*
+.vim/plugged/*
+.vim/tmp/*
